@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JBQCompleteItApp", "JBQCompleteItApp\JBQCompleteItApp.csproj", "{29415050-0223-43AA-9275-F464A42E6B22}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JBQCompleteIt.ViewModel", "JBQCompleteIt.ViewModel\JBQCompleteIt.ViewModel.csproj", "{AB83FA8E-850C-4CC9-92D9-4447F91DDCE6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JBQCompleteIt.Repository", "JBQCompleteIt.Repository\JBQCompleteIt.Repository.csproj", "{1B5A789A-F2B6-4BC9-988F-E8714E7C71D8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{20D3FFDA-C358-433D-B5D9-2BB5230B35ED}"
+	ProjectSection(SolutionItems) = preProject
+		JBQ_20_Points.csv = JBQ_20_Points.csv
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuestionImporterApp", "QuestionImporterApp\QuestionImporterApp.csproj", "{D21052D7-0DD7-45B8-9DBE-86E2BE6C80B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{709650B1-C5AB-4DD5-B782-90CFCA778FE7}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29415050-0223-43AA-9275-F464A42E6B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29415050-0223-43AA-9275-F464A42E6B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29415050-0223-43AA-9275-F464A42E6B22}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{29415050-0223-43AA-9275-F464A42E6B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29415050-0223-43AA-9275-F464A42E6B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29415050-0223-43AA-9275-F464A42E6B22}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AB83FA8E-850C-4CC9-92D9-4447F91DDCE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB83FA8E-850C-4CC9-92D9-4447F91DDCE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB83FA8E-850C-4CC9-92D9-4447F91DDCE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB83FA8E-850C-4CC9-92D9-4447F91DDCE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B5A789A-F2B6-4BC9-988F-E8714E7C71D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B5A789A-F2B6-4BC9-988F-E8714E7C71D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B5A789A-F2B6-4BC9-988F-E8714E7C71D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B5A789A-F2B6-4BC9-988F-E8714E7C71D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D21052D7-0DD7-45B8-9DBE-86E2BE6C80B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D21052D7-0DD7-45B8-9DBE-86E2BE6C80B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D21052D7-0DD7-45B8-9DBE-86E2BE6C80B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D21052D7-0DD7-45B8-9DBE-86E2BE6C80B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30F58194-4EF7-4783-AACA-6BAE64ECEF7B}
+	EndGlobalSection
+EndGlobal
