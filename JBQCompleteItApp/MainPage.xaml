@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:JBQCompleteIt.ViewModel;assembly=JBQCompleteIt.ViewModel"
+             x:Class="JBQCompleteIt.MainPage">
+    <ContentPage.BindingContext>
+        <vm:MainPage/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+
+        <Style x:Key="jbqMotto" TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}" />
+            <Setter Property="FontFamily" Value="MorningRainbow" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='24', MacCatalyst='31.2'}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="Shadow">
+                <Shadow Brush="{AppThemeBinding Light=Gray, Dark=LightGray}"
+                    Offset="10,10"
+                    Radius="10"
+                    Opacity="0.8" />
+            </Setter>
+        </Style>
+
+        <Style x:Key="optionsText" TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}" />
+            <Setter Property="FontFamily" Value="OpenSansRegular" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='18', MacCatalyst='23.4'}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="optionsEntry" TargetType="Entry">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}" />
+            <Setter Property="FontFamily" Value="OpenSansRegular" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='22', MacCatalyst='28.6'}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="startButton" TargetType="Button">
+            <Setter Property="TextColor" Value="{StaticResource White}" />
+            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+            <Setter Property="FontFamily" Value="OpenSansRegular" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='32', MacCatalyst='41.6'}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Padding" Value="80,0" />
+        </Style>
+
+        <Style x:Key="aboutButton" TargetType="Button">
+            <Setter Property="TextColor" Value="{StaticResource White}" />
+            <Setter Property="BackgroundColor" Value="Orange" />
+            <Setter Property="FontFamily" Value="OpenSansRegular" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='18', MacCatalyst='23.4'}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="Padding" Value="10,1" />
+        </Style>
+
+        <Style x:Key="versionText" TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}" />
+            <Setter Property="FontFamily" Value="OpenSansRegular" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='16', MacCatalyst='20.8'}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout
+            Margin="10"
+            VerticalOptions="Center">
+
+            <Label
+                Style="{StaticResource Key=jbqMotto}"
+                Text="Practice Junior Bible Quizzing.  Put the word of God into your heart!" />
+
+            <Image
+                Margin="10"
+                Source="bible_and_cross.png"
+                SemanticProperties.Description="Bible and Cross"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+            <Label
+                Style="{StaticResource optionsText}">Optional Bible Fact-Pak™ (NLT) Question Range:</Label>
+
+            <HorizontalStackLayout
+                HorizontalOptions="Center">
+                <Entry
+                    Style="{StaticResource optionsEntry}"
+                    MinimumWidthRequest="80"
+                    Keyboard="Numeric"
+                    Placeholder="Start"
+                    Text="{Binding Path=StartQuestionNumberStr}"
+                    VerticalOptions="Center"
+                    Margin="10,0">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior 
+                            Flags="ValidateOnValueChanged"
+                            MinimumValue="{Binding Path=MinQuestionNumber}"
+                            MaximumValue="{Binding Path=MaxQuestionNumber}"
+                            MaximumDecimalPlaces="0"
+                            InvalidStyle="{StaticResource InvalidEntryStyle}" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label
+                    Style="{StaticResource optionsText}"
+                    VerticalOptions="Center">to</Label>
+                <Entry
+                    Style="{StaticResource optionsEntry}"
+                    MinimumWidthRequest="80"
+                    Keyboard="Numeric"
+                    Placeholder="End"
+                    Text="{Binding Path=EndQuestionNumberStr}"
+                    VerticalOptions="Center"
+                    Margin="10,0">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior 
+                            Flags="ValidateOnValueChanged"
+                            MinimumValue="{Binding Path=MinQuestionNumber}"
+                            MaximumValue="{Binding Path=MaxQuestionNumber}"
+                            MaximumDecimalPlaces="0"
+                            InvalidStyle="{StaticResource InvalidEntryStyle}" />
+                    </Entry.Behaviors>
+                </Entry>
+            </HorizontalStackLayout>
+
+            <Button 
+                Style="{StaticResource startButton}"
+                Text="Start Quizzing"
+                Margin="20"
+                Clicked="CompleteIt_Clicked" />
+
+            <Label HorizontalOptions="Center" TextColor="Red">Alpha Version: Not for general release</Label>
+            
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Style="{StaticResource optionsText}" VerticalOptions="Center" Text="Enable Hints:" Margin="20,0,0,0" />
+                <CheckBox VerticalOptions="Center" IsChecked="{Binding Path=EnableHints}" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout
+                Margin="5"
+                HorizontalOptions="Center">
+                <Label 
+                    Style="{StaticResource versionText}"
+                    VerticalOptions="Center"
+                    IsVisible="{Binding Path=IsVersionInfoPresent}"
+                    Text="{Binding Path=Version, StringFormat='Version {0}'}"
+                    Margin="0,0,10,0"/>
+                <Button
+                    Style="{StaticResource aboutButton}"
+                    Text="About..."
+                    Clicked="InfoButton_Clicked" />
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
