@@ -75,7 +75,7 @@ namespace JBQCompleteIt.ViewModel
                     RemoveCollectionItems(_possibleAnswerSegments);
                 }
                 SetProperty(ref _possibleAnswerSegments, value);
-                CorrectAnswerSegmentCount = _possibleAnswerSegments.Count(x => x.HasCorrectIndexes);
+                CorrectAnswerSegmentCount = _possibleAnswerSegments.Count(x => x.IsPartOfAnswer);
                 if (_possibleAnswerSegments != null)
                 {
                     _possibleAnswerSegments.CollectionChanged += Answer_CollectionChanged;
@@ -101,7 +101,10 @@ namespace JBQCompleteIt.ViewModel
 
             AddCollectionItems((IEnumerable<AnswerSegment>)e.NewItems);
 
-            RebuildGivenAnswer();
+            if (e.OldItems != null || e.NewItems != null)
+            {
+                RebuildGivenAnswer();
+            }
         }
 
         private void RemoveCollectionItems(IEnumerable<AnswerSegment> coll)
@@ -166,12 +169,12 @@ namespace JBQCompleteIt.ViewModel
 
         public bool IsCompleteAnswerGiven
         {
-            get => GivenAnswer.Count(x => x != null) == PossibleAnswerSegments.Count(x => x.HasCorrectIndexes);
+            get => GivenAnswer.Count(x => !x.IsBlank) == PossibleAnswerSegments.Count(x => x.IsPartOfAnswer);
         }
 
         public bool IsCorrectAnswerGiven
         {
-            get => GivenAnswer.Where(x => x != null).All(x => x.CorrectIndexes != null && x.CorrectIndexes.Any(y => y == x.GivenIndex));
+            get => GivenAnswer.Where(x => !x.IsBlank).All(x => x.CorrectIndexes != null && x.CorrectIndexes.Any(y => y == x.GivenIndex));
         }
         
         public List<AnswerSegment> GetWrongElements()
@@ -185,7 +188,7 @@ namespace JBQCompleteIt.ViewModel
 
             foreach (var x in GivenAnswer)
             {
-                if (x == null)
+                if (x.IsBlank)
                 {
                     break;
                 }
@@ -198,7 +201,7 @@ namespace JBQCompleteIt.ViewModel
         public AnswerSegment GetNextCorrectAnswerElement()
         {
             return PossibleAnswerSegments
-                .Where(x => x.HasCorrectIndexes)
+                .Where(x => x.IsPartOfAnswer)
                 .OrderBy(x => x.Index)
                 .FirstOrDefault(x => x.IsOrderNotGiven);
         }
@@ -215,6 +218,8 @@ namespace JBQCompleteIt.ViewModel
             for (int i = 0; i < CorrectAnswerSegmentCount; i++)
             {
                 var element = PossibleAnswerSegments.SingleOrDefault(x => x.GivenIndex == i);
+
+                element ??= new AnswerSegment();
 
                 GivenAnswer.Add(element);
             }

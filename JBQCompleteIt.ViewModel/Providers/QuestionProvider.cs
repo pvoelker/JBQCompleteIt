@@ -155,7 +155,7 @@ namespace JBQCompleteIt.ViewModel.Providers
             {
                 var altCorrectElements = answerElements.Where(x => x.Index != element.Index && x.Text == element.Text);
 
-                element.CorrectIndexes.AddRange(altCorrectElements.Select(x => x.Index));
+                element.CorrectIndexes.AddRange(altCorrectElements.Select(x => x.Index.Value));
             }
 
             if (question.WrongAnswers != null)

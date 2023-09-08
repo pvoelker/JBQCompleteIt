@@ -17,13 +17,28 @@ namespace JBQCompleteIt.ViewModel
         }
 
         /// <summary>
-        /// Correct order index for the answer segment
+        /// Correct order index for the answer segment.  Null if segment is not part of answer
         /// </summary>
-        private int _index = 0;
-        public int Index
+        private int? _index = null;
+        public int? Index
         {
             get => _index;
-            set => SetProperty(ref _index, value);
+            set
+            {
+                SetProperty(ref _index, value);
+                OnPropertyChanged(nameof(IsPartOfAnswer));
+                OnPropertyChanged(nameof(IsNotPartOfAnswer));
+            }
+        }
+
+        public bool IsPartOfAnswer
+        {
+            get => _index.HasValue;
+        }
+
+        public bool IsNotPartOfAnswer
+        {
+            get => !_index.HasValue;
         }
 
         private List<int> _correctIndexes;
@@ -41,13 +56,7 @@ namespace JBQCompleteIt.ViewModel
                 SetProperty(ref _correctIndexes, value);
                 OnPropertyChanged(nameof(IsCorrect));
                 OnPropertyChanged(nameof(IsWrong));
-                OnPropertyChanged(nameof(HasCorrectIndexes));
             }
-        }
-
-        public bool HasCorrectIndexes
-        {
-            get => CorrectIndexes != null && CorrectIndexes.Any();
         }
 
         private int? _givenIndex;
@@ -79,19 +88,28 @@ namespace JBQCompleteIt.ViewModel
             get => !GivenIndex.HasValue;
         }
 
-        private string _text;
+        private string _text = null;
         /// <summary>
         /// Answer segment text
         /// </summary>
         public string Text
         {
             get => _text;
-            set => SetProperty(ref _text, value);
+            set
+            {
+                SetProperty(ref _text, value);
+                OnPropertyChanged(nameof(IsBlank));
+            }
+        }
+
+        public bool IsBlank
+        {
+            get => string.IsNullOrEmpty(_text);
         }
 
         public bool IsCorrect
         {
-            get => HasCorrectIndexes && CorrectIndexes.Any(x => x == Index);
+            get => IsPartOfAnswer && CorrectIndexes.Any(x => x == Index);
         }
 
         public bool IsWrong
