@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:vm="clr-namespace:JBQCompleteIt.ViewModel;assembly=JBQCompleteIt.ViewModel"
-             x:Class="JBQCompleteIt.MainPage">
+             x:Class="JBQCompleteIt.MainPage"
+             x:DataType="vm:MainPage">
     <ContentPage.BindingContext>
         <vm:MainPage/>
     </ContentPage.BindingContext>
     <ContentPage.Resources>
+        <toolkit:EnumToIntConverter x:Key="EnumToIntConverter" />
+        
         <Style x:Key="InvalidEntryStyle" TargetType="Entry">
             <Setter Property="TextColor" Value="Red" />
         </Style>
@@ -29,7 +32,15 @@
         <Style x:Key="optionsText" TargetType="Label">
             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}" />
             <Setter Property="FontFamily" Value="OpenSansRegular" />
-            <Setter Property="FontSize" Value="{OnPlatform Default='18', MacCatalyst='23.4'}" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='16', MacCatalyst='22'}" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="optionsPicker" TargetType="Label">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray100}}" />
+            <Setter Property="FontFamily" Value="OpenSansRegular" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='16', MacCatalyst='22'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
         </Style>
@@ -49,7 +60,7 @@
             <Setter Property="FontSize" Value="{OnPlatform Default='32', MacCatalyst='41.6'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="VerticalOptions" Value="Center" />
-            <Setter Property="Padding" Value="80,0" />
+            <Setter Property="Padding" Value="40,0" />
         </Style>
 
         <Style x:Key="aboutButton" TargetType="Button">
@@ -78,6 +89,8 @@
             <Label
                 Style="{StaticResource Key=jbqMotto}"
                 Text="Practice Junior Bible Quizzing.  Put the word of God into your heart!" />
+
+            <Label HorizontalOptions="Center" TextColor="Red">Alpha Version: Not for general release</Label>
 
             <Image
                 Margin="10"
@@ -130,19 +143,23 @@
                 </Entry>
             </HorizontalStackLayout>
 
-            <Button 
-                Style="{StaticResource startButton}"
-                Text="Start Quizzing"
-                Margin="20"
-                Clicked="CompleteIt_Clicked" />
-
-            <Label HorizontalOptions="Center" TextColor="Red">Alpha Version: Not for general release</Label>
-            
-            <HorizontalStackLayout HorizontalOptions="Center">
+            <HorizontalStackLayout
+                Margin="5"
+                HorizontalOptions="Center">
+                <Picker Style="{StaticResource optionsPicker}"
+                    Title="Select a game difficulty:"
+                    ItemsSource="{Binding AllDifficulties}"
+                    SelectedIndex="{Binding Difficulty, Converter={StaticResource EnumToIntConverter}, ConverterParameter={x:Type vm:DifficultyEnum}}" />
                 <Label Style="{StaticResource optionsText}" VerticalOptions="Center" Text="Enable Hints:" Margin="20,0,0,0" />
                 <CheckBox VerticalOptions="Center" IsChecked="{Binding Path=EnableHints}" />
             </HorizontalStackLayout>
 
+            <Button 
+                Style="{StaticResource startButton}"
+                Text="Start Quizzing"
+                Margin="10"
+                Clicked="CompleteIt_Clicked" />
+            
             <HorizontalStackLayout
                 Margin="5"
                 HorizontalOptions="Center">

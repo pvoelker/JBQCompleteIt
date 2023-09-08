@@ -45,7 +45,7 @@ namespace JBQCompleteIt.ViewModel
                     }
                     else
                     {
-                        CurrentQuestion = _questionProvider.GetNextQuestion();
+                        CurrentQuestion = _questionProvider.GetNextQuestion(Difficulty);
                     }
                 }
                 else
@@ -60,7 +60,7 @@ namespace JBQCompleteIt.ViewModel
             {
                 LottieImageFile = null;
 
-                CurrentQuestion = _questionProvider.GetNextQuestion();
+                CurrentQuestion = _questionProvider.GetNextQuestion(Difficulty);
             });
 
             AnimationComplete = new RelayCommand(() =>
@@ -75,7 +75,7 @@ namespace JBQCompleteIt.ViewModel
         {
             _questionProvider = new QuestionProvider(new QuestionsRepository(), null, null);
 
-            CurrentQuestion = _questionProvider.GetNextQuestion();
+            CurrentQuestion = _questionProvider.GetNextQuestion(Difficulty);
 
             _hintTimer.Elapsed += _timer_Elapsed;
 
@@ -116,6 +116,13 @@ namespace JBQCompleteIt.ViewModel
         {
             get => _lottieImageFile;
             set => SetProperty(ref _lottieImageFile, value);
+        }
+
+        private DifficultyEnum _difficulty;
+        public DifficultyEnum Difficulty
+        {
+            get => _difficulty;
+            set => SetProperty(ref _difficulty, value);
         }
 
         private bool _enableHints = false;

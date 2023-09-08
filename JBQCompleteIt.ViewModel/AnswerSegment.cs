@@ -6,6 +6,19 @@ namespace JBQCompleteIt.ViewModel
 {
     public class AnswerSegment : ObservableObject
     {
+        /// <summary>
+        /// True if the answer segment is 'pre-answered' based on game difficulty settings
+        /// </summary>
+        private bool _preAnswered = false;
+        public bool PreAnswered
+        {
+            get => _preAnswered;
+            set => SetProperty(ref _preAnswered, value);
+        }
+
+        /// <summary>
+        /// Correct order index for the answer segment
+        /// </summary>
         private int _index = 0;
         public int Index
         {
@@ -23,7 +36,7 @@ namespace JBQCompleteIt.ViewModel
             get => _correctIndexes;
             set
             {
-                SetWasWrong();
+                WasWrong = IsWrong;
 
                 SetProperty(ref _correctIndexes, value);
                 OnPropertyChanged(nameof(IsCorrect));
@@ -34,7 +47,7 @@ namespace JBQCompleteIt.ViewModel
 
         public bool HasCorrectIndexes
         {
-            get => CorrectIndexes != null && CorrectIndexes.Count() > 0;
+            get => CorrectIndexes != null && CorrectIndexes.Any();
         }
 
         private int? _givenIndex;
@@ -46,7 +59,7 @@ namespace JBQCompleteIt.ViewModel
             get => _givenIndex;
             set
             {
-                SetWasWrong();
+                WasWrong = IsWrong;
 
                 SetProperty(ref _givenIndex, value);
                 OnPropertyChanged(nameof(IsCorrect));
@@ -84,11 +97,6 @@ namespace JBQCompleteIt.ViewModel
         public bool IsWrong
         {
             get => IsOrderGiven && CorrectIndexes != null && !CorrectIndexes.Any(x => x == GivenIndex);
-        }
-
-        private void SetWasWrong()
-        {
-            WasWrong = IsWrong;
         }
 
         private bool _wasWrong = false;

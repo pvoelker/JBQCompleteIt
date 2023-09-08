@@ -10,8 +10,8 @@
         BackgroundColor="{Binding Path=BackgroundColor, Source={RelativeSource AncestorType={x:Type local:BalloonButton}}}"
         CornerRadius="10">
         <Label
-            FontSize="24"
-            Text="{Binding Path=Text, Source={RelativeSource AncestorType={x:Type local:BalloonButton}}}"
+            FontSize="{Binding Path=FontSize, Source={RelativeSource AncestorType={x:Type local:BalloonButton}}}"
+            Text="{Binding Path=Text, Source={RelativeSource AncestorType={x:Type local:BalloonButton}}, Mode=OneWay}"
             Margin="5,0,5,0"
             TextColor="{Binding Path=TextColor, Source={RelativeSource AncestorType={x:Type local:BalloonButton}}}"
             VerticalOptions="Center"

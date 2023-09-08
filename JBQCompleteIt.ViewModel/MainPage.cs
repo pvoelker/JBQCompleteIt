@@ -18,6 +18,10 @@ namespace JBQCompleteIt.ViewModel
             StartQuestionNumberStr = Preferences.Default.Get<string>(PreferenceKeys.StartQuestionRange, null);
             EndQuestionNumberStr = Preferences.Default.Get<string>(PreferenceKeys.EndQuestionRange, null);
             EnableHints = Preferences.Default.Get<bool>(PreferenceKeys.EnableHints, false);
+            if (Enum.TryParse<DifficultyEnum>(Preferences.Default.Get<string>(PreferenceKeys.Difficulty, null), out var diffEnum))
+            {
+                Difficulty = diffEnum;
+            }
 
             var assembly = Assembly.GetEntryAssembly();
 
@@ -66,6 +70,19 @@ namespace JBQCompleteIt.ViewModel
         {
             get => _copyright;
             private set => SetProperty(ref _copyright, value);
+        }
+
+        public IReadOnlyList<string> AllDifficulties { get; } = Enum.GetNames(typeof(DifficultyEnum));
+
+        private DifficultyEnum _difficulty = DifficultyEnum.Easy;
+        public DifficultyEnum Difficulty
+        {
+            get => _difficulty;
+            set
+            {
+                Preferences.Default.Set(PreferenceKeys.Difficulty, Enum.GetName(typeof(DifficultyEnum), value));
+                SetProperty(ref _difficulty, value);
+            }
         }
 
         private bool _enableHints = false;

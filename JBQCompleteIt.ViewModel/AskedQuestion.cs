@@ -4,11 +4,13 @@ using JBQCompleteIt.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace JBQCompleteIt.ViewModel
 {
     /// <summary>
-    /// A question to ask
+    /// An asked question in the game
     /// </summary>
     public class AskedQuestion : ObservableObject
     {
@@ -59,10 +61,10 @@ namespace JBQCompleteIt.ViewModel
 
         private ObservableCollection<AnswerSegment> _possibleAnswerSegments;
         /// <summary>
-        /// Answer broken down into segments. Not all segements are part of the correct answer
+        /// Answer broken down into segments. Not all segments are part of the correct answer
         /// </summary>
         /// <remarks>Segments are randomized before this property is set</remarks>
-        public ObservableCollection<AnswerSegment> PossibleAnswerSegements
+        public ObservableCollection<AnswerSegment> PossibleAnswerSegments
         {
             get => _possibleAnswerSegments;
             set
@@ -164,17 +166,17 @@ namespace JBQCompleteIt.ViewModel
 
         public bool IsCompleteAnswerGiven
         {
-            get => GivenAnswer.Count(x => x != null) == PossibleAnswerSegements.Count(x => x.HasCorrectIndexes);
+            get => GivenAnswer.Count(x => x != null) == PossibleAnswerSegments.Count(x => x.HasCorrectIndexes);
         }
 
         public bool IsCorrectAnswerGiven
         {
-            get => GivenAnswer.Where(x => x != null).All(x => x.CorrectIndexes.Any(y => y == x.GivenIndex));
+            get => GivenAnswer.Where(x => x != null).All(x => x.CorrectIndexes != null && x.CorrectIndexes.Any(y => y == x.GivenIndex));
         }
         
         public List<AnswerSegment> GetWrongElements()
         {
-            return PossibleAnswerSegements.Where(x => x.IsWrong).ToList();
+            return PossibleAnswerSegments.Where(x => x.IsWrong).ToList();
         }
 
         public int GetFirstAvailableGivenIndex()
@@ -193,7 +195,7 @@ namespace JBQCompleteIt.ViewModel
 
         public AnswerSegment GetNextCorrectAnswerElement()
         {
-            return PossibleAnswerSegements
+            return PossibleAnswerSegments
                 .Where(x => x.HasCorrectIndexes)
                 .OrderBy(x => x.Index)
                 .FirstOrDefault(x => x.IsOrderNotGiven);
@@ -202,13 +204,15 @@ namespace JBQCompleteIt.ViewModel
         /// <summary>
         /// Rebuild the given answer anytime something changes with the answer elements
         /// </summary>
-        private void RebuildGivenAnswer()
+        private void RebuildGivenAnswer([CallerMemberName] string memberName = "")
         {
+            Debug.WriteLine($"{nameof(AskedQuestion)} - {memberName} - Rebuilding given answer");
+
             GivenAnswer.Clear();
 
             for (int i = 0; i < CorrectAnswerSegmentCount; i++)
             {
-                var element = PossibleAnswerSegements.SingleOrDefault(x => x.GivenIndex == i);
+                var element = PossibleAnswerSegments.SingleOrDefault(x => x.GivenIndex == i);
 
                 GivenAnswer.Add(element);
             }

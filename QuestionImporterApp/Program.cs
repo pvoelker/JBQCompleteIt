@@ -14,7 +14,7 @@ namespace QuestionsImporterApp
 
         static void Main(string[] args)
         {
-            args = new string[] { "C:\\Users\\heali\\source\\repos\\JBQCompleteIt\\JBQ_20_Points.csv" };
+            args = new string[] { "C:\\Users\\heali\\Documents\\GitHub\\JBQCompleteIt\\JBQ_20_Points.csv" };
 
             if(args.Length == 1)
             {
