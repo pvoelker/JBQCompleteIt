@@ -132,6 +132,15 @@ namespace JBQCompleteIt.ViewModel.Providers
                     }
                     else
                     {
+                        if (question.Type == QuestionTypeEnum.MultipleChoice)
+                        {
+                            var found = retVal.PossibleAnswerSegments.FirstOrDefault(x => x.GivenIndex != null);
+                            if (found != null)
+                            {
+                                found.GivenIndex = null;
+                            }
+                        }
+
                         answerElement.GivenIndex = retVal.GetFirstAvailableGivenIndex();
                     }
                 });
@@ -151,7 +160,9 @@ namespace JBQCompleteIt.ViewModel.Providers
 
             if (question.WrongAnswers != null)
             {
-                foreach (var element in question.WrongAnswers)
+                var trimmedWrongAnswers = question.WrongAnswers.Shuffle().Take(3);
+
+                foreach (var element in trimmedWrongAnswers)
                 {
                     var answerElement = new AnswerSegment
                     {
@@ -167,6 +178,15 @@ namespace JBQCompleteIt.ViewModel.Providers
                         }
                         else
                         {
+                            if (question.Type == QuestionTypeEnum.MultipleChoice)
+                            {
+                                var found = retVal.PossibleAnswerSegments.FirstOrDefault(x => x.GivenIndex != null);
+                                if (found != null)
+                                {
+                                    found.GivenIndex = null;
+                                }
+                            }
+
                             var maxGivenIndex = retVal.PossibleAnswerSegments.MaxBy(x => x.GivenIndex).GivenIndex;
                             if (maxGivenIndex.HasValue)
                             {

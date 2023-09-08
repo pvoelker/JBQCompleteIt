@@ -96,7 +96,7 @@ namespace JBQCompleteIt.ViewModel
 
         public bool IsWrong
         {
-            get => IsOrderGiven && CorrectIndexes != null && !CorrectIndexes.Any(x => x == GivenIndex);
+            get => IsOrderGiven && (CorrectIndexes == null || !CorrectIndexes.Any(x => x == GivenIndex));
         }
 
         private bool _wasWrong = false;

@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using JBQCompleteIt.Repository;
 using JBQCompleteIt.ViewModel.Providers;
-using System.Diagnostics;
 
 namespace JBQCompleteIt.ViewModel
 {
@@ -129,7 +128,15 @@ namespace JBQCompleteIt.ViewModel
         public bool EnableHints
         {
             get => _enableHints;
-            set => SetProperty(ref _enableHints, value);
+            set
+            {
+                SetProperty(ref _enableHints, value);
+                OnPropertyChanged(nameof(AreHintsNotEnabled));
+            }
+        }
+        public bool AreHintsNotEnabled
+        {
+            get => !_enableHints;
         }
 
         private int? _startQuestionNumber = null;

@@ -134,7 +134,7 @@
                             Text="{Binding Text}"
                             FontSize="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.PossibleAnswerSegments.Count, Converter={StaticResource SegmentCountToFontSize}}"
                             Command="{Binding Clicked}"
-                            MinimumWidthRequest="80">
+                            MinimumWidthRequest="60">
                             <local:BalloonButton.Style>
                                 <Style TargetType="local:BalloonButton"  BasedOn="{StaticResource givenElementBubbles}">
                                     <Style.Triggers>
@@ -227,11 +227,13 @@
 
             <Label
                 Style="{StaticResource correctCount}"
+                IsVisible="{Binding AreHintsNotEnabled}"
                 Grid.Column="0"
                 Text="{Binding Path=CorrectAnswers, Mode=OneWay, StringFormat='Correct: {0}'}">
             </Label>
 
             <Button Grid.Column="1"
+                    Margin="2"
                     Style="{StaticResource checkButton}"
                     IsEnabled="{Binding CurrentQuestion.IsCompleteAnswerGiven}"
                     Text="Check Me!"
@@ -239,6 +241,7 @@
 
             <Label
                 Style="{StaticResource wrongCount}"
+                IsVisible="{Binding AreHintsNotEnabled}"
                 Grid.Column="2"
                 Text="{Binding Path=WrongAnswers, Mode=OneWay, StringFormat='Wrong: {0}'}">
             </Label>

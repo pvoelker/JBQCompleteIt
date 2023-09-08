@@ -29,7 +29,7 @@ namespace JBQCompleteIt.Converters
             // Adjust font size for small screens
             if (_isSmallScreen)
             {
-                if (count > 20)
+                if (count > 15)
                 {
                     origSize = 16m;
                 }

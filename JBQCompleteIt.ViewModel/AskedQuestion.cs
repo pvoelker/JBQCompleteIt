@@ -182,6 +182,7 @@ namespace JBQCompleteIt.ViewModel
         public int GetFirstAvailableGivenIndex()
         {
             var retVal = 0;
+
             foreach (var x in GivenAnswer)
             {
                 if (x == null)
@@ -190,6 +191,7 @@ namespace JBQCompleteIt.ViewModel
                 }
                 retVal++;
             }
+
             return retVal;
         }
 

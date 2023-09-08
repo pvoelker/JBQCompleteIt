@@ -41,6 +41,7 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<DefaultLanguage>en</DefaultLanguage>
 	</PropertyGroup>
 	
 	<ItemGroup>
