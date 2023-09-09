@@ -68,7 +68,7 @@ namespace QuestionsImporterApp
 
                     foreach (var row in rows)
                     {
-                        file.WriteLine(@"new QuestionInfo {");
+                        file.WriteLine(@"new RawQuestionInfo {");
                         file.WriteLine($"    Number = { row.Number },");
                         file.WriteLine($"    Question = \"{ EncryptString(key, row.Question) }\",");
                         file.WriteLine($"    AnswerHash = { GetStringHash(row.Answer) },");
@@ -76,13 +76,14 @@ namespace QuestionsImporterApp
                         List<string> brokenDownAnswer;
                         if (row.Type == "Jumble" || row.Type == "QuotationQuestion")
                         {
-                            brokenDownAnswer = row.Answer.Split(' ').Select(x => $"\"{EncryptString(key, x)}\"").ToList();
+                            brokenDownAnswer = row.Answer.Split(' ').ToList();
                         }
                         else
                         {
-                            brokenDownAnswer = new List<string> { $"\"{EncryptString(key, row.Answer)}\"" };
+                            brokenDownAnswer = new List<string> { row.Answer };
                         }
-                        file.WriteLine($"    Answer = new List<string> {{ { string.Join(',', brokenDownAnswer) } }},");
+                        file.WriteLine($"    RawAnswerCount = { brokenDownAnswer.Count },");
+                        file.WriteLine($"    RawAnswer = \"{ EncryptString(key, string.Join('|', brokenDownAnswer)) }\",");
 
                         var wrongAnswers = row.WrongAnswersAsList();
                         if (wrongAnswers == null)
@@ -94,7 +95,7 @@ namespace QuestionsImporterApp
                             file.WriteLine($"    WrongAnswers = new List<string> {{");
                             foreach (var wrongAnswer in wrongAnswers)
                             {
-                                file.WriteLine($"        \"{EncryptString(key, wrongAnswer)}\",");
+                                file.WriteLine($"        \"{ EncryptString(key, wrongAnswer) }\",");
                             }
                             file.WriteLine($"    }},");
                         }

@@ -139,13 +139,14 @@ namespace JBQCompleteIt.ViewModel
             }
         }
 
-        private ObservableCollection<AnswerSegment> _givenAnswer = new ObservableCollection<AnswerSegment>();
+        private ObservableCollection<AnswerSegment> _givenAnswer = null;
         /// <summary>
         /// Answer broken down into elements
         /// </summary>
         public ObservableCollection<AnswerSegment> GivenAnswer
         {
             get => _givenAnswer;
+            private set => SetProperty(ref _givenAnswer, value);
         }
 
         private string _passage;
@@ -200,6 +201,7 @@ namespace JBQCompleteIt.ViewModel
 
         public AnswerSegment GetNextCorrectAnswerElement()
         {
+            // TODO not working
             return PossibleAnswerSegments
                 .Where(x => x.IsPartOfAnswer)
                 .OrderBy(x => x.Index)
@@ -213,7 +215,7 @@ namespace JBQCompleteIt.ViewModel
         {
             Debug.WriteLine($"{nameof(AskedQuestion)} - {memberName} - Rebuilding given answer");
 
-            GivenAnswer.Clear();
+            var givenAnswer = new ObservableCollection<AnswerSegment>();
 
             for (int i = 0; i < CorrectAnswerSegmentCount; i++)
             {
@@ -221,8 +223,10 @@ namespace JBQCompleteIt.ViewModel
 
                 element ??= new AnswerSegment();
 
-                GivenAnswer.Add(element);
+                givenAnswer.Add(element);
             }
+
+            GivenAnswer = givenAnswer;
 
             OnPropertyChanged(nameof(IsCompleteAnswerGiven));
             OnPropertyChanged(nameof(IsCorrectAnswerGiven));

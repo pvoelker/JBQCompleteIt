@@ -10,20 +10,20 @@ namespace JBQCompleteIt.Repository
     /// <summary>
     /// In-memory repository for questions
     /// </summary>
-    /// <remarks>Questions and correct answers are sourced from the 10-points questions of the Bible Fact-Pak (TM) and is Copyright (c) 2021 Gospel Publishing House</remarks>
-    /// <remarks>In-memory data for questions and answers are encypted to help protect the copyrighted material</remarks>
+    /// <remarks>Questions and correct answers are sourced from the 20-points questions of the Bible Fact-Pak (TM) and is Copyright (c) 2021 Gospel Publishing House</remarks>
+    /// <remarks>In-memory data for questions and answers are encrypted to help protect the copyrighted material</remarks>
     public class QuestionsRepository : IQuestionRepository
     {
         private static readonly ICryptoTransform _decryptor;
 
-        static private List<QuestionInfo> _data;
+        static private List<RawQuestionInfo> _data;
 
         /// <summary>
         /// Static constructor for the repository
         /// </summary>
         static QuestionsRepository()
         {
-            const string key = "tXXrrardxtQ6vOrBO3nq8w==";
+            const string key = "VG7zjvUGipgeWoDlJxjfSg==";
 
             using (var aes = Aes.Create())
             {
@@ -32,1952 +32,2144 @@ namespace JBQCompleteIt.Repository
                 _decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
             }
 
-            _data = new List<QuestionInfo>
+            _data = new List<RawQuestionInfo>
             {
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 289,
-                    Question = "gr050f/Gm6EYk+at7PY4yI3d8iyzbu38i4Mt33RDAOA=",
-                    AnswerHash = 1798398621,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==","opt2iGhaHzDSsX7QDsGIxw==","b5tikIdqROTImgOKXnKzEw==","0eXNvJcR0xAUg8phCbETow==","IS7BdQLtHTnTEMl6A9Y6gw==","GgtJi0mGfR0hufvf777JVQ==","x45UKmfb9951ztFcWIXatA==","zSXGkn4sdJkzMXORqcZ8ng==","VSpLsAvW9U6IeOedc7iyaA==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","ug9VPMSE7PQQKbyziHs7eQ==","uHjamCtBuqlMB7S5mDwg9A==","tDJ4pJihLIU67CFmFjFETg==" },
+                    Question = "NKFjRsHClXQL/Ulf5vi9GOA1woHL6O7boYXT0tLw5i4=",
+                    AnswerHash = 1195602476,
+                    RawAnswerCount = 16,
+                    RawAnswer = "js6IUdf8LMYMt32o6Fx6zHrdCKVj3ONIL8LKH6K1nfW+YFVzaWTzGtu3BY9HiXZ71QPyq2uaOnav2vWx6HiywUFM8g6bd0url6f0bKNpw3mS36TSBDwCVvbwJRe6uK53",
                     WrongAnswers = null,
                     Passage = "2 Peter 1:21",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 290,
-                    Question = "oL61tSHC/c6XIS22/HC8uuKrkcx1A+gRwPeNvZCZwsWkzSBl+gjf8beLXxis57wqgt1hntaoIcSWGYjF3izHbQ==",
-                    AnswerHash = -1226058211,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","d0PP/N/ohl2viEpl1GVDvA==","iWV2Fw5Izv1AdvJuZHpvUg==","HFC+geOi5N0IcMOuAvmoaA==","GZJv7PgEbp3Q4GGa81mPcg==","3qjkOZp0mqZlGd2MnI32yg==","SX7zAJGre1oQuBrBN/gPNg==","Mq3ogKgRA9x5zgky/PebbQ==" },
+                    Question = "NvoyqYhk/ivsr7/HiWYaseYS3H22tHKqqFCO5hLiKSe+6nDhy3xlodOJw+0bC3fqkoITKLV24lcYniSjgpp12A==",
+                    AnswerHash = 668412118,
+                    RawAnswerCount = 8,
+                    RawAnswer = "PSP+npYLJYeEbmSndpxe7uTgurwq7RLa+Wnbh63LQbPlpF/S73qRuhQBiETkpagu",
                     WrongAnswers = null,
                     Passage = "Psalm 119:160; 1 Thessalonians 2:13; 1 Peter 1:23",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 291,
-                    Question = "oL61tSHC/c6XIS22/HC8uuKrkcx1A+gRwPeNvZCZwsWhEDWiO15mdjy8H61FPn/ySM+7LS1oV4SWgOjtL0KkMQ==",
-                    AnswerHash = 894849436,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","opt2iGhaHzDSsX7QDsGIxw==","UQCkKVnsfm3BjH/oEbvcMw==","mKx6nSsGBi9ohFrIkJqSYw==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","MkXb3NGdARmONCagwwR8Vw==","hMYa40rWHg7YB/7RJZ7ctQ==","I3dqmpQg0Fij/wTbS/q5zg==","zSXGkn4sdJkzMXORqcZ8ng==","oBi5uYsHLPivVC9d3O/pQg==","Nby3zj7Xn5tGLiWOJSoTzA==","F5ZI+NkGrvZUa71VvNWmRA==" },
+                    Question = "NvoyqYhk/ivsr7/HiWYaseYS3H22tHKqqFCO5hLiKSdBd+QEvPgXzP4elrmwIIXiSLTS5D8C6Q0mxA3Dx5hzmw==",
+                    AnswerHash = 131765612,
+                    RawAnswerCount = 13,
+                    RawAnswer = "1EwZCG7MrmwPNJapxyTQdY4bwO/kyH3szuUR5Ay6RKXR5fKHv79q2eylfpZt3rX3e6yGW5X9mIohLJRaSHNieUHdT6oRxAHstdDnKWJSfpk=",
                     WrongAnswers = null,
                     Passage = "2 Timothy 3:16",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 292,
-                    Question = "oL61tSHC/c6XIS22/HC8uuKrkcx1A+gRwPeNvZCZwsV6XZtn8+DfR2fpRppmj/+rMjb7CY+TiRGzvdchtXAJu3zLTba5D8Z0kytwb0wC7kqzpEBsFPci80LAbsSP2DRv",
-                    AnswerHash = -889089054,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","d0PP/N/ohl2viEpl1GVDvA==","3qjkOZp0mqZlGd2MnI32yg==","zSXGkn4sdJkzMXORqcZ8ng==","iPPmPNJL2plvvKFHiWYzcQ==","uHjamCtBuqlMB7S5mDwg9A==","T3TvIHNrUK6T+Fp6ylAGnw==","j9koNwPFQPuNxXf/Sbgodw==","SD/rU6bGI2MkOV/UvJ4nrw==","2vQCAJd44n8xV6wyrWPaXw==","MiGlGy1xQ8jjzh6Lx88Z8Q==","P9UqquwEXWNRSPQNFqHeug==","GZJv7PgEbp3Q4GGa81mPcg==","2vQCAJd44n8xV6wyrWPaXw==","MiGlGy1xQ8jjzh6Lx88Z8Q==","RoPZaV1P4TSPUccEamMEMg==" },
+                    Question = "NvoyqYhk/ivsr7/HiWYaseYS3H22tHKqqFCO5hLiKSd59W3UKQ3ouIpntxSTn3gRjRTT2q7V2MuUYEwNxtkQJ51aBERNBZE6EHcObPZmN9fy5RiErTFaquOpEt1piY1h",
+                    AnswerHash = -962725643,
+                    RawAnswerCount = 16,
+                    RawAnswer = "w8KRJbjw4eOIKdwMHx7gMwrAjB8m8ETkbEYuTkYbmGJaqmoZ8szDaEp3PebYo5cm5cu6yUcx1vxe28eDBZ2Z8T/Ce9BPzkEqO5z+aQD4XBE=",
                     WrongAnswers = null,
                     Passage = "2 Timothy 3:15-17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 293,
-                    Question = "1Qgd3VzCbqevzDb+V6kdrnW6+iY+rDWRXz1MET2aZ9o=",
-                    AnswerHash = 1581132639,
-                    Answer = new List<string> { "VpEyazIfiaS3EwkBCtRFSg==","GZJv7PgEbp3Q4GGa81mPcg==","BqHuXymoJUlaq9uOqEQa7w==","4ROpDELlhF+CwMRVw2VrDA==","SHGhfL04Tvdo8XqXkP42Lg==","Xl9cyyXT4enh8vOL0nat2Q==","RsaVt0e7axGrJ8RpbZW/og==","ug9VPMSE7PQQKbyziHs7eQ==","4ROpDELlhF+CwMRVw2VrDA==","vc04kv0OH/rcPh2lB5VJcA==","gIA18BMLp63LBAYrHUnzEg==" },
+                    Question = "p2UM69gvj9Z8JvjKhMRGg0m28Q+TZdICaFPp37tZ7XY=",
+                    AnswerHash = 574379744,
+                    RawAnswerCount = 11,
+                    RawAnswer = "txFDgLnZ8ri068rfZFRJHz1RVuQPQB/U5LekuP6gsDrvDq0mWOZAtPN8m4n7WFXA2S5lGh8GSrbEuC+r5Ab0h6Y6xYnJQe1BCS9KcKhhuTs=",
                     WrongAnswers = null,
                     Passage = "Matthew 24:35",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 294,
-                    Question = "jtUOUcAct4tHXHHmUa6iCaeWtsCBdVRRiiTQVxLXKJWLXOdMdqoDisNcW4oPwvum",
-                    AnswerHash = 251725119,
-                    Answer = new List<string> { "aHiAWBLZ/fHnmjA1Doh98Q==","QPAxhD+/TFthtY9gectGBg==","nsg0jz/Ji3qlXuBKH8Jl4A==","dLqm49OmDQSjXjn38tHcXQ==","mKx6nSsGBi9ohFrIkJqSYw==","SD/rU6bGI2MkOV/UvJ4nrw==","RsaVt0e7axGrJ8RpbZW/og==","qLaOXXLSZXN/FnhG0lVVPg==","SESNeD1EtiCtWOHkaVmC+w==","aHiAWBLZ/fHnmjA1Doh98Q==","6FdijkyLV0cJ/JJw7cSxEw==","hMYa40rWHg7YB/7RJZ7ctQ==","dYsbs9RdYZ/cdacNSDhKmQ==","rJ7Bwp/MeZLug4e2JTuWHA==","0xWnfp6qh/BEpjF9IeNaDA==" },
+                    Question = "r3mpo7kYW9A1CuyjWsdUqARVgEGu9PpjhNLNPKMF/nGxrvGI1XSLWY8F3cIbDwRt",
+                    AnswerHash = -718119466,
+                    RawAnswerCount = 15,
+                    RawAnswer = "E00NjtUSuFguOXTOFUZJvmmFs3pIoxWZFGvsWqKcBJklJQzGbKMg39utOm/JH/DSwLURLUip1Ky4yp682NCyLGUbep5R/AXpjPSC7GsrGXs=",
                     WrongAnswers = null,
                     Passage = "Psalm 119:11",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 295,
-                    Question = "GBIHBwXFiY4pdroIePQA0ktaJT83Q8pf0gmCjcnjdp83QhvTRJTQKhs0aqoHkD4T",
-                    AnswerHash = -1584208928,
-                    Answer = new List<string> { "2CQ5ykE+TgPlZxnjRYRCsg==","1bIrpFm5pUBDoNKezRpitw==","7JYqeZOv4enSk72NzmKGHA==","WjzL8DJCdZ0xrsR/mXBPHw==","epoUy674U/s1cxM4Wqp50Q==","V7BG55EO9S4g9eIPtE6LnA==","Nby3zj7Xn5tGLiWOJSoTzA==","eMILHmYiElWlkHXCK54Ezw==","n42jqpkhgHXgf8g9AQev2g==","qH06W7X4ZjnXJoh7W8gVRw==","FQ5jSipJ+vFKktNKRTbPng==","0BSnTVxtWMKHmLwwXhH2mQ==","M5nwuk/+THTb2paqFSb23A==","UbNXLfUX4J/jcua50vbBuw==","SD/rU6bGI2MkOV/UvJ4nrw==","zSXGkn4sdJkzMXORqcZ8ng==","jOrWPwn1gtSTEznbdfbHIQ==" },
+                    Question = "D6WsgYb4u3Jo9J89mKK8PXbhsTMEyTChwxGLsr9tIHhbi/x/0vNa83nNVFLwiRwI",
+                    AnswerHash = 391930937,
+                    RawAnswerCount = 17,
+                    RawAnswer = "wCUfBGf9jzk+ZvQmpNOeT9DkPHonvNh2Yilat1z3ueKMyL88MKoasmMNEmi3hS7AMVFc2F5kNjDEUij3PMZbCmSIA6jOL4hpMtdD19HWma8Lr+fL1wrI6k11+vtpHY0Y",
                     WrongAnswers = null,
                     Passage = null,
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 296,
-                    Question = "/BIQFsy7B77RxjCt7OiJGuleHrEpvXlXOu+RJh8I0uI13YgGGFCOYXmNInuol2WIzenVhvdHWB2yXu8XzkTDZQ==",
-                    AnswerHash = -1520757458,
-                    Answer = new List<string> { "8z+kE2ctG7IHsOUpVdaiuTDiVc6vGEiDWBOViW9mifc=" },
+                    Question = "gtEYd34vaN+ZshgPiiP1X1zwNqm1jVHQCSTNB/PPNh9DoUONRJrWciegQCWkiM9RTZz4iUsNFZ9Zu1gfAwkqHw==",
+                    AnswerHash = -781482757,
+                    RawAnswerCount = 1,
+                    RawAnswer = "dojny0tSFErIfllBCFJ4RyU6M6YIcW//qu8H0ZcMJS8=",
                     WrongAnswers = new List<string> {
-                        "C55hC8P/0xf6mfwz0LmivPJoy6vboNOVMyXIcVDuOss=",
-                        "Ogq/NivNJ1fL16oX08k19Q==",
-                        "xwAtz57anD/Duf5OzZ/NCw==",
-                        "I8jyWd8h79y9spPSo/sXqA==",
-                        "PcoS3s6ow8Wxl3RadIisfA==",
+                        "TVLc8nwGu8FESNgM08AOBqyLWJu3KVVVMZhzJjRy1oc=",
+                        "FauTHrXts3eYedJzUw4iJQ==",
+                        "7CQhxbFuTYGtpW2CC7Pwgw==",
+                        "UsLFXGHyPKMQtdx9RItjcA==",
+                        "2h06b1+Lv6Ajn5bYwWh91w==",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 297,
-                    Question = "MfXTvf2saKuhm5CIwGQ7tacEWcmVJWke5z+m8XV9CSxbA18LDE3cJPzaTmG2usew",
-                    AnswerHash = -181227456,
-                    Answer = new List<string> { "WMLouTjN+JVGM/7J/w+YOw==" },
+                    Question = "EqVOVfP5V9aCM7Ho0T9AZo45gu40mGlyftUpgb3pCOehLNnUs7ASBDbbtxAb2ufT",
+                    AnswerHash = 279137000,
+                    RawAnswerCount = 1,
+                    RawAnswer = "TUAi8tKNa+wkvyM1HWDX+w==",
                     WrongAnswers = new List<string> {
-                        "TTx95vfYnzVLVlk9YFSDUw==",
-                        "l7hecwTj5zWzKgZczWCOug==",
-                        "YX4PJN9iUAMVC+IYblU2yA==",
-                        "8MLFmHnvSGy3rHAARknoIg==",
-                        "Dom2Uu6mpi2wZeK/IWMDXw==",
+                        "sf7mcNJDFZuRFFFaLcDuzg==",
+                        "TIBDXw5gIjIn8S0aspgZvw==",
+                        "BEaxFQMGCLpkAXt36I2q2w==",
+                        "OaLYDTkdYY87RBdzNIk51Q==",
+                        "sQs6r4AQe+L6tqFxEMogAg==",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 298,
-                    Question = "5wrXSbD3dq4izzh+jwqehwXKF3hr4Fgt7ZYEHTu8BZOnG/wTudx3ljmLvJRNkvUu",
-                    AnswerHash = -2063978587,
-                    Answer = new List<string> { "5CYtwAtHUCizVtUWTTIAF8TBn4a67Nu94/vgjqXMTEnwXeONKJ1HVf2HS6g/FoEy" },
+                    Question = "ASSZMNK2t8q62bJAU8P+LiX0jV/PqSASPx8mDi4dK4qCWrNex0B4MJBTCQEmRYLw",
+                    AnswerHash = -903142788,
+                    RawAnswerCount = 1,
+                    RawAnswer = "lWZS89fZmv45uerIxTwznlAdyiU4h2C5tMXzHQ1VNdeU0/jWmazm0eXNQtYxuwXf",
                     WrongAnswers = new List<string> {
-                        "oZqUNtFsNgdjmOaFiTDUtarWqCsnGmJlXsMgiBJ8Bzc=",
-                        "ocSt2Q5hW4xRHdY7W82ZD8DVxiLb7doxGZwC5IpYWLM=",
-                        "tj6jjalkOBvqBnVpLEXFH/hw91XMpKYR//62mk+8lbvDTQ4Spg7/dn47hbFiz3cC",
-                        "kChlnnBc/Ju2Olu0/qJL1Mu1V3WTd5lprMB8ajOwTe0=",
+                        "bZzk4f6DZbC6saQ7465zSSxaBylg4hEdKO/SB5eOrIE=",
+                        "uU7bIcpcwieYBzGiFMF6mOUoztJMxYjc6yP4TJsQvhw=",
+                        "g2md+57gsArZCx3MILm245+tG0oWYCGG+uKlrpBhfCtnNffLg8X1g2JtdYk8NebS",
+                        "XTCM3MZfjY8pdeIzIlUnVMGj8RwT/A/HhZ+skzI3nlw=",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 299,
-                    Question = "Y33kAxz31W/QY7fstwo7QaAXhGB4nGaHe7UfgLzj32GIwJUnuaTAJVUN4G3w4L9R",
-                    AnswerHash = -783963844,
-                    Answer = new List<string> { "q6aEiMWK4AayDdByihNJZ4QoycPq+WcgKnyHIsIvPVE=" },
+                    Question = "vtj/H80xhYeDXj6Jw1MtIgaKeFWZCt0cD3iRD6l5/a/bT0nOlkI/0z9FTxGhn1wC",
+                    AnswerHash = 1374418316,
+                    RawAnswerCount = 1,
+                    RawAnswer = "SnayzsFYITB/J45mryGGv8bo4pUaeRbWYY8m2QzHxq0=",
                     WrongAnswers = new List<string> {
-                        "ykRKvZuGei4/Bv2ts+VwNw==",
-                        "XEXANhINwKnGFcFcbKnwZQ==",
-                        "JOx1+Td34hGboFyMX4rBow==",
-                        "VsvU6hM+p/8Auma0mJuV/KyM4hiinfU+X12nS/nb+AE=",
-                        "hKr5BXXK7IORzjHCqE21ybmgb2GxR1aCLGDk6zELp1w=",
+                        "9L0Cm9x7EiwSLsLdkxdXoQ==",
+                        "T2RsZ8q7sC25PK2VyzZFmA==",
+                        "nq2omkjxmWTbTXwn3KdAHg==",
+                        "im7G1L6Nv36BnUNihvOcLUter0azsd7KoNeYy7BX7YI=",
+                        "F6LTiscjAK4nAGePKAsLHASr9HnMdkEDVh7l3xhlykU=",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 300,
-                    Question = "fixayemO5ulXT85aie6Jm8STu/hlKAqxnI7ywBQ0mnY=",
-                    AnswerHash = -2015533546,
-                    Answer = new List<string> { "qohSNUC+kihiDp7/Ah4A2A==","h24YNywsTMRMKvha3TUEmA==","OByf75d/b5HrheoAenFJNw==","wmlEvFyTKum64q3UXtQG9Q==","cpfiBqXFa5rFAjwToBvnNg==","JnonOrVYb3QZc201ZEMZJw==","/YLBV7rn26uf9bjEybwEFg==","Xbu37hShBcnadr/LKno8hw==","12v4fH6Wqi+5TwlLe8T3kw==","VokcK6sSFPNeseM90wzmNg==","j9koNwPFQPuNxXf/Sbgodw==","y8uXV8zvqMU2ZtvDrAy67g==","dLB19ku9bGC3VwqpqPhKuw==","ROz8e9pwKxI79IBq8qvkoA==" },
+                    Question = "hB66A9QYpAJH2QiQX3PCs+FgFJqP9qVtCdNH8xKamxU=",
+                    AnswerHash = -1091676241,
+                    RawAnswerCount = 14,
+                    RawAnswer = "xjclzEqS4G/UwlwJgVnznl46fcUA5mJPZxXrRsnyEipKp3OgpTNvIQlMPjBdSOuvqg8AdQw0qxEk1TJAft8iU3QjDrCgX/luIOAYQT3eaV0KsEp123XCguX3WqhrAfAg",
                     WrongAnswers = null,
                     Passage = null,
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 301,
-                    Question = "gP9dE+bneXw7JFsN3H0kNwMJjZELfBOBcKHh7/95+/OpNYJ6YPWodaKYfZP8u4qeQFgf5h4qIQjEtP+LLCPLcQ==",
-                    AnswerHash = -1465695395,
-                    Answer = new List<string> { "UmhcXlS+Q9Oqhkx3WrVAhUVTHhxOkSiRTStoy6tufcs=" },
+                    Question = "qfJgLitwGFGrPq2hFAPwTYmb4grf6DPpAAf4i/Xc9BUyGbkgHb12RK1YDSgVlRJhqfm04ttZpZq+LciThmsW1Q==",
+                    AnswerHash = 1991448923,
+                    RawAnswerCount = 1,
+                    RawAnswer = "ee2SQpafhoXO04Yi4Tc2ajHdSuPRMrriyLK9YScXn34=",
                     WrongAnswers = new List<string> {
-                        "YHDIIXXR1bg0Uf5Z4s+t9PQi0rEloO997xEPZeQ9t2SODhClOKtMTrJv5N5hiIG+kxyEIQ1Cict9txE6mLD1/A==",
-                        "xuM9wGNsCfc34g0/j07r6dul6dv7Q9sTnTBKsRZj4xQ=",
-                        "oI6QYuijqh1bvuCbr7hy7p2lMYj8ZoUA3LNLJix0ap4VTwykCRzqhSgGPYQcM7i9",
-                        "J9mb4u2jP9acaMHSdfApoStfinvuOcpSovg9SeNzmCo=",
+                        "8/xniyG+t9aF1xgAWi74KKsg0zOILq/5dttloHF0kfS9cee/OVZkam40/B5DZ4EOIua0gh+Rfqb8MKJ83RQGlg==",
+                        "upjTr+ryx27tsI+SR9eXRcSY9Dp2MGJIk1m75kU0QIg=",
+                        "ufhuICb4KVXSgq8FV02ojn3vO0WspsM6W9NcJmW6Vr57dKaNur3wLYGn03txVSjB",
+                        "z7CN5uVCZpQGNt3WaNee0tvkTIljV6+BlI3LH3KOXWM=",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 302,
-                    Question = "77UzNJ1336f0FqoV91uzCPGaJpquxmuFof46BWBo2iI9l/SMpDSkKtr2FSlUjjYdsvMhnqAXPU+HuIBfZfel3A==",
-                    AnswerHash = -589189396,
-                    Answer = new List<string> { "js/K6iHWSzvNGv0fl6jy+A==" },
+                    Question = "vvxzO4uBxeSn0GmYcY1DlbntrYg9sT1Y+CkHdctHl/wKmvDIqlaKo/8CmIUs8Km9uj1EsYjozC0kLt4zr2gHDQ==",
+                    AnswerHash = -155149257,
+                    RawAnswerCount = 1,
+                    RawAnswer = "fy+u8F/xj+TigVMAtJ6Jmw==",
                     WrongAnswers = new List<string> {
-                        "3LavAqD9HAdaL5GwK0537g==",
-                        "5TGuSDM++LPTaTfZdE322w==",
-                        "SiA6HCtANqnd01dmzP/saw==",
-                        "V+jY5t+fpXG7Xk+eosIY2Q==",
-                        "2HXVgl5k0VHT6mfPdpJm2A==",
+                        "Er4ne6inFis7f0AIFRlptQ==",
+                        "Qgt/1y5Ms5SLeE7pbWv5WQ==",
+                        "5kQyjMDKKA2SJ3pu+T0d6A==",
+                        "lrCKiTYPxl7SFHa3SIUCvA==",
+                        "hAr+2i2icdziAmWhadyYQA==",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 303,
-                    Question = "taTBclKnjJQQcHkytuZf0otN4QgtcIAkdl71TvOKfivLsCuWBU7RxeDou1lOt6r2",
-                    AnswerHash = -1574082535,
-                    Answer = new List<string> { "WEjmNG5XpTo8tSCsm14czA==","H5E2Iq4CCZ4XbCIjplQnOg==","OByf75d/b5HrheoAenFJNw==","wmlEvFyTKum64q3UXtQG9Q==","XENpCMo7DYbfKY7ipw1ePA==","3Qd2JGIfe/vVJ8iBlXNsPg==","dPDNM7QFs5KdolchoMTe9w==","F4Vk6HsaAOji8dWFPsVchw==","epoUy674U/s1cxM4Wqp50Q==","GZJv7PgEbp3Q4GGa81mPcg==","+TszyriWReSrFCoKe5qrxA==","unBcFvP/6kf8UrV90LapMw==","cay9VNvKmAYQHyiK+LIvdw==","zSXGkn4sdJkzMXORqcZ8ng==","mBsm6OFRsNMLxEUzzTckcg==","pZzYPc5qIAdWfnsDHNm9ug==","+hrG+uWGE8RZkU8FaQqCnQ==" },
+                    Question = "wi8X5FkZ2ECZqMcVy5ADjGTeTLT7fPV29NjafsTPCQvkOXm9etBwMwLiUr4G3CD9",
+                    AnswerHash = -1378262255,
+                    RawAnswerCount = 17,
+                    RawAnswer = "l1Fp8cDroct++nlzIrpEGCs7YIoo9mkS7gsWxzN/ipXM4UlmL7v/+sh7ajZN/ar7/WXpnpXz5dhnx3ktQcjaKXLuY7ouK58YL6PsPlS29giR6A3wYYGobhbpwKBAigQlfKt5D3oHamW6ooOr0ZuKfA==",
                     WrongAnswers = null,
                     Passage = "Hebrews 7:11-28",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 304,
-                    Question = "WF6giNq/BXiH1mQe3/euFmQjkcwL3luFgJGDcpotedJqveQO6HexIrpk2AHBnGoYVxFuVz/3nIdAZJz3vWnragO8gkMP52eiZe3dcxoOxKoeDirIrUMw+IjR2GTv0mgt6DEYO6Ad1E4B4Z+ZmWOlVQ==",
-                    AnswerHash = 1848326241,
-                    Answer = new List<string> { "TTx95vfYnzVLVlk9YFSDUw==" },
+                    Question = "AhzUS5bRNfBbw25/s5+sI/5ih6gaUGe2ss8Yp/g1mlR/1gce+OnQFZXd9Q9OmxSlwLu7ystGxpRjlqHxK+Idx64CGMKdQRXN6U4dBBHYbahEwHrozbednqCs/EU8mgh4bAGp3S9HMJP4SZgEcv8Usg==",
+                    AnswerHash = -1108074590,
+                    RawAnswerCount = 1,
+                    RawAnswer = "sf7mcNJDFZuRFFFaLcDuzg==",
                     WrongAnswers = new List<string> {
-                        "l7hecwTj5zWzKgZczWCOug==",
-                        "YX4PJN9iUAMVC+IYblU2yA==",
-                        "8MLFmHnvSGy3rHAARknoIg==",
-                        "MuYOVmdTEu1jmTkixIbO4g==",
+                        "TIBDXw5gIjIn8S0aspgZvw==",
+                        "BEaxFQMGCLpkAXt36I2q2w==",
+                        "OaLYDTkdYY87RBdzNIk51Q==",
+                        "Ng3wPYgkhwi/bdTj6NVcrw==",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 305,
-                    Question = "cHz9Vwug+04Gau2ordBayf7IdsoZYOo2ki+TFE75U4WDrNtjKuY9Q8EnxIkRgN8KYmVqRirn3CKRrfrh3xxKCA8+Lz9eitpdZASdi/WT3daTm9xcSfiSV+lPMvzXHsZLJ+KaAD78K2ceWTFt7IxZ4g==",
-                    AnswerHash = 220684637,
-                    Answer = new List<string> { "GDHjEg0L4Pl5KypEiGwOAJt7vTQPnRcXLoRKLdKfqr8=" },
+                    Question = "yElAHAbDwjB78S26u3xGZAAZN769y9HfOIbouNXez8KA//ZMU5aOfqEXg2DQx4hu9JCULDaP/NIv953K5M5KywwFWGhPTVs8lnXNpj8heeLJz6/PYtYYu8SxkDw2HrjHkec7EY/hySkKuTTTkK1oVg==",
+                    AnswerHash = -1648636176,
+                    RawAnswerCount = 1,
+                    RawAnswer = "IagTaRqH8I7MlAAMrLnSEGWzc2Sbvl1F28cIRc9cnp0=",
                     WrongAnswers = new List<string> {
-                        "uoBWsWfXmmN7rkZlYztWqfCcM1WWiaANUobH4uZj3e0=",
-                        "lreSe62By1dtGinz7eD3p4Ofgie9cwyg5B3qEbwNfXM=",
-                        "YcUUkrgAzpvLRCnFYd3oqew03taQ0Stq1RM3mE4dTN0=",
-                        "2Ta0pNOELJFCIHtDEOCn4dHeQ4SecWnUVMF+rMGgmKw=",
-                        "FuZ7WUdBcHt9dcinznB7v4IGpiWotJRXPFrGfpSnP+s=",
+                        "mOT7hM6a0SBnjy2D7EOCFeClxEjr9Ets9hxf5tsrkwI=",
+                        "VCgpKkstyZ6PgTIq5JE9PfeXrXDIS6i2xG/nwacV7L0=",
+                        "waBsCFOl/0pXXBygx/t5Jyqs+CRux8Ehlyc1+3ZGKrw=",
+                        "X/xpputrrcnCOxVVc1s3X0bqql7nPb8y8SX0VJf7Rms=",
+                        "JPBphKbTTvPCZ0umy4f3EhtcQJGEBBodZVvSx8CKhQ8=",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 306,
-                    Question = "iX9PPifkJEU/HP4IFhSS+VxIGaDS+KBFapovibzc0Cd1PJGvbXWVXi1apgUFysEl",
-                    AnswerHash = -922206406,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","zSXGkn4sdJkzMXORqcZ8ng==","94C8L6Q37FDFU43dYL5ZDA==","epoUy674U/s1cxM4Wqp50Q==","zSXGkn4sdJkzMXORqcZ8ng==","E95xNBdO33xP9iuDRqvxDA==","epoUy674U/s1cxM4Wqp50Q==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==" },
+                    Question = "PczfNd4+RvGbuH0fbPfW40VSGuKiOQY+OnPp+ENu4qrLa7PMoOJytWq67eGKLvpn",
+                    AnswerHash = 795505043,
+                    RawAnswerCount = 10,
+                    RawAnswer = "r4Su/KMcJx0N5C+t3wREK8XfhTySjn/V4EHhz2ghoHdaIt/JVRXOJ6cxUqkpacGSSeBzcyPElb+dX5gzjhhahg==",
                     WrongAnswers = null,
                     Passage = "Matthew 28:19; Acts 10:38; 2 Corinthians 13:14",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 307,
-                    Question = "oL61tSHC/c6XIS22/HC8us3QOgilKqcpHDZJuuAU98QztzrhJEEP56rbXO2GRiZna9zTxVbMcvxToA0q+R7JqQ==",
-                    AnswerHash = -1407401797,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","3qjkOZp0mqZlGd2MnI32yg==","SSWR4dhK+2bv6y3XJxA1qQ==","ohtOP8Drnw6lTSIDXu65Hg==","pgNXOxmJrUdqHVahQEJ4tQ==","YQWPEquOaA9htHonH9dPTw==","Xl9cyyXT4enh8vOL0nat2Q==","+3IlZ6517pnFa3WNy1IvRQ==","3qjkOZp0mqZlGd2MnI32yg==","USzQqTjeVjXh7mtnh9kB7g==","GZJv7PgEbp3Q4GGa81mPcg==","+3IlZ6517pnFa3WNy1IvRQ==","4ROpDELlhF+CwMRVw2VrDA==","u/i4zPiSqSKbsCPkarIVtA==" },
+                    Question = "NvoyqYhk/ivsr7/HiWYasba9tk2Erb410V0q8UdYTtJ8UjMLh37NOeKF9TiqWPVM/5efdeAbiyw1OX1qAqsppg==",
+                    AnswerHash = -1662420521,
+                    RawAnswerCount = 14,
+                    RawAnswer = "jo8oUxyJ5Q0Zeew+EszHFdqx2EJZRE7iS6mfuWCoxJHeUFZ46SIFTyEvdDD0r/P7rYvpm02lTXD0rUuDHROTrH1K2OIltBFNsKtqIUuS5mA=",
                     WrongAnswers = null,
                     Passage = null,
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 308,
-                    Question = "oL61tSHC/c6XIS22/HC8us3QOgilKqcpHDZJuuAU98TQinBksOFA74hlvS+vJGxisVD3HfuG1Ax+IZxduTGd6A==",
-                    AnswerHash = -1313113264,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","OByf75d/b5HrheoAenFJNw==","o9i4U/IM7AEaq4xozt+08g==","s43SZCwa5f5iCwuJ+HXfgg==","zSXGkn4sdJkzMXORqcZ8ng==","FvFmsHcX9xTl+l6MPkwR+Q==","epYam6Spmvpi+noDZ8VfMg==" },
+                    Question = "NvoyqYhk/ivsr7/HiWYasba9tk2Erb410V0q8UdYTtJ/gVHUlM8fvVz55xKLgoYO/sBF4ap0PTWU2/KCXqjLPw==",
+                    AnswerHash = -1705574001,
+                    RawAnswerCount = 7,
+                    RawAnswer = "mzb/5ROrL4YeY8RkASouVypPHVIb0wxz2bz24Tx5KuewrGEj3pCCv1lBedAW1GS7",
                     WrongAnswers = null,
                     Passage = null,
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 309,
-                    Question = "oL61tSHC/c6XIS22/HC8us3QOgilKqcpHDZJuuAU98QAYP1PX4gvaCLuxvFgnjJ0lcPyrB8fB/+aHO61fDIQ2Q==",
-                    AnswerHash = 2041311126,
-                    Answer = new List<string> { "eQMBF6ivWTSUR04jF9GV6xpTQpXqaOALMmqyeZOqZWE=" },
+                    Question = "NvoyqYhk/ivsr7/HiWYasba9tk2Erb410V0q8UdYTtLx/cuMDrix7SEeLBS319gK09qgOigwopdDIEcYBcGJMg==",
+                    AnswerHash = -806504399,
+                    RawAnswerCount = 1,
+                    RawAnswer = "CqB0twbPDNXOkrtN2lfvrvG4Zlw6xBUPIopi1IK/d10=",
                     WrongAnswers = new List<string> {
-                        "TMCA9+Lx0DW43+FVbo/1BO0yPL+Q/NHT12+0lhXGoa0=",
-                        "zt1ndyr31c3EQhmQJz2/f4g3S4i1OR05bpPem0V9vzk=",
-                        "DdMzrzYy80GlhCa9GFhOc+ks8+nSQMrjmVIx0/cib/o=",
-                        "BscHd9kT6Cs4jiiA6tridLMp0lbF1x/8vCCKmfyYqac=",
+                        "nZEjNORh5/t501Ktr51h4+rWAfTrHAq0/FPorqKh9kc=",
+                        "ax/8CGY4C2ITDiWbMt7Vs/QfT3Qg9ihuLjBX6immpOg=",
+                        "iTb0Q/8CCn0GiDeuM4Of7f0WcWfLWqEY6CpIgiTO+GQ=",
+                        "4DDl9bkZGiujMrJJPnLMq4cPTmO89ZlP/or8S0RO1o4=",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 310,
-                    Question = "oL61tSHC/c6XIS22/HC8us3QOgilKqcpHDZJuuAU98SGaM3f397KP1UJ15t4vl4sRGKjfs91AuuPITuiWP1WKA==",
-                    AnswerHash = -395442457,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","OByf75d/b5HrheoAenFJNw==","bPaF6N4MXAulevZAbS0Knw==","GZJv7PgEbp3Q4GGa81mPcg==","Yb1OG41Ku/pcDCk1WKfesQ==" },
+                    Question = "NvoyqYhk/ivsr7/HiWYasba9tk2Erb410V0q8UdYTtJAJTKUQLHoZdR4E35mKw2rYNXqCGkpECw4CFWlXi3KEA==",
+                    AnswerHash = -1341288599,
+                    RawAnswerCount = 5,
+                    RawAnswer = "ECJAlcUXRIA8koux/pSouIRUnX71May94QAxi8FKAezg8DEKqKIz/pTKpDGN5Z3Y",
                     WrongAnswers = null,
                     Passage = null,
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 311,
-                    Question = "VrJUyW95XtKkbAEnf11Wx9RCWIvu6BXiDc7UE/sLmhWtpIbF59U4DDfydAva+p+w",
-                    AnswerHash = 1765257541,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","zSXGkn4sdJkzMXORqcZ8ng==","5jGM2Hje8A7z12XnGOCtcQ==","wktdr3ifFGETmwJtcmx6UQ==","zSXGkn4sdJkzMXORqcZ8ng==","Uyd0YaZkyMFk0/y4JEE77g==","SESNeD1EtiCtWOHkaVmC+w==","nu/urtQNi+qEVfncCQDbLQ==","zSXGkn4sdJkzMXORqcZ8ng==","5cd3hzMa93RoOeT3TCIXeg==","xs/gktjYRVW2K+hyEcVF2w==","uHjamCtBuqlMB7S5mDwg9A==","FJk2+V9+EtHcpO/KdBSc4w==","MAQlHANFCQCAp5BVXm1HqQ==","LXGUkfuMGkmzo18UBx7JIQ==","byCWfbUkohZBKmNsbc2f0w==","l6dGbRSXF1ynxNQRJRAexg==" },
+                    Question = "EZmkDjRKVUqNlyOhuTbPiCvv6Q3QUl4Lblp5aQW+g0u408k24hrD9W10Aug6F6w7",
+                    AnswerHash = 812980606,
+                    RawAnswerCount = 17,
+                    RawAnswer = "1f8A1FFnoR0lVUDOEyRZAQvKBT36K2jO+cuYuxwhhr5z3gYuE006+EtpgifHWCWp2jnKHSU4Xj4VxgVwb4VPXpqjN3sTbwEjGKVD5hh6wBXc4hq9Tyc9+9snqazBz2UV",
                     WrongAnswers = null,
                     Passage = "Hebrews 11:3",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 312,
-                    Question = "tZmZqdlKEy31qbhDOrGtzHfY9WA907lT2xw2zGpoAtKzRYxbXt2uaVw6mz/uPxczikDXMPtg2weHoiXhyqlH6A==",
-                    AnswerHash = -1964530786,
-                    Answer = new List<string> { "3OKs39nA7SeMRo/bvEnFOpJj2EmQddRieaNOzyVCo54=" },
+                    Question = "UfnkenwsZoSUzsXaJLbp/PJI1caFYQGMgP/RWEBowrdY2O34OMqYQB3zK+BkejtGF10sFHbrtjw3kInCyx9bIQ==",
+                    AnswerHash = 1899549780,
+                    RawAnswerCount = 1,
+                    RawAnswer = "MLDHvDkDQssD71TI/Z57pceOGcpOE3PXK6QLCU+YN94=",
                     WrongAnswers = new List<string> {
-                        "dKpj2/nOeHVrFFHX1jbiqLEo9EPeMr4LJ3uwoOjmt8Y=",
-                        "4tEylYSqLDqYPDmOoSGs5A==",
-                        "gHsG+bSh75bsvAGd18YJvQ==",
-                        "rBIfzWMZwgX+EPgDnLImCSB8Woo+cUDMLR4vqrz9buQ=",
+                        "tvx0SrPVwmp3wFIR+9llbvH68VPAaOrlzTcVw7jluas=",
+                        "iwph1bFYNBgPGFw3TCGboA==",
+                        "GtNVqwOZiYHY8e3TlpPbTQ==",
+                        "7NuThtxueIoQ2uOn0xoX+54e9j9vH/1AUL+TaDi2yPg=",
                     },
                     Passage = "Proverbs 9:10",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 313,
-                    Question = "z8v+I6QOucAfVE09EkE8D5GyYNKOqgFTzSN/biOdjcTEKIY2WC9NoDZtVwOxd1mK",
-                    AnswerHash = 360430255,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","33NdhLBDfINwqh6pq9AThQ==","j9koNwPFQPuNxXf/Sbgodw==","uHjamCtBuqlMB7S5mDwg9A==","KTwcXislwnY0jj1jo9tAYw==","SD/rU6bGI2MkOV/UvJ4nrw==","Opkx6wh4DJEkxFGBZHzG9Q==","GZJv7PgEbp3Q4GGa81mPcg==","SD/rU6bGI2MkOV/UvJ4nrw==","zZjHY4ZhnZc/ykyNhN7FFQ==" },
+                    Question = "oC19nX8tBiIGyhX/feplxMRSHS+T7UEhpXaIX6nXpYy5C1FKT6VXqQRg0lsTzquF",
+                    AnswerHash = -846654592,
+                    RawAnswerCount = 10,
+                    RawAnswer = "FZLs+8WVKmLtUyrCLm4oLScrN7pJ9Hdz6hXwb0FwD3/C+gHffWh1ZKxkJeehVICEEqAc3pCFMuvZ/e5vGBHTxw==",
                     WrongAnswers = null,
                     Passage = "John 4:24",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 314,
-                    Question = "bNKKyFg4ZSZUf95M69ZK5cQrsr9abV4wLG/rGWkYaLg=",
-                    AnswerHash = 862406948,
-                    Answer = new List<string> { "YrrSt/baXt2vp2hoetCBgg==","zSXGkn4sdJkzMXORqcZ8ng==","ohtOP8Drnw6lTSIDXu65Hg==","zSXGkn4sdJkzMXORqcZ8ng==","UjVdzPEnwW0KdZDRVM3C6A==","dylYz+YkW+DIoi9cbXzHYw==","RaAsB67uoC0JsxgR/Z3r+Q==","1bIrpFm5pUBDoNKezRpitw==","UjVdzPEnwW0KdZDRVM3C6A==","0hoMe18VLQxfVlMv0UskJA==","VFIl8cW9xe/PiDPSfBZTlg==","kbuzR+8fqPqWfLJlHcId8g==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","UjVdzPEnwW0KdZDRVM3C6A==","0hoMe18VLQxfVlMv0UskJA==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "iaX88AhVNDTx+aXNiKDJ8YZ4TH6+qNllqcK9CQvjX24=",
+                    AnswerHash = 1030554243,
+                    RawAnswerCount = 17,
+                    RawAnswer = "P5ZvlMd0jPZpX7oMn2TiJDRfVrK+kEjc4+MyAepj/wI5L+1dvSnwSnMLcEEEgHiN2rHyi3oMSFvfz7Xt3D1t95eq572VuPo+fWxRhtxQJnv29A4FcsGgXQxppsYDyXQg",
                     WrongAnswers = null,
                     Passage = "John 1:1",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 315,
-                    Question = "BQ0Fy9Dag1MkowYQpKSu4Rd8/Md9faqLIsN+CZ78A94yUHDGzAHkLTHImxfUBZYt",
-                    AnswerHash = 1916057416,
-                    Answer = new List<string> { "aXF1C2VKvzmPrtlb5Irq7A==" },
+                    Question = "tzVVIrF5MIgsrVKenwRkZR3L4gMpvn6nHso8gTIuz1e/TJYIUXEZKtJCASZBGSfP",
+                    AnswerHash = -1276753257,
+                    RawAnswerCount = 1,
+                    RawAnswer = "kU028Ag2WveuYJtLn+pghg==",
                     WrongAnswers = new List<string> {
-                        "m9tZLymtTpBGA9TFJsoQLw==",
-                        "jCeRvcQlUMbeg2vCW1QjJA==",
-                        "KO0rPZiK+OgsgyTtHfvyhw==",
-                        "yrm8QpGIvAs2mEuo6ouHGIX+1O+lrqQJ9GqWVsf7sr0=",
+                        "HntUeKXvC3o12LjtN4KbSA==",
+                        "hXco5kk5O8CRwVOwgGPruw==",
+                        "Iom/7qVvED6wDhCKPxeq7w==",
+                        "+Jk4pqCTmCpR+4KuawVoOsX9SzxK6z7Jku2+GfV5GvU=",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 316,
-                    Question = "BQ0Fy9Dag1MkowYQpKSu4aiphONCsXcK5hL/PgNei/TuI4T0qcg34dnno51Rde7S",
-                    AnswerHash = 1941673600,
-                    Answer = new List<string> { "m9tZLymtTpBGA9TFJsoQLw==" },
+                    Question = "tzVVIrF5MIgsrVKenwRkZZpRNeqQxoCwbo9W+LFuImqr/8JVEZBMBk3xIrmkRJ/E",
+                    AnswerHash = 164333411,
+                    RawAnswerCount = 1,
+                    RawAnswer = "HntUeKXvC3o12LjtN4KbSA==",
                     WrongAnswers = new List<string> {
-                        "aXF1C2VKvzmPrtlb5Irq7A==",
-                        "jCeRvcQlUMbeg2vCW1QjJA==",
-                        "a6ObUvMdhdQunrSbKvF6LwGP+A4lYx0hUGiTXr+XbJc=",
-                        "gjNrex+EYwuMMJMsuphDfThCzycymmccTawOa9Utork=",
+                        "kU028Ag2WveuYJtLn+pghg==",
+                        "hXco5kk5O8CRwVOwgGPruw==",
+                        "26oXbadKkG8XuZ9ZdUwYgxVznB8gU5qLm2Xy1YWJkCE=",
+                        "DA7cSHgHrPLWOxaSwloBr+z/URvJPYfs0g2no6HIlOo=",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 317,
-                    Question = "ccc6aXittKeIJvUrN9boY8wewyIyQHrbHs7tLN+pm7rl+c04tJJGxTy+Y2V6556SURws6VZGaeSUNBDO2tJ02Q==",
-                    AnswerHash = 724819431,
-                    Answer = new List<string> { "H5E2Iq4CCZ4XbCIjplQnOg==","j3VmKRFjx1/CvS+CH0VNgg==","OByf75d/b5HrheoAenFJNw==","zSXGkn4sdJkzMXORqcZ8ng==","FvFmsHcX9xTl+l6MPkwR+Q==","PWffbpNeTxevInWVtfoBwA==","t8H1+diwT+eE7V56rs7pwA==","GZJv7PgEbp3Q4GGa81mPcg==","2Tio2PiSnr1YiP4kPyfk3w==" },
+                    Question = "BWB9MfGAyIjSMr9LofnxXvYZCUpnd7CuLFCDgc8i6TY2gUhOfkhOv+LapembQYdNWGPNTNYEKzp58EHISFEiCw==",
+                    AnswerHash = -1781908280,
+                    RawAnswerCount = 9,
+                    RawAnswer = "IY4qsV8AfAw5V8C512XuI0iMkB9m4B3S18G6sWL1Lm2Hff7r3t4Kr9jRCkdi23FJj09BcNZw4NaK/dFMrIEfMQ==",
                     WrongAnswers = null,
                     Passage = "Hebrews 13:8",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 318,
-                    Question = "kPMY7q92LOnwrQl0ETxQDRwb8dc/3MqDz8a9sk0YxdVW6ENrRlWQvimL+kQSJ/b5",
-                    AnswerHash = -877262797,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","MAQlHANFCQCAp5BVXm1HqQ==","c7ntG6ZMDRcw5aCMpIUjDg==","iP9SJOjZULUp+MiN7Ff+HQ==","WRpHsS+q1mfMjxfQwAlaeA==","GZJv7PgEbp3Q4GGa81mPcg==","+Qhh6GZ0Ko28+bhUwjEjJQ==","0hoMe18VLQxfVlMv0UskJA==","MAQlHANFCQCAp5BVXm1HqQ==","ZkIDyyvXZl0NHK9kNqKTmw==","iP9SJOjZULUp+MiN7Ff+HQ==","vfs79UrAv5dSi6/cJDNueQ==","1bIrpFm5pUBDoNKezRpitw==","UjVdzPEnwW0KdZDRVM3C6A==","wktdr3ifFGETmwJtcmx6UQ==","b2Oa2zf4OzGfy2VsX9cLiQ==","uHjamCtBuqlMB7S5mDwg9A==","c7ntG6ZMDRcw5aCMpIUjDg==","SESNeD1EtiCtWOHkaVmC+w==","0hoMe18VLQxfVlMv0UskJA==","kIq3uxmLfRuIfJ7/0TtpBQ==","GZJv7PgEbp3Q4GGa81mPcg==","8em3vnSerFh9/QdMHy8F3Q==","b2Oa2zf4OzGfy2VsX9cLiQ==","8JJ+2mh2BtrSfWMzdiU5kA==","S5DGsBkQWTAOM/aEeNby0w==","uHjamCtBuqlMB7S5mDwg9A==","dF0d7zNzZl0FzkrSYxWPvw==" },
+                    Question = "7gharVeHwsKHBcbW5vzLRMOdD2ya9dBymoTCeVfIiifpB2ZeLfbLY1/eW/D1LWU4",
+                    AnswerHash = 1302805189,
+                    RawAnswerCount = 28,
+                    RawAnswer = "n5k62AODiDbjsAqPUjbozs3ECSJ0Z5xharCQASStXEMPbfKbu/NDzX8RoQ4XD7++prpYds5dAcB8OuEDm6oPkBjGQ/sMHWqkYKvikmYjrZi/1YLLuxMMpTgVV3P1ju1XDOoUF2tzyypmKc8IYWCy8b21eYEiFEJxrfb4ULaSdG+UPG9+qnyiWd8sF3Qx/EvZeui6PXkYBCDlsmykqBkKqUJWapB5w7k5CJPxMngvc/g=",
                     WrongAnswers = null,
                     Passage = "John 1:3-4",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 319,
-                    Question = "1Qyn3B5KB9pqwcmAFvpJKvdZyldnY2F3gZTHjyfsaMl6WRKKcJPe28Vc9GUvafD5A9f5Gdq1aoyCuuvsemL+FG3Ybb+nz3CIoE7ORXCuMe6ZoBsddLVd8fDK1dvGVCTw",
-                    AnswerHash = 328813902,
-                    Answer = new List<string> { "cmzW/0Es9KTJSsBsZYgbaw==" },
+                    Question = "ockrR/2nDrgbiJtrcN+sjED/XDK5cV0Ebm3Cnp9v0mbynE+u2JRmJ9mnu09V2Dmip1t3FW4C5CEK39+kwe3Yj5KKEsPgJjGsdG8Hm1l+86gzNOIg2Qo1tUPYWatJ8oRb",
+                    AnswerHash = 1039391240,
+                    RawAnswerCount = 1,
+                    RawAnswer = "ZVhbF7cm6OWS6OuRAufWOg==",
                     WrongAnswers = new List<string> {
-                        "G3TyVFZFw2sNJzR9qsvhzA==",
-                        "HSftyFZtCvFOgAmV4wCZrg==",
-                        "sbEl+jvbPJeEpCzSOtJCZQ==",
-                        "gisMqWjOD/6hj9/raQ6A4A==",
-                        "h+KNv1cuzMzsxVfAMr8jnQ==",
+                        "O9GeqWsSiAeAcq3xDaYQ/w==",
+                        "eyjPnx4ktBzyWbq26SLcFw==",
+                        "8p6aTL22paN2iRk/6ggnPg==",
+                        "sGjjiAO52kn6RQ6NY2Dqtw==",
+                        "9Au1Mv9q1QlWo049tuuPqg==",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 320,
-                    Question = "iZsOueN3KJrWLBG9x5X+P4rRgVLxzH7aIgkWAVM6OcV661YZq1O2XBRn2t10IQLt",
-                    AnswerHash = -1805150278,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","+LCdW/yTndlkO8zGjy7ZOA==","zSXGkn4sdJkzMXORqcZ8ng==","Sf+yafQnUYBilP8Lmfz9AQ==","SESNeD1EtiCtWOHkaVmC+w==","WMy5NmBGoZBvi9EWyqLZ5A==","byCWfbUkohZBKmNsbc2f0w==","l0BlHIoeXgadhtZ2v09ghw==","KbGyzSDpsldRmVLQ17uMMw==","0+1U10HmNzlaDM/0KkudyA==","2xKZtOeuRBrwt84gOCH+hA==","vfs79UrAv5dSi6/cJDNueQ==" },
+                    Question = "zVe/scyeWzSnVpgjF93qvkZk5QL2Xd+iD7p3ag0gHwIPKdmEMGl7ZoYhWsU54BCg",
+                    AnswerHash = 169761531,
+                    RawAnswerCount = 12,
+                    RawAnswer = "2keQRH4SevzwjxX4A2RTEMix3ciWorW6WB04rJPRQZyFaxu4KTycew//H9iPuMObUhfR7UoZH4a2PYJYZKFRU1bVdVJI5nH+qZ1NAxJgeqM=",
                     WrongAnswers = null,
                     Passage = "Genesis 3:15",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 321,
-                    Question = "s2TKAMJABARQ2I2vZjbI6j6z6JBQvJAsXxYCd//8McaxEJ6HwmfAeKfxiYY0QKz8UYxWh5SFDf28rJEkLnbvxA==",
-                    AnswerHash = -252402418,
-                    Answer = new List<string> { "pvhVjL8dxBHO+y4ovGZaHg==","ilj/fxOuvPlAkJk9ZciBzA==","RJcl/xuirTio8ilPjqIJ0w==","GZJv7PgEbp3Q4GGa81mPcg==","Kd1QUZX6Xu5UsHE+Gz9nJw==","HFXqr0DkZazIBZSSzYssZA==","+f2dj+VyKrvPYaS7ppChaQ==","0hoMe18VLQxfVlMv0UskJA==","2+n9pjKp6vcsa485ufY3ig==" },
+                    Question = "yIclftLnZJai6ubPTbXHfZsL3y8Czyl5L30SsGmC++aTFhHOrK55s4nWGvCt9o28wI1XcTSm1rQ5KvR3FIJeNQ==",
+                    AnswerHash = 1663150563,
+                    RawAnswerCount = 9,
+                    RawAnswer = "qJwMFelFE5p/9Fb3nHdLELK0E1e3QveH+g0OpEMOXw4zSQCiwUzyVdGxbNEHbjhbozB5+ndFbS3HNwjeRb2iV+NJp/lZErS5NA4dOGBeZEs=",
                     WrongAnswers = null,
                     Passage = "John 12:31; Colossians 2:15",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 322,
-                    Question = "W22zxBihv8/DH+Npt0vZ6cQOMdNKQ8ADFcfUTbWLZAOrP01KoiNN0aHuPNuYGLE1",
-                    AnswerHash = 1345914544,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","ZZhMusz6mMkWQeVWyvEhfw==","15eLbYN1wDccohuExfXzxA==","SESNeD1EtiCtWOHkaVmC+w==","iP9SJOjZULUp+MiN7Ff+HQ==","8em3vnSerFh9/QdMHy8F3Q==","6lYcaHKiQWp9RF8G7bMa0Q==","u5tJoMLD6tALPUILPIWO4Q==","zSXGkn4sdJkzMXORqcZ8ng==","BqHuXymoJUlaq9uOqEQa7w==","0+1U10HmNzlaDM/0KkudyA==","FJk2+V9+EtHcpO/KdBSc4w==","7c95Zeq642I2xUNnAt+6vg==" },
+                    Question = "eyCGCEe9AUazn6TgqhkYYpZ9snTmJvxyjgpVBo6+X1aca7ISBvzHGhVXHnKMTt82",
+                    AnswerHash = 447659630,
+                    RawAnswerCount = 13,
+                    RawAnswer = "hKeO1RvDdS7NsP48AlW+YnXVPSE5JvZU79W5IA8DD+Op27MVNNsngxnnSc7r5ggK/0F0rgAcZ77ykcda/r5LP4wbcTBdp+CYabawnV+vZ4ITlFPjZBzbtoWNm1v2mtHX",
                     WrongAnswers = null,
                     Passage = "Genesis 12:3",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 323,
-                    Question = "GdDD78nU9dabn1erLbj9+G3EydM5ExbjaYyqMkpDEzWQmRHyWfXq3yxDDDn/ZajYmZ3rY4s2JGcjpf0KgwgOk/i26u7Y34DFMbqAeamr3RyrBywKBcEdWoED33sNYFL9",
-                    AnswerHash = 510122016,
-                    Answer = new List<string> { "dqLiyV6i3+oj3LK/z1tLOw==" },
+                    Question = "T9+A2bcgoQLBy4ldPSbD/KeeTkS8or8a5fwLdny6uXDuw2iltWWcZSbjQzIU4ldAljByrYVqa7pmvFQkdUr/dW6rz4pMHdzoVHgD+SqQY/w/e2/i7n+kmUBo8L3ZMbCe",
+                    AnswerHash = -32597093,
+                    RawAnswerCount = 1,
+                    RawAnswer = "4oMWme2kkBIS7T/8EaL16g==",
                     WrongAnswers = new List<string> {
-                        "3LavAqD9HAdaL5GwK0537g==",
-                        "WMLouTjN+JVGM/7J/w+YOw==",
-                        "t7+QQ1Fou4DUDgTxzpvyFQ==",
-                        "svWN7e02VloCEjMLVD5jkg==",
-                        "xeKnip8/zpIj0A+53t9q+w==",
+                        "Er4ne6inFis7f0AIFRlptQ==",
+                        "TUAi8tKNa+wkvyM1HWDX+w==",
+                        "BbmfjX7NJRmfLp/UAe7tlw==",
+                        "YBceoXwELjtqT3EK3LmM4Q==",
+                        "JbWPxMT3jTXGQvMQu8J7mg==",
                     },
                     Passage = "Galatians 3:16",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 324,
-                    Question = "DWJnINOfdgwlgZfNtObqm9L0Gtvgs7YqNLKeZFpkkYhREheJSmWb5NkR6araguRs",
-                    AnswerHash = 1265188778,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","zSXGkn4sdJkzMXORqcZ8ng==","vQypo/5wnEGvtTPLOcC9Qw==","pNXTXz9KYEWYDl4aJsdQUw==","bUKqdROfs37M3SApMT+fAw==","GZJv7PgEbp3Q4GGa81mPcg==","EqWOVeTOuMDQ+pZnq8rn6g==","YMwVHYfMwt3SfbxdxvS2kA==","20ncNgz9m+Ir6/iJktjQYA==" },
+                    Question = "xPvic5h+ntNRjWUkn3P/tQkvm8VqE9S+omrZCCqdrjnX1RSd925S6E/4P/UkMefK",
+                    AnswerHash = -744141072,
+                    RawAnswerCount = 9,
+                    RawAnswer = "y/TxhxM3xQDJ7SZ3eDd4/WBEqWkoPiBTP2sTL1hsAU/kfxhVtZT+OGAVSNsCdJih",
                     WrongAnswers = null,
                     Passage = "John 1:1,2,14",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 325,
-                    Question = "ZLknt5NIMLFBh+MYQYyDByeMFu/pjwi1QVEP2m8eamtXTtEvGCPvpP7dTU9xtLztmxt9NkDnCb+RbVew3vYO4A==",
-                    AnswerHash = 460550587,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","bbZm6UWdJBuE42Q+Sei/9w==","wq1E3CgDdtI121TUgsQMuA==","OByf75d/b5HrheoAenFJNw==","uHjamCtBuqlMB7S5mDwg9A==","jOHvFFwYqqHAtN/WMdYDpg==","GZJv7PgEbp3Q4GGa81mPcg==","WwcxsCUfv6+/73r8ubMu5Q==","GZJv7PgEbp3Q4GGa81mPcg==","xqA9tjAfx0Oyq7sc8uN1yQ==","SVrmhUOSWP/4QaJbncZfDw==","wq1E3CgDdtI121TUgsQMuA==","OByf75d/b5HrheoAenFJNw==","uHjamCtBuqlMB7S5mDwg9A==","/nnGx87awkIltGXBvxJnLQ==","GgtJi0mGfR0hufvf777JVQ==","wmlEvFyTKum64q3UXtQG9Q==","/T3J9qjjY5ZTGhOeRilzrQ==","GZJv7PgEbp3Q4GGa81mPcg==","OYNa1MzshpRygw0XxzK7bA==","Tcg5hzPoNqYElYUN4gFIkQ==" },
+                    Question = "tkNG0Z5Uhp7BvxYQhwgLqz5CFj/TVKZzGcGxFfr5m00Eu09PHqAt/E5s0q5sfPwTlernipNQL7P6VPD5GTF0JA==",
+                    AnswerHash = -398503627,
+                    RawAnswerCount = 21,
+                    RawAnswer = "B/o0rF4uuFvGNcPW1lQTis3B6TjfSODefsmVV5sO8NCNM2QfQM0tzXRK1UuB6AehYU1lxM2y+btt39dljL5RkuFL6PPk0pAxGJYD8b9JUJyxRcNmZRJFn+0r19z5D41D+ULJgDZnC9aN18/T0z3/Fw==",
                     WrongAnswers = null,
                     Passage = "John 10:10",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 326,
-                    Question = "fFP0cAxHDwU98qt2qIDhoedUERIV0lyKL03VoZW71tqnefjQKMCbwSPi9Jn9wk1gVhdqe88u7iA3b4Hcb0fstw==",
-                    AnswerHash = 820865069,
-                    Answer = new List<string> { "UnEUj+NubaAD2RSmXd+43w==","zSXGkn4sdJkzMXORqcZ8ng==","vQypo/5wnEGvtTPLOcC9Qw==","byCWfbUkohZBKmNsbc2f0w==","kp2GUWPjxIVLDbPr5JykXg==","/uH/xBVoFza/xFwjEmQrTg==","uHjamCtBuqlMB7S5mDwg9A==","qxEB1sa7rKQw2cO6vlfifw==","GZJv7PgEbp3Q4GGa81mPcg==","wd7hRuVVQBAFcbN2Jev5Rw==","wNhdm1nhYC1mptyDJciNAQ==","yhosT8cR1+lQbpuXY8eEVg==","qH06W7X4ZjnXJoh7W8gVRw==","NWGrZRk4uYutIL3PczpRBQ==" },
+                    Question = "jPjF7AoLmceDDRwg395z8whoeLU9R+b19F4zQhxRsra1Zb10FI+0LDvHhFalFaLqWnk+Fy6zZieJR4NFwgT/gg==",
+                    AnswerHash = -607439870,
+                    RawAnswerCount = 14,
+                    RawAnswer = "0o0ZuMDmjQPhHOdeB37d0DNec2EqTesKikbVWoElmYXaihGIZASNXoBjpdS+h6WBzG7h/OI5XinCRt6xYWdunQ==",
                     WrongAnswers = null,
                     Passage = "Luke 19:10",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 327,
-                    Question = "N1TEWPVovZ3PTEQw/Y2A1L/DmP+r9+PhNI2/1a0J7e6BNv0kcsYsBAb7bgbOuu2WAvWI9fjOgR/Q538CrAWxhw==",
-                    AnswerHash = -812682224,
-                    Answer = new List<string> { "HirI+xpTNQW5n52dXbjWtw==","AnOvt6WjGHiIg/AoSkoEhw==","zSXGkn4sdJkzMXORqcZ8ng==","Jr27ohfOdfN8tHJ81zzk3g==" },
+                    Question = "RzaaHCIWRWHn5QxIFHidtsHzZ79+w/5GTws7S+IXEs7EHC9DUIfh3+bxAWtt+3TRGS0darXrZwXWTSHHesQaEw==",
+                    AnswerHash = -1074825286,
+                    RawAnswerCount = 4,
+                    RawAnswer = "Kec18m5mkgPDmiv54sovmavdQsdN8Mx0SOjKe5O3agg=",
                     WrongAnswers = null,
                     Passage = "Matthew 4:4-10",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 328,
-                    Question = "iTXqc+3GbQGlVzZmsNGN0R9EbeM6Vr023O3O2ulXLRF5Dw6wcmhPYaWra0jWhAoQQL3hVFLJQl5g4ZnqbTVP+A==",
-                    AnswerHash = -1872086024,
-                    Answer = new List<string> { "H5E2Iq4CCZ4XbCIjplQnOg==","OdP9qwQUmemHhcTarB+8YA==","hMYa40rWHg7YB/7RJZ7ctQ==","QPAxhD+/TFthtY9gectGBg==","Cm9mJ405RXWlx2sJMGqBOA==","9cpTVa0FtFxKfvin/wvJsg==","fQPGA1xAdewZUqUYYGwaLg==","uiydGL58iMY2PyrvRHJQiQ==","byCWfbUkohZBKmNsbc2f0w==","3g+0rrVIECuzqSCdjPiG0Q==","XHthi72uuG9PMMl64qMtKA==","X9oGuVZlS/Bn31Q5FJkAPg==","H5E2Iq4CCZ4XbCIjplQnOg==","0hoMe18VLQxfVlMv0UskJA==","x45UKmfb9951ztFcWIXatA==","bTdKChLQP/k5mrWJ4gts2w==","epoUy674U/s1cxM4Wqp50Q==","GZJv7PgEbp3Q4GGa81mPcg==","bTdKChLQP/k5mrWJ4gts2w==","3NZPa54PIAiQlp4SUnK84g==" },
+                    Question = "9ryDiUSa0czuoDUuWW5o11MNuHd186NbQFcLFM4BgkBBoi7hBrT9FnCO4068S+fMxAEnfkEjshiOQUnsrRC8eg==",
+                    AnswerHash = 515518801,
+                    RawAnswerCount = 20,
+                    RawAnswer = "KqLx79uNtlSZHG8+Fpq/7vrxJhgi0hTmYLd9FvfwyyC40fDdJNpC3e6m7OZ2M+S7TIpDCA4Je85f6ZLGEMhE7gTl96nyEyJM/MANICnoTaA2Dc6llfkYPJFJT2zyDyrI3zDLl+7rPJaE19B8QrLKSxJIFkOofSNgLzqfaNg+DTc=",
                     WrongAnswers = null,
                     Passage = "Matthew 1:23; John 1:14",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 329,
-                    Question = "HhFNY2DyZNg8hLHzJ/9PwaC6+a3SlVNbpWTz0BjOq5Udpq4Q9YbjflBqK0IUB2OWTUNetbXPbwKLR3UPaiLVog==",
-                    AnswerHash = -1469267119,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","PpHU6q5PjRkQeSsG2niZAw==","0+1U10HmNzlaDM/0KkudyA==","wd7hRuVVQBAFcbN2Jev5Rw==","3g+0rrVIECuzqSCdjPiG0Q==","+TszyriWReSrFCoKe5qrxA==","e0yNFCHXotWomfACRwB8/g==","eMILHmYiElWlkHXCK54Ezw==","7vEoGcjpFVSvwf2slKG0sA==" },
+                    Question = "/3iYvbf3vTAME0FamPlcruChEDMHGLheJXBuH/AlKvtxIBisz3FT0+v2yDREI+FM/EcNrflrP/P7X6tOriaEIA==",
+                    AnswerHash = 137133033,
+                    RawAnswerCount = 9,
+                    RawAnswer = "kG20FpcZRLwUUE+hI/cs/lWrKuRZOYpCgBRNVMGPWIuNBnCM/HbVKlNrlhRdwB/LFcZ4D7VSWZjot+e9Z9mkyw==",
                     WrongAnswers = null,
                     Passage = "Matthew 1:21",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 330,
-                    Question = "mcVFhEVghJwVlvfx9nseYKpOqJhQ09FlhsCRUu1Y7TOLjYDYN6TXxo0RhiLLbEwQ",
-                    AnswerHash = 676024900,
-                    Answer = new List<string> { "/75IPgBqoHFIsB7x62RQmA==","V+stcPecGGb+vJM+EulTmA==","OByf75d/b5HrheoAenFJNw==","qPoQSPLZzCWK6ydwuALa7g==","AJtf5mwjDy2n7KSPfH0Drw==" },
+                    Question = "7I/TCwNn1Djv28dekliD1C5Y/8dFxIbql97B6nsxEAhl4AXt6csMceub3KJfORJ3",
+                    AnswerHash = 953748182,
+                    RawAnswerCount = 5,
+                    RawAnswer = "W1oigoTzU/vnuzitPxgneq+NaWat41ATeIXrTzIP4QE=",
                     WrongAnswers = null,
                     Passage = "Matthew 1:21",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 331,
-                    Question = "mcVFhEVghJwVlvfx9nseYGPWAlmTAQcYmpmL8lUXKJ7+MvskY47jNDTXUg3JTven",
-                    AnswerHash = 1378687963,
-                    Answer = new List<string> { "/75IPgBqoHFIsB7x62RQmA==","MDNpgAANqEc91NcSvETyJg==","oIOHtFYZd47ORCuZD2G2+w==","byCWfbUkohZBKmNsbc2f0w==","zQOnLim+OzadElkhDx9rGA==" },
+                    Question = "7I/TCwNn1Djv28dekliD1M/pN67wjjxl/6l9nfvFhwXLsORbnvmZ6HWfh1kDbmaJ",
+                    AnswerHash = 732624467,
+                    RawAnswerCount = 5,
+                    RawAnswer = "pAFWXgkr9zRaEDtdddA+vLlp65bA4DDwxm4BlGq7j78=",
                     WrongAnswers = null,
                     Passage = "Psalm 2:2; Acts 4:26",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 332,
-                    Question = "baIS6sDJyP4OiebsMQ/hAiZsDk07xhuJtmQTIHYuGnY=",
-                    AnswerHash = 1277208801,
-                    Answer = new List<string> { "40rohcdCNugWNWgepqlK8Q==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==","GZJv7PgEbp3Q4GGa81mPcg==","+f2dj+VyKrvPYaS7ppChaQ==" },
+                    Question = "H37voAFDMfHyna7hU2Pl612Z1xL18rxvxp4SXo/3S0g=",
+                    AnswerHash = 386909756,
+                    RawAnswerCount = 6,
+                    RawAnswer = "CTBfOrZwieFKwVEldS3uj2ieDL1AAntcaHIyiNpZeBw=",
                     WrongAnswers = null,
                     Passage = "Acts 10:38",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 333,
-                    Question = "2/SlJ8UVL8hNe+oiaVEbQ5tD2etGDHlPeBokouh/N5zvclJ0gSxsUU3wwixLp37a7XayExQSXDaMkZ+Z4fGJXg==",
-                    AnswerHash = -1502335193,
-                    Answer = new List<string> { "btEyOsvTCvH5M2G+jP8bYQ==" },
+                    Question = "nPlV395ZoDFFj2evFmptL6TZtDUuvdorydzOi2Hxwja6Iwujf6rkeypMRkZVLeoOLVeM0hi7bhzBODtdCird2Q==",
+                    AnswerHash = 1548267724,
+                    RawAnswerCount = 1,
+                    RawAnswer = "Hd5vio4PwTUFtaCxmkiQdw==",
                     WrongAnswers = new List<string> {
-                        "k9lEzJSHF6IEoNv3KkgoAA==",
-                        "BHVUgadyHUwciRLTX9UVKA==",
-                        "ISmRKmFK4UjyB3IivRh/EQ==",
-                        "rwaF0JQUnF510bAbF9rKqw==",
+                        "JfBdfUMzxmcHmsWN0oPUhQ==",
+                        "mXEa/6CWdNCDnLXxoh9xCg==",
+                        "05XNDivyCE82ieH64aNHKw==",
+                        "KrY1/KplU8x1TfMjV5MLDg==",
                     },
                     Passage = "John 1:41",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 334,
-                    Question = "AaDxJLT9I1Kf6MraIRRsnKWesbIFs2LnfUgJ+54jZgpQG51QFjEogWshOjl+LyEcHieQEoFqCxgTM7GcXCEmPQ==",
-                    AnswerHash = 1703043579,
-                    Answer = new List<string> { "UnEUj+NubaAD2RSmXd+43w==","8MLFmHnvSGy3rHAARknoIg==","OHyEhyGa+pfzmOJyIfn0cQ==","VFIl8cW9xe/PiDPSfBZTlg==","pH+tFCWlA18TDy1K3SxF6g==","Xl9cyyXT4enh8vOL0nat2Q==","SD/rU6bGI2MkOV/UvJ4nrw==","I3dqmpQg0Fij/wTbS/q5zg==","wmlEvFyTKum64q3UXtQG9Q==","wziOOU1OtmK7OtCbT04oxQ==","mCcF3zkQwqrNe0ISM2YEng==","KbwjtXdeZQ8LHGuS/5xGPQ==","4ROpDELlhF+CwMRVw2VrDA==","FJk2+V9+EtHcpO/KdBSc4w==","OHyEhyGa+pfzmOJyIfn0cQ==","VFIl8cW9xe/PiDPSfBZTlg==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","ek7Dx9qZ4oYEBSL9Q+Jc8g==" },
+                    Question = "d/wIFhMkQdgoEfogd7gBBaOuScdeOziQ7NWi1ERGQm0wtjug//eLt+PbgTkDk0uY+YE4RQQszqBdSsW/ZLdE2A==",
+                    AnswerHash = -1065799377,
+                    RawAnswerCount = 19,
+                    RawAnswer = "giQ7o1xu1y5irMZRWU8GUyeXfasutOBedSQDWnEcWMGHZh1n3LGcTdo6gzatSHkageh+iRgyqkCLf6IMzJsoNS6ZCzQCo9U4y7zVHQlk871sxUBa2bqDRU+HyxjoocHe",
                     WrongAnswers = null,
                     Passage = "Acts 1:5",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 335,
-                    Question = "Fr0SpgZSUuIV4k9owUp0ghK6Jz0h8XOBhTxyCj6onSA7ktiNSaadcIrZQluh/YmkWoFq4t4vsMr1+ongHTSLoHa6WsVzdWaFBaFZYrTdOcEJP6BFJZ8otrCOBsHFDGL98OF6VKII50MjezHUf4XzYg==",
-                    AnswerHash = -1358859314,
-                    Answer = new List<string> { "09NZWDG9vWFg9toGw7+a9Dk3AFeboQE8EJjxd6l8aAA=" },
+                    Question = "dflNOCL5gQQuCprnMWlIALnKHcrKB1e37dKbfIpLlFprxyfOAbyk7Rvch1+lGd3GHKP7c6mr8AP2rZtpKZs4t1REA9HnR3MBLF2MXWjfzsLDrIWfQO1odOP+shNnAbO1d9mnCTHMsOOmVg1TtgApuw==",
+                    AnswerHash = 812726846,
+                    RawAnswerCount = 1,
+                    RawAnswer = "FHomKpZymC0gdU22LfFz3RiwMq7vmGatcCUziAgJ7j8=",
                     WrongAnswers = new List<string> {
-                        "sMZYLaE9TYzjgQUhEgHrNQ==",
-                        "wIGn1hzQzrQLr8Md401zOw==",
-                        "U6YfS1LZp5nN/+aOa/AXDA==",
-                        "j1LuNjX4k5hRwajZer0ECw==",
+                        "Fs8i759R/bVivaZyl78OZA==",
+                        "pacb8cvt0o7px23dvxENaw==",
+                        "X40X0yQuPLhmun0Kc1HolA==",
+                        "dL8Dh7QBfNsrsxyMlwPS9g==",
                     },
                     Passage = "John 10:11",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 336,
-                    Question = "3M4dhuTVsy4GTAAugo/yom0Niz9xK8uqrUJHRiGQ1Pfujl70Y1VhvX4PTwxRNzaqF9xX0aBgxIF5b6ndQjv6cFmykotPL9d+G2IoK0HoqRyNpZ0+Nu9wCshozdDnVDA8",
-                    AnswerHash = -1904000914,
-                    Answer = new List<string> { "mbN2SqM4Ms66XM3x4pO7MQ==","H5E2Iq4CCZ4XbCIjplQnOg==","q1s/UW3Xmr3r1JRV4LaOww==","ZDxs4fII0mOIlLDSaNNdew==","Qy3dkG73gfQuPr6uET+bFw==","3g+0rrVIECuzqSCdjPiG0Q==","RJcl/xuirTio8ilPjqIJ0w==","0+1U10HmNzlaDM/0KkudyA==","QPAxhD+/TFthtY9gectGBg==","USzQqTjeVjXh7mtnh9kB7g==","zSXGkn4sdJkzMXORqcZ8ng==","HNhp04k3Pdzfl5eMRsGTYQ==","byCWfbUkohZBKmNsbc2f0w==","3g+0rrVIECuzqSCdjPiG0Q==","dYsbs9RdYZ/cdacNSDhKmQ==","GZJv7PgEbp3Q4GGa81mPcg==","0+1U10HmNzlaDM/0KkudyA==","hMYa40rWHg7YB/7RJZ7ctQ==","QPAxhD+/TFthtY9gectGBg==","q1s/UW3Xmr3r1JRV4LaOww==","zSXGkn4sdJkzMXORqcZ8ng==","+f2dj+VyKrvPYaS7ppChaQ==","uHjamCtBuqlMB7S5mDwg9A==","kriaSngOaQTeeTXw9TkoPw==","hD4leEz4Yl/TFKgQ4qlkbw==","qPoQSPLZzCWK6ydwuALa7g==","4rT2rmUsrv1VP/p78MmyRw==" },
+                    Question = "llXnCy0UyxM8vFD9hQHtu9XWVz3Cy2Molm+Mv2EERG+TRTf/LUKwv6Bse4ZBsWkNa05jimbIBEMxAeM8kVfICoFdw1FjPSCqjAXHLiyjJXCZ3JPJM/nO2KSofKFnKqrn",
+                    AnswerHash = -1112388585,
+                    RawAnswerCount = 27,
+                    RawAnswer = "bqpVsx2tQoWQaDKRf1AZafHyV1HYWEBokjlPmbTuXZiqApXU74o0HlOhG5SMClcZNc6i5OO3E8WBpvrvriB5CPN6Qu9TSCSCu03AILXIajlFuHKx84udFIo9uQmKzS3QAu8q58GfT9eYj8jaUVjHxjSuRVQLTIiQz7FjXdRbiOsYbt1PvX38PWV5e0+7/BGW",
                     WrongAnswers = null,
                     Passage = "Hebrews 4:14,15",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 337,
-                    Question = "7IkmFxfbo7WF4ifXYikRn0k6wxNGm9TLAs0SIrfuviTzj1cdTWMgnallzyi48iOe",
-                    AnswerHash = 866057660,
-                    Answer = new List<string> { "WEjmNG5XpTo8tSCsm14czA==","H5E2Iq4CCZ4XbCIjplQnOg==","0hoMe18VLQxfVlMv0UskJA==","VBjOA6WnfQbxmC0VeRfIRQ==","yhosT8cR1+lQbpuXY8eEVg==","PpHU6q5PjRkQeSsG2niZAw==","UHWlCjWKAQVsWMuvFjuB6g==","uHjamCtBuqlMB7S5mDwg9A==","BrAxKurfz/0oONjoWzMHWg==","byCWfbUkohZBKmNsbc2f0w==","kbuzR+8fqPqWfLJlHcId8g==","KRxMkR2yUPIi479GexEAog==","GZJv7PgEbp3Q4GGa81mPcg==","V+stcPecGGb+vJM+EulTmA==" },
+                    Question = "JWgaBTJrX02lunc0lVoX62zL7mY6CC+wfGFTKfxerGEPbwJ7gyDejW9J7mGupuBF",
+                    AnswerHash = -149687840,
+                    RawAnswerCount = 14,
+                    RawAnswer = "fiL9fd7FBPA4OItHlCI0FlNYpKFQS81oWgD/5YT30YIN6ZnFXF+22X18OFE2uLDEyLygu53FVFnx0gtinTvFJ0Aip3w8qDQtxpNwI/TLWmw=",
                     WrongAnswers = null,
                     Passage = "Romans 1:4; John 8:28",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 338,
-                    Question = "8HAvBFa4nDXdgd+nq9BPKTNCDK2uzIjcVetMUA2GvR3EGiB40w9Rltdt9OX5o+M1opTql8R1b+LgahisE08jOlJhxaRG/oPE7XPXm6TD5lE=",
-                    AnswerHash = -33310108,
-                    Answer = new List<string> { "mbN2SqM4Ms66XM3x4pO7MQ==","j3VmKRFjx1/CvS+CH0VNgg==","0hoMe18VLQxfVlMv0UskJA==","hMYa40rWHg7YB/7RJZ7ctQ==","M1DmuJInFoKmGtlco+SMaA==","e0yNFCHXotWomfACRwB8/g==","zSXGkn4sdJkzMXORqcZ8ng==","Vq2Qei0U9qpSDLDSKHh7GA==","qPoQSPLZzCWK6ydwuALa7g==","DteZwv2zHaL2D2traDcIrA==","OByf75d/b5HrheoAenFJNw==","ijCGntnWnwY77pWNnM7mkg==" },
+                    Question = "0Y0Xa02vdA7cjxPpb02MG+ngJAYu4yDV1TMUtKrvF5a4lhGPo8BIS3rBWr9UhgW+zF2X35yySy8ALpnk+ikOcFe1SxgwhaOeC3xeltnSAr4=",
+                    AnswerHash = -103913908,
+                    RawAnswerCount = 12,
+                    RawAnswer = "OUQ7nDclFy4O8JmloHOFyPrG6nQVoNUpUUXp9qWyhZ6md2QcBD9v7/C3PBsiZBqnHClLYoeTUi9PV0qbb8bsuA==",
                     WrongAnswers = null,
                     Passage = "1 Corinthians 15:16,17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 339,
-                    Question = "1QChdQg/9zmLotX6RImipPjTyALmqqgD4GcQV5YhmNMsEGZGdW330Cmpn8SCEb3C9Avq17GNOmOtfJTGVoE/Pm+nB6qgfzbzNngzoWCvOWg=",
-                    AnswerHash = -1696501492,
-                    Answer = new List<string> { "BG2RJ4PL1X3/SQm2cCxq+w==" },
+                    Question = "nRRTPYPE8KaaMKd4+NZwC4EYhjOUL5OxesnAOB/xVORRANQarCCp16yOEzcnq0Fq0rRdQeIE3iTZNzN5+73JAEMIJU8/zHWyuuDZEySs3jk=",
+                    AnswerHash = -520163833,
+                    RawAnswerCount = 1,
+                    RawAnswer = "fFyBp/rgHbsUYdNBn03u9g==",
                     WrongAnswers = new List<string> {
-                        "zGOnJ6xjLFyf7IBuxS0yEA==",
-                        "g79aEfmELfdBr2XlNe3/XA==",
-                        "gisMqWjOD/6hj9/raQ6A4A==",
-                        "jJYN5kFP7BqeVcuMRI2M1g==",
-                        "P3qjb0xpIFah0X3XrJL7Zw==",
+                        "SnfLkcX/9NAa5tDZcj6fEw==",
+                        "msreJMrpG9N6UyYKvpK33g==",
+                        "sGjjiAO52kn6RQ6NY2Dqtw==",
+                        "/uk+mtwkmp9dKO0oYm9Mbw==",
+                        "XQLiqyW4tmxsysqICVeXsw==",
                     },
                     Passage = "1 Corinthians 15:6",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 340,
-                    Question = "zmRyx72myr+jpaQh6oBASdunX+aFJghcyb44WdoxYh28fnfwWRtgR54tokkihXrAmulDvNbLIYzu9czlAxfj1F+XujBGztovUGUUrK4h/Tc=",
-                    AnswerHash = 1191348538,
-                    Answer = new List<string> { "HIQdLekh/lxqK8YMnNn2JQ==" },
+                    Question = "ZquREg/OWcVBkoO2GcPddqpdlgqMaH/m61IhuJTFe3CGkpbT5ZctIUHtCEA8S2ASYYLyjRhDZYb3tUIjYWEY90yNCH6x9r5LUCdw9/xct8k=",
+                    AnswerHash = 1788140054,
+                    RawAnswerCount = 1,
+                    RawAnswer = "yhCCrEB+aXZ0O2Sw/eno0g==",
                     WrongAnswers = new List<string> {
-                        "HWBd8TMo1Ko34IN2H+4G3w==",
-                        "NZoAeCGmQnfyGNlerfyXhQ==",
-                        "8Z4p9xRhUSn4mKjvq9aBaw==",
-                        "tjWsBGHoSFpO7qoOzla2nw==",
-                        "nYevTG85vITVlBxahOTLZQ==",
+                        "USBSSccKqxSYTuGOewL3Kg==",
+                        "R1ztw5qh0G1UUvU1WxAkKQ==",
+                        "nIx67pHL71b7MN9gq0saeg==",
+                        "MQ57Ga0fLbrWxnIMMuxUYA==",
+                        "RhTDeFkwLSymrBK/CkjBNA==",
                     },
                     Passage = "Acts 1:1-3",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 341,
-                    Question = "G5K8ft96BjLAMKuTXQqJV0A3CWksxwmDL8HTaMldO0qs3fE1v9twvzp/+nOtOVZb",
-                    AnswerHash = -304267734,
-                    Answer = new List<string> { "H5E2Iq4CCZ4XbCIjplQnOg==","OByf75d/b5HrheoAenFJNw==","s43SZCwa5f5iCwuJ+HXfgg==","zSXGkn4sdJkzMXORqcZ8ng==","iPPmPNJL2plvvKFHiWYzcQ==","yxRyBIlNM9m3tFveBmiuhQ==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","5jGM2Hje8A7z12XnGOCtcQ==","lfWUmC1NNIZs5VpPMr/0aA==","6k+HsWOwR9HashtNs2uT7A==","hD4leEz4Yl/TFKgQ4qlkbw==","6LEnnZj/SvsC+vICLVZYnQ==" },
+                    Question = "5i2ktsL00p/pVX/s0KtL1t6/2j2vgzd3/2zZ3TTbZczXXPEiAG/pHLolPTUBNhQw",
+                    AnswerHash = 620703768,
+                    RawAnswerCount = 13,
+                    RawAnswer = "pa6Jg7m0HFO1CUMaAGi67FfulNEMFAxJzsc5raKYbKBw8UmJV6vjmC43XkOtCj6YrytFiAHp8i6pWhWbXWLnaywfc8iAVu0gM2hXtvB5Hf8=",
                     WrongAnswers = null,
                     Passage = "Mark 16:19; Romans 8:34; Hebrews 7:25; 1 John 2:1",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 342,
-                    Question = "+II3BBUWtgwrHutTfer2l3wte0Pyy/WIFNuQtLMD7nE4LmJhYOqfLNq0bhoWdvciOWWWjWSjUylp9HcYxYd4uA==",
-                    AnswerHash = -2086863698,
-                    Answer = new List<string> { "aHiAWBLZ/fHnmjA1Doh98Q==","DR4+FMN6w7EHYFBoKtwwUw==","zSXGkn4sdJkzMXORqcZ8ng==","Q/9fr17eq9UaLbuUJZgJMQ==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","W6yUCUeG5ym+PlGUd3Jz3w==","zSXGkn4sdJkzMXORqcZ8ng==","qBzvn3SQoSsqGF70q/F1Ng==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","Crr1eWsYeuR4jDsv/NwRgQ==","zSXGkn4sdJkzMXORqcZ8ng==","6cjZHJ9t86t55422PpdrGw==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","O3hGG+i9Cc5Q6ocVMMNioA==" },
+                    Question = "EoMP6IxoaKEyxM1JXs90xtZcsi5KCYuEh1pHMj4AzQHxl/kq4CxnrdbG93sQpiBErHi2GiLHIAn32+5r7FSXiw==",
+                    AnswerHash = -1660668213,
+                    RawAnswerCount = 17,
+                    RawAnswer = "zHdMmoAK+qfR3oRA7yaSqtPL59XhJ+luOaRv0exzqPw9+DOMpkVzX5GEQMMN3xu8s4jwZFItPNcTJoXNnlojP+ipac09oQVEtirK4KsGKf23FfLfj1G4AqO2R65iDfTE",
                     WrongAnswers = null,
                     Passage = "Revelation 22:13",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 343,
-                    Question = "Pu3aPt5LwWRc5Bjl5VOUekktM7z1kotZ/PijwxQTY7A=",
-                    AnswerHash = -1618471927,
-                    Answer = new List<string> { "PpHU6q5PjRkQeSsG2niZAw==","znMmOdUW/d6AtrO/66RYQw==","CliTOM5Wa4UjJeaHj3xV0g==","e0yNFCHXotWomfACRwB8/g==","zSXGkn4sdJkzMXORqcZ8ng==","Ex1bSWwzHvayk9yhT8Fjjg==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","A6d7QP3VQq4wQYrD7Dt9HQ==","GZJv7PgEbp3Q4GGa81mPcg==","jualYw0vcnjLNSH4rX96Dw==","zSXGkn4sdJkzMXORqcZ8ng==","ZKmYS0ToiHuFNDJPiX0rgA==","byCWfbUkohZBKmNsbc2f0w==","b2Oa2zf4OzGfy2VsX9cLiQ==","KzYtv0BMGJENnKG3p78kFw==","vfs79UrAv5dSi6/cJDNueQ==" },
+                    Question = "JzS6MrjdNSDt9YD8u/eZ0tWX/MxgQHWyP6pDBQmp7XI=",
+                    AnswerHash = -1643726144,
+                    RawAnswerCount = 17,
+                    RawAnswer = "itt3OPWRC5GG70vdD9qrpppEikN1gTNTnpl/TTIafHPXpzXVqgTRyJZKUsol2495OmqijeNLev1FM0qj5tWhLEhWgstAeXgkpbSS2iMUiq/FzzmlgHvY6u20phwpdKjn",
                     WrongAnswers = null,
                     Passage = "Genesis 2:7",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 344,
-                    Question = "Pu3aPt5LwWRc5Bjl5VOUen+JEmGiKi4WEzworqFVfKI=",
-                    AnswerHash = 932687381,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","ZHHbm7TsspKwKSBIZIkO0g==","MeoCnb+apuHfUdidThsdWQ==","LXGUkfuMGkmzo18UBx7JIQ==","byCWfbUkohZBKmNsbc2f0w==","WMy5NmBGoZBvi9EWyqLZ5A==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","0x62M5jEUQIN9Fx6AzGrvA==","byCWfbUkohZBKmNsbc2f0w==","12a6bRYpobO2paBF/HCTVw==" },
+                    Question = "JzS6MrjdNSDt9YD8u/eZ0mMf4bWGWP/nbxRg0Ov6wes=",
+                    AnswerHash = 1372481933,
+                    RawAnswerCount = 11,
+                    RawAnswer = "pvsD+rcEW6mkp40hZESO5JQqD1QwW8U9uZU3sXmNulJSZTNPkAbxLep2zdpk4WyX",
                     WrongAnswers = null,
                     Passage = "Genesis 2:21,22",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 345,
-                    Question = "m/4y3vrLCzWoQuSUReCZjXxKarH8Rp5fHbFHluQY6Q9QvVEvXFmQk4n821Prr7kZ",
-                    AnswerHash = -581359234,
-                    Answer = new List<string> { "Hgn/XfZEKGjPFlJkJ3MzGA==","cay9VNvKmAYQHyiK+LIvdw==","MAQlHANFCQCAp5BVXm1HqQ==","VFIl8cW9xe/PiDPSfBZTlg==","dLB19ku9bGC3VwqpqPhKuw==","gk01xwIrn3G3m+vCGU7LGA==","12v4fH6Wqi+5TwlLe8T3kw==","sMiCc0+u+c9x8PgtrfUzMQ==","GgtJi0mGfR0hufvf777JVQ==","uHjamCtBuqlMB7S5mDwg9A==","eBBcwnVgGRLnoWad3ZnHsA==","ZuVeP7gqZWEZYKwHknHzQw==","7XwsBXrlSSgvFco0bCNzRQ==","GZJv7PgEbp3Q4GGa81mPcg==","uHjamCtBuqlMB7S5mDwg9A==","e48khdK8A5zEaHPolKuQDg==","GZJv7PgEbp3Q4GGa81mPcg==","a53mZyi+Gj5g6hqzEDi4tA==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "v7V73BydxdAMTf6/mfvSuGD7bzsZvk+PEJ1qyNqOSQ79R0OOze4ptjzcxXTcMSpR",
+                    AnswerHash = -528332894,
+                    RawAnswerCount = 19,
+                    RawAnswer = "7VsyHcZAe/U+Ek0Lrl6g4mR0hFphhTLHZRMW20wEuad7tgv9lrbf5xDeECIyyjH1Cm3o6JEGZJhcG3yrwbPx2Ize/ODQ4Qmgm9iBZ0GSN6DMQnPmM/1eG5z4vCTlMuvV0c8L9omGkSKF0mm9yshaZA==",
                     WrongAnswers = null,
                     Passage = "Genesis 1:27",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 346,
-                    Question = "C5dQLYBtPlVm7buoZtXB9zIcb+6RX5NWBJoCzRfcFLybzBciCfC79+GMk+dWfP+N2gUyBgBl6WMY9LHJ+cbb4g==",
-                    AnswerHash = -4795067,
-                    Answer = new List<string> { "PpHU6q5PjRkQeSsG2niZAw==","ZHHbm7TsspKwKSBIZIkO0g==","GgtJi0mGfR0hufvf777JVQ==","jVlb7GVdas1P8MB7GHqRhA==","e0yNFCHXotWomfACRwB8/g==","zSXGkn4sdJkzMXORqcZ8ng==","he7l84W5vn/STwHimdqWdA==","byCWfbUkohZBKmNsbc2f0w==","f2+ip86XZZ1PG6y/jKXb/w==" },
+                    Question = "gVzhUhWd7UBOaVav/dNWnCk2QuIJJ3qv76G50zgEBU7sznzhGmu2wsS+XGL5Fz2ee/x5lpSnQD6UHZAWlUnl/Q==",
+                    AnswerHash = -2076027159,
+                    RawAnswerCount = 9,
+                    RawAnswer = "ZlSaYn3sep91kZlEZu3ql3+Q9SAYgvO770VWn1Xx1CdbUZeBOkzg01SiuUIMrI6iTRueAZivV17RuIYowv6c3g==",
                     WrongAnswers = null,
                     Passage = "Genesis 3:21",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 347,
-                    Question = "fB4f0wjKHTKEJWXbpW4xqy12Qkpya15s7y+7bjLVkASTtTlM52VZjBjj955tZf7c",
-                    AnswerHash = -107555917,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","JHGVI53cxL18n7rSEr8bPg==","GZJv7PgEbp3Q4GGa81mPcg==","rBZ+CbzcnJV4WqRyNzDECg==","4LpPS/gVve/8AmNFGvC0qg==","uHjamCtBuqlMB7S5mDwg9A==","g3cfsCuzTs6+DDN5bVjQWA==","u5tJoMLD6tALPUILPIWO4Q==","+TszyriWReSrFCoKe5qrxA==","qH06W7X4ZjnXJoh7W8gVRw==","t5Pt+GzKs19IqPmG7hfrYg==","SD/rU6bGI2MkOV/UvJ4nrw==","dYsbs9RdYZ/cdacNSDhKmQ==","GZJv7PgEbp3Q4GGa81mPcg==","QPAxhD+/TFthtY9gectGBg==","zSXGkn4sdJkzMXORqcZ8ng==","CdSDX4u18z/rsvbLwWLWFA==","uHjamCtBuqlMB7S5mDwg9A==","dWS8ojMlme7A3tcS9xD9Mw==" },
+                    Question = "8d5Pt3ZmUTVzDDq9FWCFSgc+67V2le1Mj0B7PTawEvINFGmRaiB03M2c3tJI5TCR",
+                    AnswerHash = -374724830,
+                    RawAnswerCount = 19,
+                    RawAnswer = "EU9CrwX6MtxzgByL4RY/F/WpkBSI10yu9Fmeu3JnHJ19uQe/eg4o6TNY67UGhvCALfLZMxYcxQ/mFFLTBb7jYRn5XsZH2T/HF5GSncOL3vdPj5D46oRfqVUyYHxEro16",
                     WrongAnswers = null,
                     Passage = "Romans 5:12",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 348,
-                    Question = "FRBWmScZEtHFzJ1GySo0tijUjWaQwH2s8denP30TwOjv+5abgxyohdH9W9y6+g2/QEWbwXkjwS0wrd+fuM1Dhg==",
-                    AnswerHash = -702693604,
-                    Answer = new List<string> { "BNoTftyJlA/jf5gtzXAtoQ==","HKFg9nW/lUCp5Vs6cQ0MFw==","VFIl8cW9xe/PiDPSfBZTlg==","epoUy674U/s1cxM4Wqp50Q==","hD4leEz4Yl/TFKgQ4qlkbw==","zSXGkn4sdJkzMXORqcZ8ng==","+TszyriWReSrFCoKe5qrxA==","GZJv7PgEbp3Q4GGa81mPcg==","H2QLsarOKdszb+79jIB6XQ==","BCfRq+q3pH85EMaR1/h4UA==","uHjamCtBuqlMB7S5mDwg9A==","kriaSngOaQTeeTXw9TkoPw==","hD4leEz4Yl/TFKgQ4qlkbw==","eMILHmYiElWlkHXCK54Ezw==","7vEoGcjpFVSvwf2slKG0sA==" },
+                    Question = "g4+GJoyy3LAIGZ+0hhoMeFOsJ9KHtHAcTUKc5UMSZnBkU4YPqMLe6glkpf71Sy5gTgxFoiZ6DGTkqKI1d2nf2A==",
+                    AnswerHash = -674037833,
+                    RawAnswerCount = 15,
+                    RawAnswer = "2ReaYUKj8gFv7Lqsh+9+EqDdN924Go2MVKFudiE1aHFZYn1bTEkZlvR7WfzVzgx9knluRLNUmP9jbVUYi+7RFPx3Vt+FhVzaD8VjgBXYKTfnAqV+0QE93cOzdMHNdasX",
                     WrongAnswers = null,
                     Passage = "Hebrews 5:1",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 349,
-                    Question = "VUNjYyy1e17ej2a696xGQK5uSdbMWIX5epYWjbVWy3YaZEj3JyB45f5eE8TRbm9Q",
-                    AnswerHash = 1759871927,
-                    Answer = new List<string> { "PJIGxKGLT5jNd0/YPpATNw==","OByf75d/b5HrheoAenFJNw==","WhKrga8Ii4V7sZltLGdPyQ==","tycvgLcm/pNUaHyasT8l8Q==","Fb3CFxTPCEyBVsS9Qh0v7A==","GZJv7PgEbp3Q4GGa81mPcg==","OByf75d/b5HrheoAenFJNw==","O1ZYLjWZgOw0hEKHHEMMhg==","uHjamCtBuqlMB7S5mDwg9A==","zSXGkn4sdJkzMXORqcZ8ng==","Fb3CFxTPCEyBVsS9Qh0v7A==","byCWfbUkohZBKmNsbc2f0w==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "BiGtv49h2NyI8F6GygA9FoPJTdd0JuBCHyDHTqFfwiU/eJlYprxSZ7PpYEX2kBoV",
+                    AnswerHash = -1829027244,
+                    RawAnswerCount = 13,
+                    RawAnswer = "f0COTiIgz8aNZPYJuYGs3XntBrdJJKAglWkVitXiJUC+U6UxU8nyYnJn0TEl9GYksAspBJ4mBxySEArOuB9ODA==",
                     WrongAnswers = null,
                     Passage = "1 John 3:4",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 350,
-                    Question = "F1hyMPiUmfvscPorEylxWqsIeD1K1lZvirqpG2+4NyeGtzksb2l/YC2ncEfDMpxL",
-                    AnswerHash = -1650689776,
-                    Answer = new List<string> { "AdMtaMv8HGLNckEMhqsztQ==","uHjamCtBuqlMB7S5mDwg9A==","csFNiXTSusApFcWTSa+MRQ==","6hxQDRAXKcefbCl4M8weIA==","Xl9cyyXT4enh8vOL0nat2Q==","hMYa40rWHg7YB/7RJZ7ctQ==","VhwueRuvwW3oU/PWGO4z8A==","ONLmW/be4SFiRtrQk7wxow==","OByf75d/b5HrheoAenFJNw==","dWS8ojMlme7A3tcS9xD9Mw==" },
+                    Question = "WcNmxG6mJMWX893y4IqJjX8JLDMkkB0mrWGQIcxzUpA9QREe6jz4Nf+CxpM12Mws",
+                    AnswerHash = 500798185,
+                    RawAnswerCount = 10,
+                    RawAnswer = "cB+RzR5XHeO1s6Lr4q8a4aFKANYkvzPBYWa/DeA4Z49aXlRNdq7M36G+lvzgPQTn",
                     WrongAnswers = null,
                     Passage = "James 4:17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 351,
-                    Question = "4HVlvAwS4GuUT9tHs+QvFmD1kz8nxlZaY++6BXN8IDA=",
-                    AnswerHash = -1803944831,
-                    Answer = new List<string> { "UnEUj+NubaAD2RSmXd+43w==","NMjyhi3+l2xy/KUOze/ABw==","3qjkOZp0mqZlGd2MnI32yg==","VcJ7CAeAYNsD7YXIoTKiuw==","MiGlGy1xQ8jjzh6Lx88Z8Q==","u5tJoMLD6tALPUILPIWO4Q==","qZlSjUAKtkP9vwWQZVDFUw==","7FdBiLaDXRVS7Ca97TtLdQ==","byCWfbUkohZBKmNsbc2f0w==","tycvgLcm/pNUaHyasT8l8Q==","BszdA++4H5ROQ6+Aj4EtHQ==","IFIloXFRB4f1zhRffeyvNg==" },
+                    Question = "mF1FDFek9tjoXPnpFf7K7LAZwI0WB8fW4OiWD/dVajg=",
+                    AnswerHash = -1374624560,
+                    RawAnswerCount = 12,
+                    RawAnswer = "zLdxykNfYORPX/6qu0ICP7yxDd1XgB6q/3Pd7ToU05+04uEnLKSTnjse/R7YtrF+CXUzUltW522o08hm7qlMRbqGIhqOAl4CC59aAfFDAPI=",
                     WrongAnswers = null,
                     Passage = "Romans 3:23",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 352,
-                    Question = "SU1NgP/BkaX0DE7GCNfHxYIB04u/sWetr4s5Brmyy7ECTr+vHz84BiiWDw41TpkueY8n2jOhnGln4hAw0w7pRBGuFb8yzYL/dj8fUcZs90NYZNBW8YG1w6lt65TMwpNdVvoq0oAEtIwexzxV2U34ig==",
-                    AnswerHash = 933609912,
-                    Answer = new List<string> { "E9cbwyBPOZzlNFcmpBMKXw==","rTU2D3AhRpRFw66lRsFOuw==","hvn2dcx1ISwWniJsOCA47Q==","eMILHmYiElWlkHXCK54Ezw==","6dUgznxdchj4wRNBQNsSAQ==","AWy8Bl4H3b5pDocBkw1W6w==","iWV2Fw5Izv1AdvJuZHpvUg==","dacjH3Su8nxRuOWNFmvLBg==","zSXGkn4sdJkzMXORqcZ8ng==","S1OkoAWiXAQVr6YNEJUOtw==","byCWfbUkohZBKmNsbc2f0w==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "FSC+tgPGVsBA5A4n+EGuc3kfpthNlb8DtaZhX5xyuu0/8PQis87BPlCWoOIWxGHN9mbxtmu+OMgXGsU6o4JsHvHb8ijfvqxLOVgOoUkOjxnNcYkYDO2Q0hPsbqNP67pELag46S1VUTRfM10Z6x37qA==",
+                    AnswerHash = -1420598907,
+                    RawAnswerCount = 11,
+                    RawAnswer = "isjglB9Uq6RaDf4KRGQovMf+yOqXMmK0RyRo/rDEBQMF1sPe+PEiBDb/lop8kITML6EoY6f4FkIhOvnBmDYuOe/bx1/aFibiKflZ+cpf80k=",
                     WrongAnswers = null,
                     Passage = "Romans 3:23",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 353,
-                    Question = "e5Ys8l5VUmjqJWwFENq2GBaMtJYhdwfYIL4qU5OfMbtnVOcOG2SbSVXmKM//XrAMKCvoR6ly4TzVW7qVGdSwCvIY8ShY94PL9Df8qwtuwNbrqhcLvYlqGpk6jZIFj+lF",
-                    AnswerHash = -796755329,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","wktdr3ifFGETmwJtcmx6UQ==","3g+0rrVIECuzqSCdjPiG0Q==","vQypo/5wnEGvtTPLOcC9Qw==","hIIzeeQ4AqVuLZ4uQ8ZCbQ==","uHjamCtBuqlMB7S5mDwg9A==","z190lKWOCu+2X0GGsMT3ag==","hD4leEz4Yl/TFKgQ4qlkbw==","20ncNgz9m+Ir6/iJktjQYA==" },
+                    Question = "jxrnEj9hFwN4Oxs0V31t60RVjkvSf7wsvw4mBMlitpC3zKkeQT4ZgdmedrMm+hYKFUNE6hZWQJJyXtf113GWMJnjJMwoZxDxZ0bm7ujWfvuFVK0FmvXq9KJ2i9Q+VIMF",
+                    AnswerHash = -1269915170,
+                    RawAnswerCount = 9,
+                    RawAnswer = "rSveQcserIG3K2eV5ZI4OD4KixtTjPIJ99vk2f0o9pSpE+QAnTfOgSB1WkAvnHyg",
                     WrongAnswers = null,
                     Passage = "Romans 8:31,32",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 354,
-                    Question = "ccc6aXittKeIJvUrN9boY+hvTYdJ8q9zOalR6iaixPptg1I6DzbQCdg/VGlDQMuDiQ9riA8ZKY9YaBUOyvu6sJYkJO5J0z40jqh1wGKIR6WnNX8pi4MP3xLkwUQe53g/",
-                    AnswerHash = -638477040,
-                    Answer = new List<string> { "TBbkjLF+3NjBs9FVQQwzxA==","epoUy674U/s1cxM4Wqp50Q==","HCxRfRVRUPmsGF1DIlsahQ==","8em3vnSerFh9/QdMHy8F3Q==","iNUlvhl1ke4wcx+G/NwCZg==","a53mZyi+Gj5g6hqzEDi4tA==","hD4leEz4Yl/TFKgQ4qlkbw==","j9koNwPFQPuNxXf/Sbgodw==","hvn2dcx1ISwWniJsOCA47Q==","eB8kksPTIJ11hNHW7jEYFw==","j3VmKRFjx1/CvS+CH0VNgg==","uHjamCtBuqlMB7S5mDwg9A==","z190lKWOCu+2X0GGsMT3ag==","hD4leEz4Yl/TFKgQ4qlkbw==","j9koNwPFQPuNxXf/Sbgodw==","WL3WN5r/8y/eb9ZSlb6+eg==","MiGlGy1xQ8jjzh6Lx88Z8Q==","cay9VNvKmAYQHyiK+LIvdw==","Sih2iwk8IAZtdoxktRl7Yg==","aTpc6GvA6cJX3o74BwZsAg==" },
+                    Question = "BWB9MfGAyIjSMr9LofnxXqHI1ZxSkURRQzj5FyaFYWJM6FlsOO37xwhkMEhKOZZmBMiQpFAYj9l4viL6wqNE8HKOi4a0MHH/PcnMi57JlycBnVIxT/M+btHYYoZ0z/Ul",
+                    AnswerHash = -1012074755,
+                    RawAnswerCount = 20,
+                    RawAnswer = "mQ5wEIAIuZz2qHvNHy5ePSSTAEmRiJ7gLCc1xrzw2WkVSL7Qy337Kb5wOT4vgIn8YYzF/ULxmOr9+B3ZkEemtV2ChIr4qsJotQ98rgDjb6XS7Ieigt+dxI+dDdsyw5hEICIdzXc36NzroQotb0X5DA==",
                     WrongAnswers = null,
                     Passage = "Romans 5:8",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 355,
-                    Question = "off0ExceDmKNi8/IjZmBaqVLbWPuLmLbpVc4f26zCjYffcBgl0I3kJKspxgs9KejIxOGTrizRZ6A4/HnTMRT6CLDagCdyD1ZWd/dl9ibuFjk436mqo6KatXJIGpQpa2t",
-                    AnswerHash = 1663726720,
-                    Answer = new List<string> { "aHiAWBLZ/fHnmjA1Doh98Q==","yEWZNUAKZUaooGPa3ee3YA==","KbwjtXdeZQ8LHGuS/5xGPQ==","zSXGkn4sdJkzMXORqcZ8ng==","zfLjLVcWlyAZMBS10xAPYQ==","SERzj5onnmYTzl+eB7MxpQ==","KbwjtXdeZQ8LHGuS/5xGPQ==","qH06W7X4ZjnXJoh7W8gVRw==","t5Pt+GzKs19IqPmG7hfrYg==","/2a2lwhQbIPrCWsWEnjvDw==","KbwjtXdeZQ8LHGuS/5xGPQ==","iWV2Fw5Izv1AdvJuZHpvUg==","3a4BMeo/MElOOyPlzlsFzw==","zSXGkn4sdJkzMXORqcZ8ng==","O5RLlyR+lEB7PXDhzx0yTQ==","byCWfbUkohZBKmNsbc2f0w==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "HAUqFcj6QD8rQyuAByEMB5lSGFbVj7xGuzZ6dzX15G4W1KngB7aQ7I5SemvVFH8e1YY3bgJT4Q02PB14wX2FiYPe9iNzpdfJbXkw7V52AoaiixSXI4Xh5XCyyr2mPtFD",
+                    AnswerHash = 193781071,
+                    RawAnswerCount = 17,
+                    RawAnswer = "gve5A5KStp8xDV5QG4k2U0oxlnYPRkQLKR4rgryFU+GsTn2x7+nUGLeNcLsr2z1KanDhvPQT1eKMo69dATiGtAGpkQos16VM9ubYuElCkNXS5+NI3mOMwr3jTr/hlybP",
                     WrongAnswers = null,
                     Passage = "John 3:3",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 356,
-                    Question = "ALmnMif1Pm0H5JkQ2xGhTzt9XSda0N+/7+qLxtJqx9TRhTvQp//3tEjfVp0rtwCZ",
-                    AnswerHash = -1507707824,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==","1D1G8x7n+eQg7iOBdFp3ag==","cmWaZ9I641/gPqFZNlbNDQ==","uHjamCtBuqlMB7S5mDwg9A==","dLB19ku9bGC3VwqpqPhKuw==","pAcGCZsnFLV3nESbzyU8yg==","MiGlGy1xQ8jjzh6Lx88Z8Q==","pTeyP7mFOj5fRgaXHbuEdg==","wmlEvFyTKum64q3UXtQG9Q==","9bzUSORDM9VFLERanu2Ztw==","SNXcCU1ueCHwEMn2xcL5xQ==" },
+                    Question = "FioJXJXetZnpbWqnB870VFJHDWxIR3+OPiCv/G/KGyyn7kkBNDDck/0duFtjFR/c",
+                    AnswerHash = -1412087065,
+                    RawAnswerCount = 13,
+                    RawAnswer = "js6IUdf8LMYMt32o6Fx6zKhX7Svv4rl4nwo8U5EdL6rfwM0DRrtHTq0S94nK1wpcAY/aKEwLvvOYoUtin/R+474NJTPa4HYspeAMDg2ytz4=",
                     WrongAnswers = null,
                     Passage = "2 Corinthians 5:17; John 3:3-8",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 357,
-                    Question = "UB3T/klvLm35J1/nFaEiJOiXnzOt9zkqGeMzOt23DPhcJurINaI3CAKECFV3/1owBEbsyepauUkfxkxH2asbkUy6Jaa8pDuFa7EFDH7Mp9k=",
-                    AnswerHash = 10061843,
-                    Answer = new List<string> { "x61Jq/vQsElW4XLDea7qnQ==","SD/rU6bGI2MkOV/UvJ4nrw==","Zj/jtUyCtY7yThJs/5cBZA==","VFIl8cW9xe/PiDPSfBZTlg==","UQCkKVnsfm3BjH/oEbvcMw==","QWzLYEUFafsw19hMlbbedQ==","CwVMjjSZXXXAm9W/hFoftg==","FJk2+V9+EtHcpO/KdBSc4w==","IB8lFMMbvSc5MkAxh7jnBQ==","IW7bHUL7NG7dvElcX8IHNw==","uHjamCtBuqlMB7S5mDwg9A==","bpYFZcPdl5UDyKWwN1SNCQ==","zSXGkn4sdJkzMXORqcZ8ng==","Q59V07xn0dmZu87OcG2bRQ==","byCWfbUkohZBKmNsbc2f0w==","S83ciojAY6VSdklg/S8xlA==","U1u1QBsl7T98PzQzD1Ehzw==","CwVMjjSZXXXAm9W/hFoftg==","MIzEe/taqcsFo63NpFWSvA==","KbwjtXdeZQ8LHGuS/5xGPQ==","e48khdK8A5zEaHPolKuQDg==","ONLmW/be4SFiRtrQk7wxow==","u5tJoMLD6tALPUILPIWO4Q==" },
+                    Question = "nl6fWYDovzx1UEdgXkbkhsU9aCitctXeMXvPugiZoh2SBcCDzlf9nUROCbZ+WVzfsqvT2JjVNTqiHO2Z3NQWuCAOl9kPLcDVQgB2HW5gW4I=",
+                    AnswerHash = -523434639,
+                    RawAnswerCount = 23,
+                    RawAnswer = "H2UA34aQC7rqBI9illHq/g+SUMoYJ3qCb6N5oNP3XWxlDu2Kxuun5ApPlK8pedXjHpBcunVK/nWCSSNChNvEg7xr5negEzupMkpYM1p8VvxrQpqKZli2tn8oc1kKYIJ/CZBeltYFg9jX68SSH2Er7JDjwQH6cbOfgAsFbEgMPQU=",
                     WrongAnswers = null,
                     Passage = "Romans 12:16",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 358,
-                    Question = "hXeDda6w5D3tiu1KIWoazZEiFxYlnswrZTX5Qncvz9d0E8VVmL/mq6jbSt6Wa1D8",
-                    AnswerHash = -2074086665,
-                    Answer = new List<string> { "zz0a7K+VElzqTj41QAISSw==","epoUy674U/s1cxM4Wqp50Q==","o0w9ZTp3WVS8YJeuNm76BQ==","u5tJoMLD6tALPUILPIWO4Q==","+TszyriWReSrFCoKe5qrxA==","uHjamCtBuqlMB7S5mDwg9A==","FJk2+V9+EtHcpO/KdBSc4w==","7n/Dw1uEMM9shDaBg2ohdw==","Xl9cyyXT4enh8vOL0nat2Q==","UQCkKVnsfm3BjH/oEbvcMw==","gaViCU6jXmdm79M9eIHG+A==","dUuQc8pIJs9xWomZ4CZl9A==","JxyP5Zv+EcP+VU4HDh0jUQ==","xYgCtLjhY6fxFHNgM0gX7Q==","j3VmKRFjx1/CvS+CH0VNgg==","12wH/uWP2+OyRbX+FvUqHA==","KOflm+lNd0Dlx1Vahiv3oQ==" },
+                    Question = "bBYN0rGIGeNhDn4T4THCxafBMgsgNIrPvTQ0RAxMZFmQJbkH1gFsZXgorwi/NV5G",
+                    AnswerHash = -2078355844,
+                    RawAnswerCount = 17,
+                    RawAnswer = "nhQWDCt34XU9p/tsE6uYZel+FSJ9xZAXxoDlwpFW1Fx8H7YOGl2l+Z124ymlHAxBvY+mcxmpA2HVrdqMBfyFmQ5Sm/dB2b52Vntze6kb/C5lkxXDey8JsvDhIN0tieV/JTgmZuA+TS17n3PMA+1Amw==",
                     WrongAnswers = null,
                     Passage = "Romans 10:9-13; 1 Timothy 2:4; 2 Peter 3:9",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 359,
-                    Question = "jHIvUAqGwwgvGVDKr44kAD28Ldoat9fA6aAkUStT30xzilhYZz4YwsvgDgvpF0H7r4urA8upJUFi1cE2AH58gw==",
-                    AnswerHash = -595197961,
-                    Answer = new List<string> { "/CMs1KgcnHN8vk+PD24YzQ==","GZJv7PgEbp3Q4GGa81mPcg==","CqF+xcZ3B4TQ6vnbRI6N0Q==","TsCm1pvxv7D95tIMO3N+Xw==","yMbesM/QrJRiPf2dYflYMg==","rJ7Bwp/MeZLug4e2JTuWHA==","eA9phT6hkMJQkZGDiCPLjg==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==" },
+                    Question = "4RpLPFM2/zfrot8wOpwMNLJpuxA+8HQ4/O/cxYP2QKaMO9BCgltRKTPXOuiK27ay6hDSxaiWlU6jWGQ4jOH8Hg==",
+                    AnswerHash = 496718059,
+                    RawAnswerCount = 10,
+                    RawAnswer = "IAqGwnifJJFfuwmDvy/cZherytbBdju0M+fqvLBcrwUeSFWRBorOtfZez39RhooOPmvr7v76objcMKP5EW/TMrDCTM+qldaDQ9JGO90rkIc=",
                     WrongAnswers = null,
                     Passage = "Mark 3:29",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 360,
-                    Question = "eJRTgF86HkeuzgJhZmSuHy/7tildEbJTKjBq9/v9Ukcfxj6XBExD75C+3eFN7KC6hn24hSKchHNPUmyy4+zlqA==",
-                    AnswerHash = -1495941893,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","MmQ+20kQ7YhxmeTcn0NuLg==","zSXGkn4sdJkzMXORqcZ8ng==","IW7bHUL7NG7dvElcX8IHNw==","Xl9cyyXT4enh8vOL0nat2Q==","1D1G8x7n+eQg7iOBdFp3ag==","poXHSxYaWjEeoJHgyeUpZg==","uHjamCtBuqlMB7S5mDwg9A==","zSXGkn4sdJkzMXORqcZ8ng==","Dk3/DsPwMhSdlQYQcwDkzQ==" },
+                    Question = "95mrGLlOUybHfso5iPF7IhzYK6wo3LWMHcxFUJc6XVtiJHmBvMIxapZZqKw0rZFqR/TIxgFFC8ibnV74JATyqw==",
+                    AnswerHash = 251715585,
+                    RawAnswerCount = 10,
+                    RawAnswer = "r2fOAww0brmOV1aa1ekR/uhaWf7yooueLHfhwP0T0kDgwNWJ/dPr+n/MXbdAno8nLmSJKkrdPHXLPLKfFzL4ng==",
                     WrongAnswers = null,
                     Passage = "James 4:6",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 361,
-                    Question = "NhenPx6Heu6K36+cPQ371fBLVhAfz80HsjI1JAXlOrCWUGOANHmznKfX1X8qmEjtjwtWiyDTRMIII9UXmFVBuMr0tVanZlPfT7LApd+FyZIWAueTbOJpaT9Z3SqkfPcy",
-                    AnswerHash = -625299839,
-                    Answer = new List<string> { "cSVkOVJt+ri8oQB5Yxhjlw==","kbuzR+8fqPqWfLJlHcId8g==","FJk2+V9+EtHcpO/KdBSc4w==","IyA3nRQf477BeZN3YeUwTw==","uHjamCtBuqlMB7S5mDwg9A==","C0+EZapzQdL3ptdqfC4bwA==","hD4leEz4Yl/TFKgQ4qlkbw==","aHiAWBLZ/fHnmjA1Doh98Q==","DR4+FMN6w7EHYFBoKtwwUw==","wmlEvFyTKum64q3UXtQG9Q==","3l8quigNk/9doLzvRdWUsw==" },
+                    Question = "Oisa7V+kB07CCoWXkmaAahMSgRFzHG6JwbCTw2/oc4J4Qn/2svlkUR27B2SoD3Dnksgi3oxR+tgQAXSyhjxCQW48IWIevcftTg8Nc/sqvS5aOqdGbZgdNUgcseoVcvoS",
+                    AnswerHash = -1801681281,
+                    RawAnswerCount = 11,
+                    RawAnswer = "Jj4rjT2b1fRnmZEqRVTWNyvNU39RDFych7+v8Yk61yzesu8NbuF/x/nXwCd3WGZ5",
                     WrongAnswers = null,
                     Passage = "Luke 18:13",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 362,
-                    Question = "SLy1+uyh/o3MEY/mRrn/7YJ0ut90v2kf1dDUxRUpEy46Fc2Cq931QJbYl8COLnZlo7krdxBb0BF598LKGF560aO1HLY//p9S6KTOWCNVQ6k=",
-                    AnswerHash = -822281466,
-                    Answer = new List<string> { "94C8L6Q37FDFU43dYL5ZDA==","aHiAWBLZ/fHnmjA1Doh98Q==","QPAxhD+/TFthtY9gectGBg==","ZDxs4fII0mOIlLDSaNNdew==","rJ7Bwp/MeZLug4e2JTuWHA==","x45UKmfb9951ztFcWIXatA==","Pp8AMrw54b3T3a9WXLtzSg==","GNj5/FUw2QAWrcqxoOW3tw==","GZJv7PgEbp3Q4GGa81mPcg==","/t+0HgYtHfKcnsm2+cV5iQ==","GZJv7PgEbp3Q4GGa81mPcg==","aHiAWBLZ/fHnmjA1Doh98Q==","DR4+FMN6w7EHYFBoKtwwUw==","SX7zAJGre1oQuBrBN/gPNg==","mtyIPLMFcyV0yiC6CrnALA==","/Va2NgdWoXyLs6uyU5/EzA==","GtEwQZH3qjtDcr+E0R1XRQ==","RhjtuiN75k02eydD8n2ATg==","1Mn9ZUjcYm+EPs4+/kw1Ug==","dLqm49OmDQSjXjn38tHcXQ==","yEmzgOYjUgj2Ofu8mMZaNw==" },
+                    Question = "IWQXMthNSG1hDox+D3/FoEQsiIUqdPJOQHAM8re0s1fqU5XQmGXzm9F6NeGdl5Cw9NpJ9Q8Mu22mp3vxyoHX5bs3KzLBDK8ohUZoCf5R26U=",
+                    AnswerHash = 806261434,
+                    RawAnswerCount = 21,
+                    RawAnswer = "tIHaOY8bx5Df+s+p3pDWKl60XpUUw5BlEfk+Zd89QwiRtF1B/o2nvB1YZg4dyEb6+NEaLG4GZm9T0N0e7hTWIIkyNFvVDmp7hKHDWRG3ZQORjBLWLFcXQ0XnU5auD8SrNF5WeDCuNG1FjUBj+lAp4A==",
                     WrongAnswers = null,
                     Passage = " Luke 15:21",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 363,
-                    Question = "8HAvBFa4nDXdgd+nq9BPKfSy8vezXJLB99nEQ18F+SWr6lB9ENJboeIF/U6IumwbbCj1epsyMpIg/qLHuv2EWg==",
-                    AnswerHash = 1799215189,
-                    Answer = new List<string> { "2AJ0sqKm4Ic6Ksp46BM+jQ==","zSXGkn4sdJkzMXORqcZ8ng==","bKQ3RpNFMnc2D4VBG6wwgA==","byCWfbUkohZBKmNsbc2f0w==","Qk6pxY94ihhkiAVokS0+QA==","BPQdjTL1yneDc0BpdMqw4g==","OByf75d/b5HrheoAenFJNw==","SX7zAJGre1oQuBrBN/gPNg==","KyRgMF1AtGq0fIixvuwzSA==","byCWfbUkohZBKmNsbc2f0w==","dWS8ojMlme7A3tcS9xD9Mw==" },
+                    Question = "0Y0Xa02vdA7cjxPpb02MG6eNKlvbfwVJrZ+EYBtC1SPIClle4TAlIiWJi+MLMNbNSGeths3YgjqSskdZgbipBw==",
+                    AnswerHash = 683393312,
+                    RawAnswerCount = 11,
+                    RawAnswer = "u6zrS1EzrNoY1T3J76f3JMIkAsv0uRpP9b7W7CXoUHzJqF5UjlWkLltBuXmM/d4TY8b4SnKPo3+IC0S6oBcTJw==",
                     WrongAnswers = null,
                     Passage = "Hebrews 9:22",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 364,
-                    Question = "fB4f0wjKHTKEJWXbpW4xqwgpCLVqGFvIak/ReQg0wbnmJxaAkCGA3Y5Ac4sijH+6",
-                    AnswerHash = -1699486076,
-                    Answer = new List<string> { "H5E2Iq4CCZ4XbCIjplQnOg==","b4lPo8SMSYYarnJfPHVtAA==","RfTQXBcuNzbtS8JFBIMTbA==","zSXGkn4sdJkzMXORqcZ8ng==","Nt754ibIur481zhYd6sKag==","hD4leEz4Yl/TFKgQ4qlkbw==","qPoQSPLZzCWK6ydwuALa7g==","7vEoGcjpFVSvwf2slKG0sA==","DXTrNGXg2yckxxN58y+W2Q==","PpHU6q5PjRkQeSsG2niZAw==","6373f/wUGqLE0JFchPyeXw==","1IB8zb45XPxAlfAabh15hw==","eH8qqxXB0Rtj2qjXTqbYdA==","GZJv7PgEbp3Q4GGa81mPcg==","PAAvb4nJjDrKGUhdSeLcyA==","MiGlGy1xQ8jjzh6Lx88Z8Q==","5QtHOeoJ9A+Et+J+6s/qgQ==","XTIn7XKZreoRpBpFI7fq4w==","12wH/uWP2+OyRbX+FvUqHA==","XIVffLkKfVEFsTRbEONUdQ==","MiGlGy1xQ8jjzh6Lx88Z8Q==","4ROpDELlhF+CwMRVw2VrDA==","hMYa40rWHg7YB/7RJZ7ctQ==","QPAxhD+/TFthtY9gectGBg==","uHjamCtBuqlMB7S5mDwg9A==","FJk2+V9+EtHcpO/KdBSc4w==","mlNoU0GB7qJl3rY7z2gD8Q==","hvn2dcx1ISwWniJsOCA47Q==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "8d5Pt3ZmUTVzDDq9FWCFSlH4ajqXfnVpxtbpoSOzyA+JHA8Z4svccMuwmzSw1HYC",
+                    AnswerHash = 2048824535,
+                    RawAnswerCount = 29,
+                    RawAnswer = "+D0Bw0FZ1ZeEQ01Ud2+gh/szBkk+CwaX1isCu/8yiz3YkbRPqxMaOfp23NoGYloxE/J2La3FwhA6pS3iXMBonWLEOjg1gQR8gB12WoHtoezn+GjHw6Jqcvk6aXYNEO4VyoSjmfkEnrOtR5vF/+Hx65/AjVnXMyL9shfLlUdOk8HPtrjhrmhXReiq9P9fzavB",
                     WrongAnswers = null,
                     Passage = "1 Peter 2:24",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 365,
-                    Question = "ccc6aXittKeIJvUrN9boYx8p0FB3IxOGtK5uhsqMsDiMoJOFqJi4Vig85HDihwXox+sT3Nql0VHWlSkCCGRoLRX/NWApp7l8ermlf6XAnt8=",
-                    AnswerHash = -350921588,
-                    Answer = new List<string> { "UnEUj+NubaAD2RSmXd+43w==","aHiAWBLZ/fHnmjA1Doh98Q==","DR4+FMN6w7EHYFBoKtwwUw==","hMYa40rWHg7YB/7RJZ7ctQ==","RO/vJa2KsIi09pYtAU9xVw==","byCWfbUkohZBKmNsbc2f0w==","odPkzCRzPATC64PlaRV19w==","+Evax0VjPo6Z0ZDu7FUv3w==","MkHKvjsw/vCeYFN6D7g58g==","JnonOrVYb3QZc201ZEMZJw==","IYoHyQ+uQ/IVCKoem/IH8g==","+WYMefTJ0mbbrIjHs6L+ww==","OByf75d/b5HrheoAenFJNw==","zSXGkn4sdJkzMXORqcZ8ng==","+f2dj+VyKrvPYaS7ppChaQ==","byCWfbUkohZBKmNsbc2f0w==","epoUy674U/s1cxM4Wqp50Q==","s43SZCwa5f5iCwuJ+HXfgg==","EChybgjvfU8G4n4ZjW2SdA==","9v+jEiaz+T0mupPEdhGApA==","NMjyhi3+l2xy/KUOze/ABw==","yhosT8cR1+lQbpuXY8eEVg==","RjdqsVaZqOMFQPh3uJIyjg==" },
+                    Question = "BWB9MfGAyIjSMr9LofnxXuLB3Frvz0b91HWQbJZeKNs/QX4Fm+qUC2nZist1zrlwRbOfqcqMzmA0wSfJ2Zq6PF3X/uVQDSFkaD98UplMRrA=",
+                    AnswerHash = 1141789918,
+                    RawAnswerCount = 23,
+                    RawAnswer = "+WLSgTUif2G0GyrrZ9ql0FNgge5rn+0O+96fAiOtCtj5C3dGd8g+5FiDyqgFz3g8LKyGE1l8ykk1FzXAXI8o0XBfpmXxvnWmwhBekL3GoWNQKtOn2Kgk552sew7LVjMzrhHqepej4CU888FR1NznHCnoU53CLBo17T3IAvvi7vE=",
                     WrongAnswers = null,
                     Passage = "Romans 1:16",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 366,
-                    Question = "ccc6aXittKeIJvUrN9boY7QcDSdtB4DJlOon4lFLd5b4BVOCzpw/yClzb9NMtdy/ytUZOiZ3Jmt4SDwNQTRUfKTVHI/rnZVxhtd5Nyg3mYs=",
-                    AnswerHash = 1351044385,
-                    Answer = new List<string> { "epoUy674U/s1cxM4Wqp50Q==","y98VpxjTveo7wvBZI/qKjQ==","KbwjtXdeZQ8LHGuS/5xGPQ==","hvn2dcx1ISwWniJsOCA47Q==","8em3vnSerFh9/QdMHy8F3Q==","poXHSxYaWjEeoJHgyeUpZg==","DXTrNGXg2yckxxN58y+W2Q==","KbwjtXdeZQ8LHGuS/5xGPQ==","t5HSXFudEkkDFJ13rj2GXA==","PzzcxNYVcds+UAE2oY8AAw==","KbwjtXdeZQ8LHGuS/5xGPQ==","qH4bPIarQer1T/oxIkfBkA==","vVJYlou7ylR+f477BVZHIw==","p5wJjX3vYw6xL3BRmUQQAg==","hD4leEz4Yl/TFKgQ4qlkbw==","SB0TwsHGba0ScKvVZCpL5g==","ONLmW/be4SFiRtrQk7wxow==","OByf75d/b5HrheoAenFJNw==","wmlEvFyTKum64q3UXtQG9Q==","DaaChvpHx6xgI5rFRHHMlw==","e0yNFCHXotWomfACRwB8/g==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "BWB9MfGAyIjSMr9LofnxXvfgA7Pc5L9HRbVrD4LwMBhI/DPpkfFvej7HnLBFwSwadH0Tm8C8uDE7L8VRy8LxRHuuxjwICa1QCZU8awd6t7Y=",
+                    AnswerHash = 1292452142,
+                    RawAnswerCount = 22,
+                    RawAnswer = "foCGLQQvkAFdPqUbDRWeDgU+rXE1Y+jYnKsxrMh1Ho2VuilL0iTSbrTi7qAx3MNIZAl0i12k42LLiwkDDNv3ZmiT5aubhGceF235dV7ybSgdwACxZujuK8ZdIW2bwsSkK1v64SNE0zDiyc+npzSGmQ==",
                     WrongAnswers = null,
                     Passage = "Ephesians 2:8",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 367,
-                    Question = "qQxZi8hWoI3YCZfXFO2ObJDE+Jc0YlfvvhfLoNfzU9+C8OT0dHx2vT3Ntv+AIrUeVm5o2hD4MiFO+Qf0+OAVLA==",
-                    AnswerHash = 757194028,
-                    Answer = new List<string> { "BKtpQncZuqhyzPt+wbtl4Q==","zSXGkn4sdJkzMXORqcZ8ng==","d9D5TYBTx9BelsDXHUYHnw==","byCWfbUkohZBKmNsbc2f0w==","RhjtuiN75k02eydD8n2ATg==","wmlEvFyTKum64q3UXtQG9Q==","V0PZ/c5LmB0hhnHhb2B7pw==","byCWfbUkohZBKmNsbc2f0w==","kbuzR+8fqPqWfLJlHcId8g==","sf2YDpd8UuRkBdjEtbRshQ==","icweKqwYBujhQO0sP8boeA==","yQzIfpOMzFy8oyopFzNufg==","TAWDH/dIzYWOu+HlKrYSvQ==","qH06W7X4ZjnXJoh7W8gVRw==","xdPxum6tVpBjmJaAMrLySg==" },
+                    Question = "Eqdn15tGzYLNtePazEnr0f4xxNNoCwT5OoSB8Y3EUrDjoiduOpeRfnPmgHoUlT+JYnUWH4mpqLI4wTE5WC4W1A==",
+                    AnswerHash = -905675132,
+                    RawAnswerCount = 15,
+                    RawAnswer = "UNpQjAnt4IKRno9cru+/RhzKleRO3cPfQUV4RXtHdUqoyQBMS2QuAbDffeAIHiZ5VILRfeci9UsjfileQZV+v+Yj9mIALYVbKb1zGDqeWBRFFM7GVDI8uurlhAtu0otF",
                     WrongAnswers = null,
                     Passage = "Romans 8:15-17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 368,
-                    Question = "iAF60yFtJ4aj2lToAFrIuPVNWFOIFr1jUmpNpeAADeE1pBGzMiYXXMShSROzU+6i5iJnEDxKJtJTGDqabPt9exOZNznEw/OlsAftb1fj8nBKEbvcWSEBKj2B6uD3/W2X62DFlr2AXzj1dtDACSMaaw==",
-                    AnswerHash = 631930199,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","MiGlGy1xQ8jjzh6Lx88Z8Q==","qH06W7X4ZjnXJoh7W8gVRw==","7n/Dw1uEMM9shDaBg2ohdw==","MiGlGy1xQ8jjzh6Lx88Z8Q==","csFNiXTSusApFcWTSa+MRQ==","6hxQDRAXKcefbCl4M8weIA==","3IXEbiHIkxKeX42vjh5Z3Q==","uHjamCtBuqlMB7S5mDwg9A==","21K56oTGgBw57uOhzkD/nA==","qPoQSPLZzCWK6ydwuALa7g==","a53mZyi+Gj5g6hqzEDi4tA==","hD4leEz4Yl/TFKgQ4qlkbw==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "mJi+HxTuPKxMdtaw7gwimA4P3NoZ8U9ZrYQEyCCnE+QJypw0dqjOD2tJ0B2PJBlC3lR169c9yeP3GJm+Ifw+f4v2FsG4MyjqpmQ+saomhFmdMUgrmJhXzq8JCOHk742+cDGiZxN766WCGuuf42uDyw==",
+                    AnswerHash = 720481405,
+                    RawAnswerCount = 14,
+                    RawAnswer = "NxkctsnyK1LlWdjDSfKDBMbd7zOXEgWx73q2ozPidk06i8mW4le7LHyMU3YQ35L7+4auVQsk8GGdnoX+1XFba0keASwLHfIOnOI3braec18=",
                     WrongAnswers = null,
                     Passage = "Ephesians 2:10",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 369,
-                    Question = "CCVrqzPt/kd1wTOs9dU+9XgEzyGW2HtHoFa0/uduKu3ajStNR0HkRe0qNoUENmtA",
-                    AnswerHash = 123429975,
-                    Answer = new List<string> { "KHvdIVR0fz570OssuEploA==","Xbu37hShBcnadr/LKno8hw==","4ROpDELlhF+CwMRVw2VrDA==","PZFhA7h0Dm3LlcUQDxsdlA==","lbOujq23mP3V9kvkDIwLog==","WNfead4EwN6RskKy8ah8ZQ==","e+1p0Rwqxkpw7YhUKOMy/Q==","csho5PIe/IfXzIYJEz8GTg==","GZJv7PgEbp3Q4GGa81mPcg==","a53mZyi+Gj5g6hqzEDi4tA==","WNfead4EwN6RskKy8ah8ZQ==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","koWsC6V1BQI4js4wg8CLhQ==","byCWfbUkohZBKmNsbc2f0w==","jAGv0M3soY67BJdrXo7clw==","OByf75d/b5HrheoAenFJNw==","a7RQ3/luDwJfRMPj+Kr8jg==" },
+                    Question = "W1H541t/PzpgCg4VHe887+4zc5cyxxa59/a1axUakAybEHnnn8zdx8D3QT/+zTV4",
+                    AnswerHash = 1284366975,
+                    RawAnswerCount = 18,
+                    RawAnswer = "LTEu5ipF3vuwlbVelee6pPXbH9sOxfGBoL+vl1tw+MOakCeFFElakKUS5B1tSjjvZEqWwOgLYzpwQ4Cu9QxPISZvbiMq57hLbjFdwoEP8ZE838q28fR+kbDP2FDmIDRj",
                     WrongAnswers = null,
                     Passage = "1 Corinthians 13:13",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 370,
-                    Question = "pE0muzmmWhRqRlR4YVXs/eVwBuCzmcDDlH5apzEbOGE/yiaXogGrOD4QbtsjPm5aD0lzTldhXeEYWD3EITipUnP2XxAnyVbGQVHVGCsrjec=",
-                    AnswerHash = -1322406950,
-                    Answer = new List<string> { "O0l2CBT8CGAOsKx0tBXfbA==","dUuQc8pIJs9xWomZ4CZl9A==","P9UqquwEXWNRSPQNFqHeug==","SESNeD1EtiCtWOHkaVmC+w==","epoUy674U/s1cxM4Wqp50Q==","D6CzK9BM+acfReHOPINU4g==","GZJv7PgEbp3Q4GGa81mPcg==","SESNeD1EtiCtWOHkaVmC+w==","PpHU6q5PjRkQeSsG2niZAw==","W4y3wIzaI63We9oFxtX3eg==","wNhdm1nhYC1mptyDJciNAQ==","yhosT8cR1+lQbpuXY8eEVg==","lEzkPwKwMXlWXV4kYrPU7A==","qxEB1sa7rKQw2cO6vlfifw==","x1fsSBInOZdlLL+iNejJkQ==" },
+                    Question = "UXIbnMPEF4WjKpjRLvTKh8lKxJS6+bOrg1CbQMl0LPjAB9s8zh5wp4pmwC/SQqLCld7wJq5FHZ8PDH/yuqaOg0ln5Ac7qyWRiaHkH1tcqCc=",
+                    AnswerHash = 1583573308,
+                    RawAnswerCount = 15,
+                    RawAnswer = "+ktKN7WOVLbGOCzjGrXt7Q+W05YvAUmbke1BW+g4U1iCtcdKpDagUbUmya+/xJWMBxHpa5zDwR592Ur/Sh3eKjNa1t2K1Fw3/d8lRiUZ+ZeFJBReQN3UgOEOVORTQqzc",
                     WrongAnswers = null,
                     Passage = "Hebrews 11:6",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 371,
-                    Question = "6ME3hOnVq/Bb0hsgRYWbAPtEYZ/JDLap2qMUiHubLQcVDWIJJdcdLqALINq59B/ZUO7qYi1gyU8LmC1YrXsb69CjTwuH2eM9k/gON4Chuc8=",
-                    AnswerHash = 1574941936,
-                    Answer = new List<string> { "pbnmvmjgVqU4ZxaONjjMjg==","dUuQc8pIJs9xWomZ4CZl9A==","a53mZyi+Gj5g6hqzEDi4tA==","zSXGkn4sdJkzMXORqcZ8ng==","V+stcPecGGb+vJM+EulTmA==","dLqm49OmDQSjXjn38tHcXQ==","epoUy674U/s1cxM4Wqp50Q==","VFIl8cW9xe/PiDPSfBZTlg==","u5tJoMLD6tALPUILPIWO4Q==","dLqm49OmDQSjXjn38tHcXQ==","fBHT0imHQMvHf86r3TG7lQ==","u5tJoMLD6tALPUILPIWO4Q==","dLqm49OmDQSjXjn38tHcXQ==","or8Rwo8+Pr44vEcYIyizDQ==","u5tJoMLD6tALPUILPIWO4Q==","dLqm49OmDQSjXjn38tHcXQ==","6VuF2CVCZ27WpuBqrLSt4g==","GZJv7PgEbp3Q4GGa81mPcg==","u5tJoMLD6tALPUILPIWO4Q==","dLqm49OmDQSjXjn38tHcXQ==","b4IQ+uZMjQvtv/VAHXzk4g==" },
+                    Question = "3PdBVdjW/75fI004e5KGlnn6HXUd5AMT2qi5LUQ3cin7P7XupmFSN//H0Pu+er+hQjxH+baw2BuCASckE0GqwLbaRKB/ATt3NpK3yTwl9vs=",
+                    AnswerHash = -1961140598,
+                    RawAnswerCount = 21,
+                    RawAnswer = "oIkIgmfsyPmESz2P+jIwGLMYAdKwzmcgvK4W5NENs/3GEqR5AbnB3Rlu+Phxv8TDK9eNjMQNUcJMG5ygysHNL7ftoyR0Z1dyTigGQCRabAKm5Lkl6/Q0j5QQ4i2risoLQsWlUsdJv+4W7XD+I4tVnw==",
                     WrongAnswers = null,
                     Passage = "Mark 12:30",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 372,
-                    Question = "6ME3hOnVq/Bb0hsgRYWbAMfoY1WqqeJsNiiqEHSI/XUHUCUaAidUv9PudIiy8DcTKqpDbz1rg4Bvq4HA/eL1rg==",
-                    AnswerHash = 646011260,
-                    Answer = new List<string> { "iBJjz0uekdklAyJXscf4jQ==","dLqm49OmDQSjXjn38tHcXQ==","8/ml/knhWThAbGfn/H+VlQ==","12wH/uWP2+OyRbX+FvUqHA==","6APQQIpYwWQ9MONAIEjtfA==" },
+                    Question = "3PdBVdjW/75fI004e5KGlrHg0UicCvpY2i8/R6Pvo+STve6J3eWgD/dlE8JMWkFTh0GVVfA7c2F/eRD3HXQS6g==",
+                    AnswerHash = 1255852302,
+                    RawAnswerCount = 5,
+                    RawAnswer = "zOBW0VysZwggmeGh+KVvHu0JVDgqRp/z4eRkD+TjaLs=",
                     WrongAnswers = null,
                     Passage = "Mark 12:31",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 373,
-                    Question = "6ME3hOnVq/Bb0hsgRYWbANxSwlXNnXTAVxSyNON/8OxP80Qhugc8493P+1c7QsxRUCzMb1pawk0uHdHs1ZP0vw==",
-                    AnswerHash = -2117238846,
-                    Answer = new List<string> { "Ytj+9fR83aR9/y+rYa8vMg==","OByf75d/b5HrheoAenFJNw==","SX7zAJGre1oQuBrBN/gPNg==","7LwcuRQE/7HPMGdqIRXA5Q==","a53mZyi+Gj5g6hqzEDi4tA==","unBcFvP/6kf8UrV90LapMw==","uHjamCtBuqlMB7S5mDwg9A==","4L8ybqIf9JazLZLctUvr9w==","QD9g/KTcpuMQlbHxyU1Hcg==","57qX3G0lkxkRu6Kje42BDQ==","b2Oa2zf4OzGfy2VsX9cLiQ==","hD4leEz4Yl/TFKgQ4qlkbw==","57qX3G0lkxkRu6Kje42BDQ==","JW2mwYomVJvPbhVG/7Xc/w==" },
+                    Question = "3PdBVdjW/75fI004e5KGlrwXlv9c9Xr80wNQlopEGxPJ616fFCrS6WJJ4xjFKt1VjCy8newhcUCBzwI7XUqiBQ==",
+                    AnswerHash = -1834879361,
+                    RawAnswerCount = 14,
+                    RawAnswer = "YAeAJvyouB+4p9tXBp2ejvgfURvMeOBiYegMUKjkHSNSC1G3k5GKtbVOm9d0Vse5+f6TqkUyoRsQIHzJUAiRQjNSzUTwlh9ZG/tSMGUG0NY=",
                     WrongAnswers = null,
                     Passage = "John 15:13",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 374,
-                    Question = "AaDxJLT9I1Kf6MraIRRsnECRM6v+UCmFnenTsWegocPRQTnPc1M87tAmKSYZhFDQ",
-                    AnswerHash = -1213610325,
-                    Answer = new List<string> { "mbN2SqM4Ms66XM3x4pO7MQ==","KbwjtXdeZQ8LHGuS/5xGPQ==","a53mZyi+Gj5g6hqzEDi4tA==","C0+EZapzQdL3ptdqfC4bwA==","n0EMjnYSpYGHoZrPxYzF3A==","RsaVt0e7axGrJ8RpbZW/og==","xWLVkZxq1q5pJbC+TPwdpQ==" },
+                    Question = "d/wIFhMkQdgoEfogd7gBBZGPTNZkFLJ2QmdmJjR0yXAPsH8cK0eniedVz3AzRaz4",
+                    AnswerHash = -169461228,
+                    RawAnswerCount = 7,
+                    RawAnswer = "7i22AHYJ+xTrMi+/vNRwGsiWFEfZVcTXM+7u/i7JPY0lO4gJpLfbz7NhkOYLaJyR",
                     WrongAnswers = null,
                     Passage = "John 14:15",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 375,
-                    Question = "6ME3hOnVq/Bb0hsgRYWbAIejn9x1SVN2pb/zwP3EcoAasiXzXIA4t9EjhXbNH8fsOucpq07FvTAsxDLiQZ2WAVe3In0v7mriQlq5x6vxYtc=",
-                    AnswerHash = 1378295542,
-                    Answer = new List<string> { "vQi9GjVgpVxIwECVFZFlpQ==","a53mZyi+Gj5g6hqzEDi4tA==","hD4leEz4Yl/TFKgQ4qlkbw==","WMy5NmBGoZBvi9EWyqLZ5A==","tlBOasgWJK8kFKs7WOjK2Q==","4ROpDELlhF+CwMRVw2VrDA==","50HK4N1Tul5DXzH4rBawkQ==","uHjamCtBuqlMB7S5mDwg9A==","zSXGkn4sdJkzMXORqcZ8ng==","xs/gktjYRVW2K+hyEcVF2w==","SESNeD1EtiCtWOHkaVmC+w==","KbwjtXdeZQ8LHGuS/5xGPQ==","qH06W7X4ZjnXJoh7W8gVRw==","RsaVt0e7axGrJ8RpbZW/og==","NGHBjNVNLYkBwYiOgX0lpg==" },
+                    Question = "3PdBVdjW/75fI004e5KGlo5a736SxMEsIq5g6s0m52BY/nvpc/WIviGbpECsuXt+IGqeF4PndY2jQIeomd5vorbrH0D/aLIX4BJrQqIHneg=",
+                    AnswerHash = 1872048359,
+                    RawAnswerCount = 15,
+                    RawAnswer = "tHJxqwqDmXM3fJvi7Bo07IuAeSpseUc/43MnyYdlyLi9W1uy5Cj10hD0BRnK2uynOJNiG3lviBL00oJSOdSFaCrTRT8EQU76kwlttqL/UTo=",
                     WrongAnswers = null,
                     Passage = "John 13:35",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 376,
-                    Question = "wuvLRi65yqBZMoUQZX+h+v0YQpUJg6Y9+CtkL1+iCwVTWlUmhDFaeCWvKqCmn1IR",
-                    AnswerHash = -703761499,
-                    Answer = new List<string> { "khtW323PpnJQajlqITeuzA==","yhosT8cR1+lQbpuXY8eEVg==","wQOsUuMjiof+AXruwEhXEw==","OByf75d/b5HrheoAenFJNw==","wmlEvFyTKum64q3UXtQG9Q==","V0PZ/c5LmB0hhnHhb2B7pw==","byCWfbUkohZBKmNsbc2f0w==","epoUy674U/s1cxM4Wqp50Q==","GZJv7PgEbp3Q4GGa81mPcg==","FjF3Dw6vh5hssJf9ktUSFQ==","t+VDIostOJizlH/1ikFbbg==","TBbkjLF+3NjBs9FVQQwzxA==","p4jkESQO4LeDCHEVm45HeA==","yhosT8cR1+lQbpuXY8eEVg==","K00wXIrOu2JyEOLL76HXQA==","hMYa40rWHg7YB/7RJZ7ctQ==","a53mZyi+Gj5g6hqzEDi4tA==","K00wXIrOu2JyEOLL76HXQA==","hMYa40rWHg7YB/7RJZ7ctQ==","e48khdK8A5zEaHPolKuQDg==","kbuzR+8fqPqWfLJlHcId8g==","hD4leEz4Yl/TFKgQ4qlkbw==","epoUy674U/s1cxM4Wqp50Q==","OByf75d/b5HrheoAenFJNw==","a7RQ3/luDwJfRMPj+Kr8jg==" },
+                    Question = "RgIH85JFcm+LuydsNVC9+cvE+KnzJY9YJZ+jjhhF/YBmjvUhKrYzE3mcagWHO3ZO",
+                    AnswerHash = 1844204208,
+                    RawAnswerCount = 25,
+                    RawAnswer = "vHD3eCXXZXySAcObkfik2Nhkh6ArpQsZS/fwssEZU32h1a3V8blkOkaAzRubSWVdD9Bs7nsD2ttqixBR+9jEWXGCvQiCkZ0vzwiV3SbNdWk8a8Wr8mygG7HHAQJlEoOAcPn0bxRkMyvEBTuFcLYY472qSJCkbTRci/F8RrCdk6k=",
                     WrongAnswers = null,
                     Passage = "1 John 4:7-8",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 377,
-                    Question = "ccc6aXittKeIJvUrN9boY1Xmomld2mxycOgsmrcpLUTSu8HGmuMNKKAV5e4Yxd20wJT5lWv7qqG316MBmMxmIV6wlmyKcjvWO+JmZEmt9yjoEdiYohr41fFSQbOeRbBj",
-                    AnswerHash = 1885172150,
-                    Answer = new List<string> { "YRreP13eCsFLtK/UuDld1Q==","s43SZCwa5f5iCwuJ+HXfgg==","o4BkWGYvYRXY64Yf2/s7zA==","SD/rU6bGI2MkOV/UvJ4nrw==","lthu/xgfGUpwJeP+ykD1YA==","VFIl8cW9xe/PiDPSfBZTlg==","NMjyhi3+l2xy/KUOze/ABw==","GZJv7PgEbp3Q4GGa81mPcg==","gp1uKVVJbkSrLd1CcaCMWg==","s43SZCwa5f5iCwuJ+HXfgg==","o4BkWGYvYRXY64Yf2/s7zA==","wmlEvFyTKum64q3UXtQG9Q==","b5tikIdqROTImgOKXnKzEw==","TAWDH/dIzYWOu+HlKrYSvQ==","hD4leEz4Yl/TFKgQ4qlkbw==","wNhdm1nhYC1mptyDJciNAQ==","yhosT8cR1+lQbpuXY8eEVg==","qH06W7X4ZjnXJoh7W8gVRw==","hMYa40rWHg7YB/7RJZ7ctQ==","b5tikIdqROTImgOKXnKzEw==","4ROpDELlhF+CwMRVw2VrDA==","hMYa40rWHg7YB/7RJZ7ctQ==","3a4BMeo/MElOOyPlzlsFzw==","zSXGkn4sdJkzMXORqcZ8ng==","3sqKk3xm/SLP9v2KPTpLTg==" },
+                    Question = "BWB9MfGAyIjSMr9LofnxXlOnzFdP87eCYI7UrpqZb9LEfh3B4xKV5TVSe+zJiQixT1LFQ/kAFS8MqPQ3gWb6C6X95mdBTKcEMwkbysiNhyTwLKRfhk3p3BBjVo0Yncci",
+                    AnswerHash = 1066126188,
+                    RawAnswerCount = 25,
+                    RawAnswer = "/LgGOjJpTAH3w9DVRy0anpnmsBWZfqVtZWegps7foq4+aNqpGv76M0urdx8KZ/rzOpaRztUVnZN0SUXhN8ppD3Dc7n8vW8farhi57yuLRpZksJ/Du6HzCmuZSugtCzcXfEZgcA6MWcbePNF3MpjugCDQm1kL7+Bc8r0j2M7eXhg=",
                     WrongAnswers = null,
                     Passage = "Hebrews 12:14",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 378,
-                    Question = "++042+6dmkjSSkYme8SV5ymuNHTtSKm4PMMjjLTDCK6PJcaebylTLB12EC3u+CPZ",
-                    AnswerHash = -1677063916,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","qPoQSPLZzCWK6ydwuALa7g==","oBi5uYsHLPivVC9d3O/pQg==","h6bQHQd7FU2uZuVsNHBWrg==","yhosT8cR1+lQbpuXY8eEVg==","MiGlGy1xQ8jjzh6Lx88Z8Q==","qH06W7X4ZjnXJoh7W8gVRw==","GZJv7PgEbp3Q4GGa81mPcg==","2vQCAJd44n8xV6wyrWPaXw==","MiGlGy1xQ8jjzh6Lx88Z8Q==","zFsbFOp/Cd9/VONJzto+jQ==","GZJv7PgEbp3Q4GGa81mPcg==","csFNiXTSusApFcWTSa+MRQ==" },
+                    Question = "qCk7iOTrTLLX5tgG5tbCuVbYshqQ9IEuw/1kJWMx8JsVNJ9kZhPmX6HorRTkLtgR",
+                    AnswerHash = -1069380145,
+                    RawAnswerCount = 13,
+                    RawAnswer = "kQOG4uHrS7b5pmx6vrPhadH50NbU+fTujzp04x7PoKVy3gtsLG/+v8vLklfU8hQ0o6nmH/7i3KvRWltKKYsvek/DrNS53swoMFecnvQbYtI=",
                     WrongAnswers = null,
                     Passage = "Proverbs 4:23-27; Matthew 12:34,35",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 379,
-                    Question = "2RgS4gWGDe0lylDVJYJbZb/+6rEbs4l8Zm8RFcSh8l9UlgJxSG6CILkTyhY4q3OX6jpIyHBuawQJTh5l0YPFyJHJVffs/bLhTlr4PMekesw=",
-                    AnswerHash = -1539816331,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","qsQkf7peDDqohLkT+4RaIw==","ZVXR/uXhhhKd6/ZAnWkBFA==","whAtnTfHLT1Rid2ebP1Vzw==","zSXGkn4sdJkzMXORqcZ8ng==","fNgUvVmrAzXhjR/Q4gMStg==","GZJv7PgEbp3Q4GGa81mPcg==","bE9RpfNEEeDkSNZSjkasJQ==","epoUy674U/s1cxM4Wqp50Q==","VkYIm4kGlmHsocbX0t/7fQ==","ByK4MI1a+i6vEFecDNt9Vg==","uHjamCtBuqlMB7S5mDwg9A==","QPAxhD+/TFthtY9gectGBg==" },
+                    Question = "Jw9W+nxcfAC1pvgjzBLeoUL129Xf/Nax1n91+t8jlDAxZZIZwBeBdXYmDFP02DC3+5R/fRLtcbJrAoJBRZIcKWbKRlIclmABXD6XSKZxZBw=",
+                    AnswerHash = 612770466,
+                    RawAnswerCount = 13,
+                    RawAnswer = "iWq13HsF3YtRJHhslgq9K3vsLFB3/9hM+DuqGCbw7wh+HnfPl5ll/tzfn+09hlU/eNf4vt5Sv4MYjf2/eZZp+jQQh8tUbTsOSW+Vk5r4OE8EVOUqDFICKUAmf4ZDb5/H",
                     WrongAnswers = null,
                     Passage = "1 Corinthians 6:18-20; Hebrews 13:4",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 380,
-                    Question = "3L5QTz+65y4Xlx3q4epo3tFiRi+PDAFRLOk6Besl9DxEPReZIzw0uJIsRUJHe/ZOmrAWjhbTGO1ICNnkXwy07Q==",
-                    AnswerHash = 153698603,
-                    Answer = new List<string> { "TBbkjLF+3NjBs9FVQQwzxA==","Ym6Hvkijn4OGQlb/pCLpYQ==","I3dqmpQg0Fij/wTbS/q5zg==","jaHK824zbXT3QKYTFYOQaw==","uHjamCtBuqlMB7S5mDwg9A==","tycvgLcm/pNUaHyasT8l8Q==","251rYWNeyxQMDuYg+rFAJg==","pbnmvmjgVqU4ZxaONjjMjg==","dUuQc8pIJs9xWomZ4CZl9A==","csFNiXTSusApFcWTSa+MRQ==","2vQCAJd44n8xV6wyrWPaXw==","ONLmW/be4SFiRtrQk7wxow==","l55xPMhVba5gmn+O91B5pQ==","vQhFW1DjX2KDoctI2ZS1HQ==","KbwjtXdeZQ8LHGuS/5xGPQ==","qH06W7X4ZjnXJoh7W8gVRw==","WtgpKlW28pR+41mRZnG6LA==","o0f6YpvoSd8emCkvt8RdpQ==","qnp2v5aHJOv2DXC0Yu5SQg==" },
+                    Question = "NqrOs+yKCJXEGe/gA+Ob5vyuTl3kPpsiDAVuv2Ev5ToTv4Yxentb2vT5usoI0xgZ8LnHlA8oTLqEFgY0ULuvEg==",
+                    AnswerHash = 278717125,
+                    RawAnswerCount = 19,
+                    RawAnswer = "mVtTcXLUn5NHS6C06WvnNwHQRSQ09fEKs4AqE+gOtH2C5I9BGFiQDqucpi7EYPOWUydjYV1yDvOUOV612+26+13HsodZpVCSpTV5ar5vvapdDwINBPfdWNnu802ipUrHn1atbaPrnG/RwWI8fpFQjg==",
                     WrongAnswers = null,
                     Passage = "James 1:22",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 381,
-                    Question = "c1/hRefHzMsVMtryzioCkFl0p2Tr3GmqSg38YJhQoC32QCtMLwCN9/7bmhYkykvb",
-                    AnswerHash = -159465313,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","Ta7/VrMQfOA+0nfx2vSwTg==","4uKzwnb3S/WsgcbUiwlT6g==","zSXGkn4sdJkzMXORqcZ8ng==","mKx6nSsGBi9ohFrIkJqSYw==","lOehmmnE5ATV9QFm95dWmw==","GZJv7PgEbp3Q4GGa81mPcg==","T/JEHPnaZog3ZKh6z7EAaQ==","zSXGkn4sdJkzMXORqcZ8ng==","Jr27ohfOdfN8tHJ81zzk3g==","ZsGO6dUZeolU5iL73Zu9RA==","Ic8h3gJRQLzJ41cbGhu8Hw==" },
+                    Question = "t3xljeoDVNF7GGP6xgSbYURBpp7M7otDDJ65wic/bsK/NWCPSyNFy+p+bRk2W9pl",
+                    AnswerHash = 1519318597,
+                    RawAnswerCount = 12,
+                    RawAnswer = "DEqP33H5DsezI80VMvccuKeCKa5Z5bZyutfy1znyQda5QoiFj/aFcO4wuoHjedwEIrbMiKArFGaolluAMWIxG+z7e2KNB4hegG5kXsxN24I=",
                     WrongAnswers = null,
                     Passage = "Acts 17:10-12",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 382,
-                    Question = "DyuzsoAqnspBcM0/AX2t0uqAF9B4GPSviD2G7ujV2IYvK66FLEaKWXzGvvLKlyjzAd8c4+Zj8wbJDUCYnaKWUh0rJpCxB/qNuWDysBjR1nRWIIUKMmEzolke7IDtZ8c5",
-                    AnswerHash = 81409021,
-                    Answer = new List<string> { "9h+yH+vHeG7U6GVNZOFVCA==","JJBDy1Kl4SCK10uC5Ix6qg==","SD/rU6bGI2MkOV/UvJ4nrw==","u5tJoMLD6tALPUILPIWO4Q==","ReR7IeySmqDZgijarsgoxA==","hD4leEz4Yl/TFKgQ4qlkbw==","odPkzCRzPATC64PlaRV19w==","OByf75d/b5HrheoAenFJNw==","tycvgLcm/pNUaHyasT8l8Q==","4ROpDELlhF+CwMRVw2VrDA==","hD4leEz4Yl/TFKgQ4qlkbw==","KbwjtXdeZQ8LHGuS/5xGPQ==","yhosT8cR1+lQbpuXY8eEVg==","bPepn/BMD8lsiM43Xl6H3Q==","uHjamCtBuqlMB7S5mDwg9A==","j3VmKRFjx1/CvS+CH0VNgg==","H5E2Iq4CCZ4XbCIjplQnOg==" },
+                    Question = "x/kcNLSWJWXo5a7UrMc8CT8LksVMsY8fpM9g0jx39UZBjW+Vni7jOaC/jUZJSB34tuyZFRTFpvpBC1PbuLtqvA4DWWNmg8zNyGEuojTWYkG3tYL0lCWjARDJUmjeO3mv",
+                    AnswerHash = -427391523,
+                    RawAnswerCount = 17,
+                    RawAnswer = "ve5xdlK27hbfMGIAojrVgMTYI+CioCy7etNTbNfFC1vK8DHhu2XHOJPW9/TIFODZ+46gdVq+05/bkCCEmlligH2RfUYUVkPT7sRRc8t6xcmx1HjcEQJB7C4dRv0gAPrt",
                     WrongAnswers = null,
                     Passage = "1 Thessalonians 5:18",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 383,
-                    Question = "Cv7KFAi2fZQWuBZBwWvrZiKvdeyN59oOtlPAK0RpM7CRJFrIla0FWyFhCQYl35sm2rFXkP6kj7QBos74BjUlM8mJlj3S/wHxllkZ1+j0y9Y=",
-                    AnswerHash = 1253076648,
-                    Answer = new List<string> { "o3IyKugvYzjVz4Bl5+ukEw==" },
+                    Question = "VItrieaSZK0qNYggv/GOwXGS4yFXrM5IrV9LHnzo9/wbkx9npFDRGAgp5dAFkMI+ljeU1z8WmtH15I5cY4F6tftlJyWbANNMCfWJndu2wu0=",
+                    AnswerHash = -394777249,
+                    RawAnswerCount = 1,
+                    RawAnswer = "LyOfDLepgy73vAJFhYOBbg==",
                     WrongAnswers = new List<string> {
-                        "7r9AU8b/8/izs7RoiHI7Zg==",
-                        "T/K1h50pEeGLpUn8QLkXjw==",
-                        "U2cbeXHaEPWWv48uYK1v7A==",
-                        "AM1WmotUfPO4qmCJ6/5lnA==",
+                        "Ul+JDQXJDExkIhJWoWkjLg==",
+                        "vL7Rwqmy7qwopP8lmat8IQ==",
+                        "64MubjCHjEa8cXljIF6b0A==",
+                        "kX8be+FXvI/54t3jm9Qnpw==",
                     },
                     Passage = "Ecclesiastes 12:1",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 384,
-                    Question = "gowMFElPLUWvqtz3DFmvZSWs0KVQHW+umxfSmVCPZeEnKOoPxAUUyimPyJ6DRPec",
-                    AnswerHash = 1003120217,
-                    Answer = new List<string> { "gyC6tmxxp5kROpRgL8wM7Q==","Q1/LFS3ijPpsM1JVt/TlGQ==","VFIl8cW9xe/PiDPSfBZTlg==","7GuzFfWdnsTYo71CVp78vw==","OByf75d/b5HrheoAenFJNw==","iNUlvhl1ke4wcx+G/NwCZg==","6FlIrKEVGbtUDRY/Hd5HaA==" },
+                    Question = "6AQfzxWBR6c+lP0EdNfgZi80Voi4FdOVXMgty0NtQzM6sRDyAYlEBgJ7zj3f3vDh",
+                    AnswerHash = 279623211,
+                    RawAnswerCount = 7,
+                    RawAnswer = "cxlKPhMU91WejC5aCQvIqkW+fBzXKSf1+JaMur1M7ntTddBRZiezNrnI0UWziGiYm85uYd6oUTcKnMBPxBzLzw==",
                     WrongAnswers = null,
                     Passage = "1 Timothy 6:6",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 385,
-                    Question = "qNfc7PfKmx7SxYbHPj/NasiJjDvMj2OZ7nH27B3nGUQ=",
-                    AnswerHash = 602533397,
-                    Answer = new List<string> { "5uu1gwT6NRYWb+MPy9ahiA==","uHjamCtBuqlMB7S5mDwg9A==","byv61iTc1e48zgFL/TQTFA==","ZrSNVKOr4cCaM4m3+IF2OQ==","KbwjtXdeZQ8LHGuS/5xGPQ==","0+1U10HmNzlaDM/0KkudyA==","2XJjt8wafMDHzgpO8z91dQ==","GgtJi0mGfR0hufvf777JVQ==","uHjamCtBuqlMB7S5mDwg9A==","csFNiXTSusApFcWTSa+MRQ==","uHjamCtBuqlMB7S5mDwg9A==","0xWnfp6qh/BEpjF9IeNaDA==" },
+                    Question = "lCd3s3ohmRAq8sw50k6MnF59fsJX4y/CaaoRu7pl9HY=",
+                    AnswerHash = 2042649846,
+                    RawAnswerCount = 12,
+                    RawAnswer = "fk9eibQa8JPRQsZYytjTRdzz0PtnDEbG9LM/SFUdcowdzLN3YES3BuBzXa2cMRcmI8prnSg4HdQcaDQhnyYthw==",
                     WrongAnswers = null,
                     Passage = "Matthew 7:12",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 386,
-                    Question = "ccc6aXittKeIJvUrN9boY/LXNkj9yrJpeL3SPIyMFA3pxpNk1wNi7cd0ayzcN3d2Z6S53IYp5bM+q0+ren99cNZLfOT1SpBECevFx+QI+RvYdM3Dx7m+raLs2DbN2MHqvmPxIa/QfhhrEakOqpcDwPmCe/5d9LQB7uSYbtjAsCU=",
-                    AnswerHash = 323122816,
-                    Answer = new List<string> { "UnEUj+NubaAD2RSmXd+43w==","uHjamCtBuqlMB7S5mDwg9A==","C0+EZapzQdL3ptdqfC4bwA==","o4BkWGYvYRXY64Yf2/s7zA==","xpDh9NjNNHKwWPaDyBtRmQ==","o4BkWGYvYRXY64Yf2/s7zA==","hD4leEz4Yl/TFKgQ4qlkbw==","ANR4DVWwEHmZsIVzF1pS0g==","GZJv7PgEbp3Q4GGa81mPcg==","LdEm3/j2hiJhO/gqMl78SQ==","OByf75d/b5HrheoAenFJNw==","b69SKr7ML6O5j5cB8k2ozw==","qRt6/kI9FWYUw8n28UmmkQ==" },
+                    Question = "BWB9MfGAyIjSMr9LofnxXgJUZC3VRjRIMz02ONHzNB7Abb3IIbMEzvokapKkeC6FB4cAPYYPNjz4H8ifTz3dR3IRL7xHsXxZztAKqZSbxW6797iv+2TxsBcUAmPR4zTR3vUIURDdigk1aArNu5ndlwfXIKp2kFJI+6TYDtKt8AQ=",
+                    AnswerHash = 1548946803,
+                    RawAnswerCount = 13,
+                    RawAnswer = "+h/ydafQVDDxpLUDXP/+bMpk7WYs4VwDtxgDWclIJmkFSWOa6goMgVnYPu1Rw2zcmQsRgjjZlSTj59bJBghdo8DeJRr8413vYxQupyeIWsY=",
                     WrongAnswers = null,
                     Passage = "Philippians 1:21",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 387,
-                    Question = "5LCCOEfgvtVp3RsbD+dcPQuOGnFrx0gli908VpvaJq5PzVdPZpt9NkMWeh2/mzRF9TwKekYTg76bCESrkpTmaX+cPUGlzI8tqjcepyTdfZ4=",
-                    AnswerHash = -111199793,
-                    Answer = new List<string> { "qohSNUC+kihiDp7/Ah4A2A==","W6EdIK5pYAMUM5iVvC8nFg==","gc9NUuoE4uMD+nipDh6n+A==","D3+X+49RHVDqAS+WMOXxPQ==","dKPP2B2/BXGYYLM/CPwNvQ==","Xl9cyyXT4enh8vOL0nat2Q==","wmlEvFyTKum64q3UXtQG9Q==","Xe6TfMCFEugW8zMcrR7gAg==","ug9VPMSE7PQQKbyziHs7eQ==","ZuVeP7gqZWEZYKwHknHzQw==","TqT5g8A/OSDj79lYjwYJBg==","DKltL/ygesgUZIjb91//hA==" },
+                    Question = "q5vK/Mohi7vm+XQefs3TR65AkIGdVC0tTaSTaosBCxSluXBRMmPFF3eUYphrDwmq+pEaJae9EH1v2srGhFcEL0piswLxqwWXxXx7gCw4N2w=",
+                    AnswerHash = 1022385258,
+                    RawAnswerCount = 12,
+                    RawAnswer = "GpYyIG4+T4hK1OyyhVm3+PiZTtxxt0nLSvKWFCB9NMAtJf22wFi/s2D7KChBtFWq5oYcDYIbnGkFAS3PjcOdUHMnT3IPHs55ygspU6PoKLA=",
                     WrongAnswers = null,
                     Passage = "Proverbs 15:1",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 388,
-                    Question = "ggWHOl6Fcr+WiuFfNvg5ZwZqgvn13hO/fyy6D6401JPmbTdmfCALXtT2MQrFCpAr3jYQa8lqYWTwebfXL0o1pU2ab/JPxa9W/EA8ZSup2ZBnWAm0Gnzb70Jv4/KtBZDd",
-                    AnswerHash = 251411515,
-                    Answer = new List<string> { "EP51wDLkFwVVZCstdiDUAg==","4bTrcCp7YxkUIzXRZZ7u4Q==","n0EMjnYSpYGHoZrPxYzF3A==","GgtJi0mGfR0hufvf777JVQ==","Bva/qzBwFwP324HUHz5LQA==","eMILHmYiElWlkHXCK54Ezw==","2lAZRKCPP77nluithpmDFg==","Z+43JTKjgS05U1PDqbYVzA==","e0yNFCHXotWomfACRwB8/g==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "oQA/17p9DfnlzEsAoJfzK94ineiaRGBCj3O47iGjdry+Fvs3UbRGizXE11f1t9dR2Kh4NJ0RAOvEVebrwBU06ctzWJ/j6MQ2eN7JRN0z92rkQ8rs2l4RLCw37e0XXfRD",
+                    AnswerHash = 833062134,
+                    RawAnswerCount = 10,
+                    RawAnswer = "KyAnQaqO7IJEtiM+dq0cOXjYERbmVhz8QBkieL9ZdMLjfooqtuGLCXpeIDYzuaczf9mlsXaSt8hOgLGtqc2dDg==",
                     WrongAnswers = null,
                     Passage = "Romans 13:1,3",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 389,
-                    Question = "ggWHOl6Fcr+WiuFfNvg5Z5jWnID5KQL6oEYGolu8Gv+nKoR/Ddu4d/QNwc5m+b+jMyOw4TLUEkhQ0rwuvsQ33gprF3ESm2MDa3/GamqFN0jAE+usyvBPEVz6VA11AWTq",
-                    AnswerHash = -1742539498,
-                    Answer = new List<string> { "EP51wDLkFwVVZCstdiDUAg==","4bTrcCp7YxkUIzXRZZ7u4Q==","n0EMjnYSpYGHoZrPxYzF3A==","GgtJi0mGfR0hufvf777JVQ==","Bva/qzBwFwP324HUHz5LQA==","Ta7/VrMQfOA+0nfx2vSwTg==","qH06W7X4ZjnXJoh7W8gVRw==","0dUvcBaVBZESg7b14VkIEQ==","uHjamCtBuqlMB7S5mDwg9A==","epoUy674U/s1cxM4Wqp50Q==","hD4leEz4Yl/TFKgQ4qlkbw==","qPoQSPLZzCWK6ydwuALa7g==","4xyUHLAt9C4GaQjw2AOopA==" },
+                    Question = "oQA/17p9DfnlzEsAoJfzKyFRwdcEZkgSFNkAPHfOgWkVHMRDX/TCYJB4829pvtKtOMwu6T7/CJbCvCar92Fy9XdHn3qMNV4/dtzxX7sPGGlM/7D9vb5B5zwy/Le46oTf",
+                    AnswerHash = 803913815,
+                    RawAnswerCount = 13,
+                    RawAnswer = "KyAnQaqO7IJEtiM+dq0cOcFy6O4WCjIKFLb0B16FrOctwULHFBwSzVUAMxJJ4gkhsGevK88kQ1iT1LNxkwEtq9Z1e8Lvb1D2shu7Sztqc4g=",
                     WrongAnswers = null,
                     Passage = "Hebrews 13:17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 390,
-                    Question = "jqkZEWDYtF9z6bk7iqLJ0Y0uwS4EKhmsKOpAlSXVrI8=",
-                    AnswerHash = 1419039832,
-                    Answer = new List<string> { "BNoTftyJlA/jf5gtzXAtoQ==","uejFTSjTY+Hi9jS+cRN4AA==","uHjamCtBuqlMB7S5mDwg9A==","epoUy674U/s1cxM4Wqp50Q==","hD4leEz4Yl/TFKgQ4qlkbw==","KX2KW7ZJHN49le4Kx9ssdg==","45BIU1g9ew8seMoHBdOxEw==" },
+                    Question = "Mxf9ixuRMjs0bT3NFAZCKNUg4hr+sscWDZNmjDsLCwA=",
+                    AnswerHash = -288668923,
+                    RawAnswerCount = 7,
+                    RawAnswer = "NyYPfptUYWJIcnxnSQogtbSojaykbyrmM4q9GT1enM0=",
                     WrongAnswers = null,
                     Passage = "1 Timothy 2:1",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 391,
-                    Question = "/B+Bg7pgVv0ith1eVuLJ/TR/VPCUdct312YA98PS9zJGkNk6DruJ/eNGmLOedYzz",
-                    AnswerHash = 36404656,
-                    Answer = new List<string> { "WhINIyovVoNk4Uyj4r28vdJpDWcnJhR/Sc9EuXHopBM=" },
+                    Question = "dhMxkfFQiNcp/q6JnLuNyjzJnBXAchaSF+N69ewwjBB85JJIaH8Hjq3PBBXQZnPr",
+                    AnswerHash = -874754387,
+                    RawAnswerCount = 1,
+                    RawAnswer = "xugTGAP8B93hGoxF2a51OlPc4FedX9DWcvK13ZDi5ps=",
                     WrongAnswers = new List<string> {
-                        "Dom2Uu6mpi2wZeK/IWMDXw==",
-                        "cq/GAwMy7wx1sHNMtaO4sg==",
-                        "zwsynkKPoXMxOu2987jZxw==",
-                        "OG0wHsC7vyz3N4ss5pYcvA==",
+                        "sQs6r4AQe+L6tqFxEMogAg==",
+                        "/afKjFY2ZSO7z8kbtz+tUg==",
+                        "N3uRIxlNuQ5iPZ/v1sVkLQ==",
+                        "ffnkFAbncflpxCVxd3M5KA==",
                     },
                     Passage = "Mark 16:19; Romans 8:26,27,34; Hebrews 7:25",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 392,
-                    Question = "ELEZTs7vSC3yT05He4Aq17Z6WRqWUDv0tpocglLupUtccS4xofAp+zgkICwMhqV5X7GyXJU9i0EBOLW+QLngew==",
-                    AnswerHash = -1609898854,
-                    Answer = new List<string> { "EP51wDLkFwVVZCstdiDUAg==","Ym6Hvkijn4OGQlb/pCLpYQ==","e48khdK8A5zEaHPolKuQDg==","2vQCAJd44n8xV6wyrWPaXw==","epoUy674U/s1cxM4Wqp50Q==","o0w9ZTp3WVS8YJeuNm76BQ==","j9koNwPFQPuNxXf/Sbgodw==","uHjamCtBuqlMB7S5mDwg9A==","uejFTSjTY+Hi9jS+cRN4AA==","Z/5BQ1HbBF/FdQhXqzU3vw==" },
+                    Question = "EFgjF4tb0n92GvV4AuiNwUlHmn196Ui5OtJp+7/xdDz6hMkE4PzDHAmooXTEaD5u30c7x0l5Cw5EaC0jlUcLVw==",
+                    AnswerHash = 1388268454,
+                    RawAnswerCount = 10,
+                    RawAnswer = "bInWaaO9cjP8xPyIetxebFDgwJOT5TXL+BZq1w/LzMlx0B1PXoxU00LsVvPh4yxL",
                     WrongAnswers = null,
                     Passage = "Romans 8:26",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 393,
-                    Question = "2RgS4gWGDe0lylDVJYJbZcInnzCNjaDJ8JbPpvMhyn8n4giReVw/sLUmBLPFOQauLw/FSxPCTeTNGVfqbrnrSX8y4x7+xUfpj2yYzNTEjmo=",
-                    AnswerHash = -140954224,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","tycvgLcm/pNUaHyasT8l8Q==","UjVdzPEnwW0KdZDRVM3C6A==","1SYmqKCmgmvAPD0ejJwZ0g==","MiGlGy1xQ8jjzh6Lx88Z8Q==","4bTrcCp7YxkUIzXRZZ7u4Q==","hMYa40rWHg7YB/7RJZ7ctQ==","FJk2+V9+EtHcpO/KdBSc4w==","hYmukoqY3l0xwl1aMgT5Gg==","sN1OoqkYWTOhorux6euuyA==","VFIl8cW9xe/PiDPSfBZTlg==","Cm9mJ405RXWlx2sJMGqBOA==","hZnxSfwgeCV+v0DzC/i/GA==" },
+                    Question = "Jw9W+nxcfAC1pvgjzBLeoVJa4Vb3zpvE3nWYAuUzgsVwjku/sAcxdRd4ciV2jqIwDi9Yy+qU7HFi/VkoIz4Loot64whzGp8UjGijaRhcSMk=",
+                    AnswerHash = 101636735,
+                    RawAnswerCount = 13,
+                    RawAnswer = "RiVHKlD2E2sp+INJ8/lHNzdQkEzwfTLse0X8U9H8xtGFTy74amwF+j5jkvKPWpE6C6BoXoRokR8d/N1ra2CbwyojSTEPg2vyhiLLVxGH7ck=",
                     WrongAnswers = null,
                     Passage = "2 Corinthians 6:14",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 394,
-                    Question = "P20PK1bBVFuEzxgWGDlPhAI1HRU6BliBkoR9IxMQ99g=",
-                    AnswerHash = 667809076,
-                    Answer = new List<string> { "k2EvSE7Xh9FvoVozVGHqkQ==","ONLmW/be4SFiRtrQk7wxow==","OByf75d/b5HrheoAenFJNw==","dYsbs9RdYZ/cdacNSDhKmQ==","WtgpKlW28pR+41mRZnG6LA==","DXTrNGXg2yckxxN58y+W2Q==","MiGlGy1xQ8jjzh6Lx88Z8Q==","OHlXtuPvHcvRLZpvUJvCMQ==","uHjamCtBuqlMB7S5mDwg9A==","xgktn7xtYhY/uXJaiSHxIw==" },
+                    Question = "7TvvBT/VvOVjl8ECYO/NNJRdr8HOD823RHKr3zIBqKE=",
+                    AnswerHash = 24282574,
+                    RawAnswerCount = 10,
+                    RawAnswer = "Wy2S/yqRlXVwyd7ynYs7G0gwRG1jrYTZm7tyRWGDtd3PUxmKJUQ1+7y1UkuCY28/",
                     WrongAnswers = null,
                     Passage = "James 1:12-15",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 395,
-                    Question = "DyuzsoAqnspBcM0/AX2t0qE2MKLkbZzAawMvywvhq60XEx1m3GMUhLkfVPj1371JJzK37Jyf0kioqn2T78KQBQ==",
-                    AnswerHash = 1829207802,
-                    Answer = new List<string> { "NFqqjbl54uc1hGHb1O104A==","hD4leEz4Yl/TFKgQ4qlkbw==","THZedzhSg5HOIhmkyHkToQ==","zoR8N6dGCEc5qpU56+Rcow==","s4CaJfyI0WiI7/veeqX7RA==","hD4leEz4Yl/TFKgQ4qlkbw==","c7ntG6ZMDRcw5aCMpIUjDg==","MiGlGy1xQ8jjzh6Lx88Z8Q==","eQCuv8ippNvf9+RSwZGS8g==","vXSYNqA9j8+qJqs4BEorfw==","hABAVgfTlJFM+yf5Pfl+Yw==","qPoQSPLZzCWK6ydwuALa7g==","dZB0s4w4bmQ9Zch75bBq+Q==","GZJv7PgEbp3Q4GGa81mPcg==","NZAQWYIIXrIR6NENKt6XsQ==" },
+                    Question = "x/kcNLSWJWXo5a7UrMc8CaUwnnR1C5fxF4qkniUZfRmq2lxrHuhaz2Oe+UpN8PgcuBayllpbK4tQy/PcL8rvgg==",
+                    AnswerHash = 789497694,
+                    RawAnswerCount = 15,
+                    RawAnswer = "nQzQZfYYFz7z+72eDsgRFGxCck/VHBuKvSK2C3ycbtnDgsWUCNM+Xz5TWHkWHFxv/V5cAG2FZ3U6MMuOeFQ0usUBnVxbLlEAUaJbpJESpzWLN8j+ttbykSWFMx+HZVIFKAdl59ikYct2lEyEb50YuA==",
                     WrongAnswers = null,
                     Passage = "1 John 2:16",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 396,
-                    Question = "CCVrqzPt/kd1wTOs9dU+9dYK0ntGar/hujmEKrtDZw4Imd905kFLSaS4UhJLZmaw",
-                    AnswerHash = 873817243,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","lGZiSI6GggkE5cgTmJEAeg==","zSXGkn4sdJkzMXORqcZ8ng==","mghM5w+J0IwU/NwpCOOqbg==","qPoQSPLZzCWK6ydwuALa7g==","6dUgznxdchj4wRNBQNsSAQ==","33NdhLBDfINwqh6pq9AThQ==" },
+                    Question = "W1H541t/PzpgCg4VHe8870jsPbTD6kInuNFLOi3Wk4m65uHRWAohxQ4QKgnpY+nb",
+                    AnswerHash = 45389141,
+                    RawAnswerCount = 7,
+                    RawAnswer = "CO+etz9YUotGdMM+c2VkLDAl69+7eVPBb1StjYaIr5MqqmkaVK6WBt3WRI05KtS5",
                     WrongAnswers = null,
                     Passage = "Matthew 4:1; John 16:33; James 1:14; 1 John 2:16",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 397,
-                    Question = "RJoqV1Khb/lPxVQxGL7mg1pd1pVo82A2Td4GOiTDT2dq82OGGSnWtbTUt44CL19G",
-                    AnswerHash = 842208595,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","2i4xbtWMUUcCUrJUjGpqwA==","byCWfbUkohZBKmNsbc2f0w==","epoUy674U/s1cxM4Wqp50Q==","0hoMe18VLQxfVlMv0UskJA==","nLx4dNWPG1dnZ/X1WjTu9Q==","0BSnTVxtWMKHmLwwXhH2mQ==","zSXGkn4sdJkzMXORqcZ8ng==","/5WGFI76+TtW9Ue+bBsn2Q==","zSXGkn4sdJkzMXORqcZ8ng==","KmDMiIEDSMRyj23SSeGmDQ==" },
+                    Question = "LIXJWTQfWFGob+NMHpfDjU7Dn4rDvFX9nOEmMzfkaA5eRXLU9/SAit9L401AVHXt",
+                    AnswerHash = 42436039,
+                    RawAnswerCount = 11,
+                    RawAnswer = "v69qsM34qrmSZopsosK47UMGXC7/579Sgj0On5kxvs5TRoqm59wbbB8+gpOQkUKsk8UlINkLs1lwG2u+mt3vew==",
                     WrongAnswers = null,
                     Passage = "Genesis 1:2",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 398,
-                    Question = "a6jEqvwUiq0wks4vv0SUYCgnkSBJxQ5+Lu11GCyHkdXlzZV+48ZYfcWQgPVwNVqt8IwAmH0fWaBZpbYnJN9e4ldSBF9/hi5uohB7HgedlZLd29mtdIYytaI/Y4orVrUS",
-                    AnswerHash = 518699856,
-                    Answer = new List<string> { "aO7yYkKZSJfotWNf1AHyeMThOlaIY32vAmQ1yhJHXnU=" },
+                    Question = "Z9YUPFNhflJl9BUAJoqNsaYboBX/LgW/WeY7ng7MaKV2Dv/DeC5FPc/BpbX/V7i6jtjxIciA7i1YVURQCyAd3DuhxPxKWEjaprysatx3HG8F2nkbRSzYCx+IIt92/Egv",
+                    AnswerHash = -1920989826,
+                    RawAnswerCount = 1,
+                    RawAnswer = "cxfPxxSe2oOlrPYAdhPK6jW/kVaLe+SZcWCvltQERyo=",
                     WrongAnswers = new List<string> {
-                        "tyEpm0a96oCsB4qQbZN54b918dvWNoIvnBtIokO9t7M=",
-                        "PIN29I7vQd/WVoEDfmOk/fh+ftJlF1N7TWhtfD4kfAQ=",
-                        "2MMuDKXg9i2bOzHonZGUrIni9mR1zk+1oMMa7ewfeb0=",
-                        "KKVrlZqpvIe+OPOLrxLhTos6blod+XaRVxiNESrlXMc=",
+                        "NxivjuDAfZPcFg7i6PV0C/Mxk4UGdCJqq3VEE7brThM=",
+                        "I/fIF0YefTFUagXPgzdPGaGAOsqWMVl4Kymi6nEDREI=",
+                        "twb9NG1h/T1bb5ffGFIBLHpogGKDz3XHKkPbqjTnnhM=",
+                        "bRG6TGlS8G03gRHn4NnXadWWNWUuao+h0ffu9UA7LpE=",
                     },
                     Passage = "John 16:8-11",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 399,
-                    Question = "iPihdEeMU35NojInDPXJ+SERwv13iRnVNFS2JoTUMu9GY9mO/hCuo0cz3MtbY4BxS4T5iz4v+z0e9ZTqM2Gj7Q==",
-                    AnswerHash = -1262085991,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","zSXGkn4sdJkzMXORqcZ8ng==","xs/gktjYRVW2K+hyEcVF2w==","qE5LaVkTqDXU78sD24Khzw==","uHjamCtBuqlMB7S5mDwg9A==","P9UqquwEXWNRSPQNFqHeug==","1IB8zb45XPxAlfAabh15hw==","H5E2Iq4CCZ4XbCIjplQnOg==" },
+                    Question = "7mUpcijMqQChmvTOT1oAQikas2KilF+0NuDWMibSPZ1IehlOhkZcIGCbq7y7ZksQ5ifIwjkplmz0MYcXMsTqXg==",
+                    AnswerHash = 1559962425,
+                    RawAnswerCount = 8,
+                    RawAnswer = "YXfswqfAoBaoRvvFPw9+fvpJ5RMn/Qy3jvvgLL5nyZindWceV7O8sKsmsqfmAEhG",
                     WrongAnswers = null,
                     Passage = "John 16:8,9",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 400,
-                    Question = "jKZZi5OyssxkxeicsOqqTd142e4RdjfRcEsKUs/H8KHPdZuJwU7QFH7ns1t0cCuB",
-                    AnswerHash = -1492676346,
-                    Answer = new List<string> { "ohNhHMyi7DAX2qXE+VKUQA==" },
+                    Question = "viMNTnBkdFLiNiBWaqcfVtXkAhs1EWIbv4Y3Co3u2Hh9igPO/fcfm9Ofc+kkZIdJ",
+                    AnswerHash = -1539749123,
+                    RawAnswerCount = 1,
+                    RawAnswer = "gGlb9VdWlcJ4V1fFd0gbLA==",
                     WrongAnswers = new List<string> {
-                        "RZzlQ2ddLAmy8zji3WLnSA==",
-                        "JCJoIjcl9pD3U6boXzJ1Uw==",
-                        "WMLouTjN+JVGM/7J/w+YOw==",
-                        "n9OLF3s+HgS96cBt+Ty56w==",
+                        "i7RN33G6euHpxVYpCTGfRw==",
+                        "fBaLrePyDCXVAfJUQiKa0A==",
+                        "TUAi8tKNa+wkvyM1HWDX+w==",
+                        "kaGgNOm5RF+mUvU+KTOP6Q==",
                     },
                     Passage = "John 16:14",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 401,
-                    Question = "RWtRnEugttYKtdyNhbiSylQGkuLo0mNclm4z3H7ctlSQ2tQBiDgdxKpseRsdNKBw3Y5G1TiPzCBKhJOIayYw3262oKQUAZjRJf9TLVfpnrc=",
-                    AnswerHash = -1894229740,
-                    Answer = new List<string> { "NgWzaUA9J/zqOl5OipeUfA==","GZJv7PgEbp3Q4GGa81mPcg==","aL8h4IiwbB2xfD5Vfzroww==","9j+Q1cgXIPoQzQlEBFKX8g==","0BSnTVxtWMKHmLwwXhH2mQ==","Ce2ypH+ifeJnIJIXZEN+Vg==","XpJwgK+aYnw0BZJ+qWKP6A==","kb2f6n1N1GLCX4D2L73Plw==","uHjamCtBuqlMB7S5mDwg9A==","Vtk29j7bbYPsg6B3OGXhsA==","zSXGkn4sdJkzMXORqcZ8ng==","iKKmDu+yZizZIDwVEzefsQ==","vOIqOcyJ/W+5E3Uh1JWt0g==","uHjamCtBuqlMB7S5mDwg9A==","e48khdK8A5zEaHPolKuQDg==","epoUy674U/s1cxM4Wqp50Q==","GZJv7PgEbp3Q4GGa81mPcg==","3g+0rrVIECuzqSCdjPiG0Q==","UjVdzPEnwW0KdZDRVM3C6A==" },
+                    Question = "XComVrLZ02QzYNsgNzjl1nj9xPIxgsZdb0FViv2kaqJNOcSxZ53ddC1qyv3puWQCj3E5ovDIDy6SS6UeW7P7co0y97f3ZUytFDkVxLwJcWc=",
+                    AnswerHash = 1100193774,
+                    RawAnswerCount = 19,
+                    RawAnswer = "7nibZ2VNEjc2k7ClqZ26f6i8DvyJRmyVOkBCEKGjyAUqj1V561LEn1CA1ukkLWkNsMQDqF8Qe2BF+kAZlrOr056Qn8avRpQOFkV+/1onwPyYNjAoEjeQvmd8An+TsPaNY/R9onp4v/m8AnNPsuCsGA==",
                     WrongAnswers = null,
                     Passage = "Galatians 5:22,23; Romans 8:5,6,13; Acts 1:8; Ephesians 1:17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 402,
-                    Question = "WhINIyovVoNk4Uyj4r28vf90LHqDnRtH6ndH8k0G3rLWe7GLRoG8jfuOBVxpO3Nk",
-                    AnswerHash = -1590003173,
-                    Answer = new List<string> { "l2iNu/O+PeXOgX8pVgJfpA==" },
+                    Question = "xugTGAP8B93hGoxF2a51OsJO77L5+h60IMpaPV3PbczJawlsU4qeiss/qO15Ee+V",
+                    AnswerHash = 1056854876,
+                    RawAnswerCount = 1,
+                    RawAnswer = "8rYi8AbnoS0kGbkpYCejGA==",
                     WrongAnswers = new List<string> {
-                        "4XFDfdlUQx4EF2LQdynd7w==",
-                        "iBJjz0uekdklAyJXscf4jQ==",
-                        "iMNDrN1Va4UZNMfUeF07EQ==",
-                        "4uXkm5Z8LsulS7B9rBfS5w==",
+                        "HFc4c/t02zeZVxnm4wAglA==",
+                        "fHVZjYD/lnmGTTEjOlpnew==",
+                        "es5jfhYsBEGtDyZ7/+pBMw==",
+                        "SSn/TdqTRBX+VY2dvem0ag==",
                     },
                     Passage = "John 16:13",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 403,
-                    Question = "30CZ7w6WsrLRs0ES21n/ild9+QkbmanDd71P0ccyFhSjqm4/lob4ud7SLtoDDOiSCZciUZ35/wwt0EA1PTqkdQ==",
-                    AnswerHash = -446028378,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==","TVp9ds7GAo4o3lHnDLEVuQ==","byCWfbUkohZBKmNsbc2f0w==","dYsbs9RdYZ/cdacNSDhKmQ==","GZJv7PgEbp3Q4GGa81mPcg==","xHsLK7rfBdgJ/7WbuO0jYg==","zSXGkn4sdJkzMXORqcZ8ng==","nK2y4oHfsfex4hx3xd53Kg==","3l8quigNk/9doLzvRdWUsw==","wmlEvFyTKum64q3UXtQG9Q==","9bzUSORDM9VFLERanu2Ztw==","09BPJ6ucNhNzWMwZIRmG8g==" },
+                    Question = "1Nl7ibny+VdJtFsTImbJF87gYIQzfoMAKmIkXMQWu1tOUzWTnNGnhJLTZfdoEPqv+hRraYEhu6COGKt6kBJDGg==",
+                    AnswerHash = -780270840,
+                    RawAnswerCount = 14,
+                    RawAnswer = "js6IUdf8LMYMt32o6Fx6zDAglj+edmYM+tQuf6AiJlfYezaOLHGzuWcqD+pZcmaztHFyED+BKP1qMn05LJrOS1JuI50k26Mj0cjh4xkBAZE=",
                     WrongAnswers = null,
                     Passage = "Titus 3:5; John 16:9",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 404,
-                    Question = "Fdq2DnZ/0WjSyf5kF5Ltwm/jqWipAduLKM2M3BuQ4bR2wwp0Ct+frhZ1RNIik/xu",
-                    AnswerHash = -593455355,
-                    Answer = new List<string> { "zz0a7K+VElzqTj41QAISSw==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==","Z+43JTKjgS05U1PDqbYVzA==","KzYtv0BMGJENnKG3p78kFw==","qPoQSPLZzCWK6ydwuALa7g==","Suq1Ar+Buwi9dsXbLTen9w==","DXTrNGXg2yckxxN58y+W2Q==","MiGlGy1xQ8jjzh6Lx88Z8Q==","P9UqquwEXWNRSPQNFqHeug==","1IB8zb45XPxAlfAabh15hw==","oOezHPMDjKECZHdBcuLCNg==" },
+                    Question = "rq40avEfOwkG2rGUxeKs2Q20WIdSkPb3gscip2sDe6Cyb7FTAG3WAoMyxeTAqjjY",
+                    AnswerHash = -605164421,
+                    RawAnswerCount = 13,
+                    RawAnswer = "MRPWqW9jwYQoljLn7N1YbFRZB1PxM1i/39RMsYXawvycmargUHioz+7uC6807InsRFMgCBXmCVrU/xSlPJQbryQDJGxHfwrvio3mLHQE+oo=",
                     WrongAnswers = null,
                     Passage = "Romans 8:9",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 405,
-                    Question = "gowMFElPLUWvqtz3DFmvZRLeE/nPvgaYBKrUdHnhSQvFyY7CwvsLvwySzVWVzGYYV9lN+g/eEYkg0Qa2vkO14R9r67+/H2eNedWc3KLXjKo=",
-                    AnswerHash = 786459336,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","P5lpOAmxOg/JhzYrLRngIA==","JR6gRJHFJLOyYEBL3ndwgQ==","ZZhMusz6mMkWQeVWyvEhfw==","Bf8CsGkB2jEf991BkfIIZA==","NAqLz9DMM2p0Xw+vofGHVw==" },
+                    Question = "6AQfzxWBR6c+lP0EdNfgZiQzGOwZTWBuEghubLL4hOZrSvF6SzqEfNylr1+xAZB226lMnM+ArDVTCIGbp+D1DzJGNZ9XOj4tmrVUUz8iwgw=",
+                    AnswerHash = 313719456,
+                    RawAnswerCount = 6,
+                    RawAnswer = "7fmszzqDac1OBZLPDc9/eGNelT1vayQmq06rgdiUvISfK/k+f0D7FsKKoqVF5WC2",
                     WrongAnswers = null,
                     Passage = "Ephesians 1:13,14",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 406,
-                    Question = "8Z0sk2iOpavzvqh2xQUdRBWis/otGXdRtf7HD6rr9W6hEX5YnH1KxTXsnMNuxGa5ZL28BdRUBHoP4nga6qBDmg==",
-                    AnswerHash = 953513354,
-                    Answer = new List<string> { "MES6NCpz7Gf8Zs3wVmh2lQ==","SESNeD1EtiCtWOHkaVmC+w==","zSXGkn4sdJkzMXORqcZ8ng==","hvYNB1DWYQNlarPN0HEEdQ==","Q5SnTfnsv6kALPmnWDKO5g==","yCCmgXK2LKL+vrGfvt5SKA==","6FdijkyLV0cJ/JJw7cSxEw==","Ynh2Ue4WpG+JE4OaczyE0A==" },
+                    Question = "ZH4Sa1aj/tEa6n3glHmDwv5z4d84/Ng6sR9r4dXA+HZ9VI3pX04H4ur4Kf8MuiGLQylYKwsClVF5od31ta+q1A==",
+                    AnswerHash = 195807681,
+                    RawAnswerCount = 8,
+                    RawAnswer = "kBGlsgGmc/Y/R7J8/CRNaHFegryMZ8HnxuFOe25G6lTaDyuF7Fto8rng7YtKcY/o",
                     WrongAnswers = null,
                     Passage = "John 16:7",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 407,
-                    Question = "9q3Lvm8WEw1x5yBfNTTHsCjlxQ6ZWOJNg+TZbqO0Ulg16pl+HD+Es0xLQwfmiB2oIIN5ct1aw1MZphHxt/ev6Q==",
-                    AnswerHash = -1103416054,
-                    Answer = new List<string> { "+WYMefTJ0mbbrIjHs6L+ww==","OByf75d/b5HrheoAenFJNw==","hMYa40rWHg7YB/7RJZ7ctQ==","hvn2dcx1ISwWniJsOCA47Q==","wVds3urUmxUDkpceMtIteQ==","pgNXOxmJrUdqHVahQEJ4tQ==","hvn2dcx1ISwWniJsOCA47Q==","fLezA+6sjxQ919HOy/yisg==","Xl9cyyXT4enh8vOL0nat2Q==","hvn2dcx1ISwWniJsOCA47Q==","RsaVt0e7axGrJ8RpbZW/og==","1o3gjaXTIr2oEaWfBh2MTQ==","1SYmqKCmgmvAPD0ejJwZ0g==","zSXGkn4sdJkzMXORqcZ8ng==","3sqKk3xm/SLP9v2KPTpLTg==" },
+                    Question = "kpIwJVML7VJN4Vjq/fr4xQ4fLPf1MSXBuuxOgNP7KXj786Atn0A2cIHHQLnrwYLMMwv6HuivisScDg3FNXiPmw==",
+                    AnswerHash = 88809764,
+                    RawAnswerCount = 15,
+                    RawAnswer = "4wi80rei40QlXRWsElT3L5XLM6ZmkH9OzoGj7g/4rGzx7wjYAgXXFnCjnifH5d30vCZHV424HWF0ly8Q/S2crNQYkC33Q+9/XDNQEIL2BTc=",
                     WrongAnswers = null,
                     Passage = "Zechariah 4:6",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 408,
-                    Question = "mwwV7i4vo/UB1YOXR00c+CIw7ALHU6O9eVbI0Er5lY4cyOkUNfYrJ0YPyeyxxWlaxXXyMR6sNEX9h1oavKOSpw==",
-                    AnswerHash = -107894070,
-                    Answer = new List<string> { "+kZ/cHtS6aiLIUnk6flU+BPrNTLAGNnSqLCXpiO53b8=" },
+                    Question = "xgMJhqTCe3BVbfid8L+PSf3Ia6K5II0SyXrdDxzGk3S3B/PLs9boXT5zMN/AUNEFzxp1g5U+aFg5YVMTyLn77A==",
+                    AnswerHash = 885891558,
+                    RawAnswerCount = 1,
+                    RawAnswer = "tQ+/5RG3xIOmp/lNJQARuYYHmlF8Wb9V4N/jB5FKqR4=",
                     WrongAnswers = new List<string> {
-                        "1nJaWytrdJinR1Qz7IEpZdlmRi6hdq0fQGAufCzJYBA=",
-                        "f2PcmqrlIAjKB0D/1vGJDw==",
-                        "VJjpGeFUxoehbeihZHuj0A==",
-                        "fqjDb9T8ymdaAvzLlvJgOA==",
+                        "Toquci9sChA9cWFE1r2yo3/3yTAuwr8uQZfao9zay/A=",
+                        "1rfEpoqHUHjFQ9VSaxWGdQ==",
+                        "pSzTAIuKDyELGPGgIZvrcg==",
+                        "FVwuAsoRJZfkXiSh07wi/Q==",
                     },
                     Passage = "Acts 2:1-4",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 409,
-                    Question = "ccc6aXittKeIJvUrN9boY9z3ztsIKFYQI0FB+Z02Rt15WmfGi0SG9oQcxKWklu6f3tpVlWwAs8uwmPMwyPq6BC7lw+i2gbtqdpt8LSCil4Xi4HsBwHrbDnO3tVl7FwPC+dtbLEM4zw6zbK/SOiirWIS0rpFOojQea6oD2ToYot0=",
-                    AnswerHash = -670715972,
-                    Answer = new List<string> { "PzzcxNYVcds+UAE2oY8AAw==","NMjyhi3+l2xy/KUOze/ABw==","Vu63OQF9GsW9nt+MilHRuw==","0hoMe18VLQxfVlMv0UskJA==","FyKG8q9tlew8z7HKEacjug==","VFIl8cW9xe/PiDPSfBZTlg==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==","GZJv7PgEbp3Q4GGa81mPcg==","Oh1SzlD02op7Xc7Kv6ox+Q==","TsCm1pvxv7D95tIMO3N+Xw==","SD/rU6bGI2MkOV/UvJ4nrw==","6+nghx+dvOHc1OTs0qH/DA==","rjJ9fRIB/Wy+0qnTR6RjVg==","12wH/uWP2+OyRbX+FvUqHA==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==","wktdr3ifFGETmwJtcmx6UQ==","GgtJi0mGfR0hufvf777JVQ==","zSXGkn4sdJkzMXORqcZ8ng==","HUs6cquN8pzRyjQaAdpPVg==" },
+                    Question = "BWB9MfGAyIjSMr9LofnxXsLK0MJ8FlaQpqRORk1wIP3mtXFfeLl+uzqNOVdWQySDsLpDpJmOVx78qlX8pIz3gYH4P4F3u8xmqNPZXwr5D63ruezVMfRevXgc1I4s/8bkmF8LVFajbReewu7BJrrBM95wjb/1whw404BMeg8v2TE=",
+                    AnswerHash = -227896768,
+                    RawAnswerCount = 23,
+                    RawAnswer = "MOBKAeBQ0MjBONNLN1LbQIUqK9NJQ7qVWxBtNqRRHr8ISP/rkV/gy5DuTWNHPZyESnPPBSy0HW1o9YfbQOqasQIZ74vLl+cK571hR99JW+Su7evKtoB/GcR19H8BY/Mqhtrt4uyfl4HOkEeZ/+jHrpXBGnNNfZj1k9rSgXFuzhssgENY0RaE0NNFVdkGpI0n",
                     WrongAnswers = null,
                     Passage = "Acts 2:4",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 410,
-                    Question = "pZImbAT0sxkZ4xWUzNTCaE2BWMgwxZwm3q/idiR+BKKRvJOahDhNBJB3gEP6tCIXqXFgkL7awvQCRTAGhgEeSzk0kinvfPmevjB391S/2Pg8TCOUX0Z3g6aq8h5Qi26h",
-                    AnswerHash = 1481269286,
-                    Answer = new List<string> { "RsDuCsBTI6dgF+VDuysopjojWcw1r2eHM2NbWjdoSy4=" },
+                    Question = "Rb+nsAU1IW87A8ToB874Y0H23OUNo62FbmGvTX/mID1ijoDYmsChPeIaq/qQh6je6XQsAnCkZLLrpLgFkRzGXVmpAT/pzIcb93nNBJp7zJ4u0ElSH0kmgMPLexmOPiiF",
+                    AnswerHash = -76412324,
+                    RawAnswerCount = 1,
+                    RawAnswer = "Cr9pipok+oVooQYZEXHA6rUAU6u5A+EKPFfsqTRW/Io=",
                     WrongAnswers = new List<string> {
-                        "8UrWH1XMLTpE2yr+QlMZJLbtd2UyDziycaflEnkE3W8=",
-                        "RbyRYKSawys/AYhT+gCtFhF9rNdesOySDrkKmu8yxos=",
-                        "cc5REoqYkPhc7NW4DCZxg6H8YwMWG3R2d//rcx+6MrI=",
-                        "aYTkOBNKYsX07Qh2G3vByoCLA70jx+J0t5GKm02LVXc=",
+                        "ltUr4xAT1+h1su2DEMaEh21AvKApZdO8GGmsGg+8IcI=",
+                        "8fKKBki0tAD9vZzoWXkQkv6T5XmmBPofkgJ7B3Birso=",
+                        "aaj0BAes6jC7kEGY8LzvGd+wiL//34ip/JcBOBvIhYQ=",
+                        "ibXe5WQS0GRwgNxBSnSLwT4efOxS45LZG8Fqf4qc34Q=",
                     },
                     Passage = "Acts 1:14",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 411,
-                    Question = "DzUgdLZpOtB3kNqU3MOu5fsPYXcf0xTpIRmN7Ca7q8etDjaygHDv8vv8w7rrUEbIgqsL3AIX/BR9qsgPaf8ljknGYdp3FXaMSW2PBsSLpIxVMAqUZNQ/2vOWNGokdAbiItuwUtMi4Wp4EGBDooHi2g==",
-                    AnswerHash = -1790134808,
-                    Answer = new List<string> { "64kG5p0LXKTVA+j8aKHakQ==","byCWfbUkohZBKmNsbc2f0w==","KbwjtXdeZQ8LHGuS/5xGPQ==","dUuQc8pIJs9xWomZ4CZl9A==","OTTFJt+1ZdKk3a5HxdU31g==","byCWfbUkohZBKmNsbc2f0w==","dLqm49OmDQSjXjn38tHcXQ==","7vEoGcjpFVSvwf2slKG0sA==","GZJv7PgEbp3Q4GGa81mPcg==","qlWDyEV7YARWQenLQcVSdA==","uHjamCtBuqlMB7S5mDwg9A==","kbuzR+8fqPqWfLJlHcId8g==","GZJv7PgEbp3Q4GGa81mPcg==","FJk2+V9+EtHcpO/KdBSc4w==","OHyEhyGa+pfzmOJyIfn0cQ==","SD/rU6bGI2MkOV/UvJ4nrw==","zSXGkn4sdJkzMXORqcZ8ng==","buokk9O29BrVGvYJhUK4ZA==","byCWfbUkohZBKmNsbc2f0w==","H5E2Iq4CCZ4XbCIjplQnOg==","j3VmKRFjx1/CvS+CH0VNgg==","hD4leEz4Yl/TFKgQ4qlkbw==","zSXGkn4sdJkzMXORqcZ8ng==","KyRgMF1AtGq0fIixvuwzSA==","byCWfbUkohZBKmNsbc2f0w==","dLqm49OmDQSjXjn38tHcXQ==","4rT2rmUsrv1VP/p78MmyRw==","IiUjPoZioqF9gYmnrjtjbw==","KbwjtXdeZQ8LHGuS/5xGPQ==","4ROpDELlhF+CwMRVw2VrDA==","jXAoRScxfFhzOuzZmTUCng==","zSXGkn4sdJkzMXORqcZ8ng==","DaaChvpHx6xgI5rFRHHMlw==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","ek7Dx9qZ4oYEBSL9Q+Jc8g==" },
+                    Question = "6IX3uUKrhsnJkXK3ANAElk49vGvJkVFTPklQifb4UaFRvG7nnUrzX8qwdqCwF+QvDWQOYyqSn0RwlQ7sNulxS0QoeCIHBIuYyJ0m+ZLhg7Y/pcWNYZ3d9C9flfSgv5cpLvyn2yA6TbtKh/M6w3gjbA==",
+                    AnswerHash = -2060382881,
+                    RawAnswerCount = 37,
+                    RawAnswer = "vqKHINuBc1Xbk1bvGgdUpQ2MbDUjdLkT8sZvfyVohkl2EcF7qMfeeITYA9p3INK5D5fYF91QkZK/AogHxPFjxCBuj+csSE3v8ssQi9bz7Lyqro86idlqwXNpZfhGhri8MG6Gnra82bB5yM2UJ+ZbN2UeH+bHafUs3vLIbvi85NKwgWLp0GsKR+gyF6DpjK8sASMJdhkKTv5rsSVqnzSuBP8wM2ppa2R3zrbn8ZP+dch3Rvl0B9IFGi1PaEllLiIe",
                     WrongAnswers = null,
                     Passage = "Acts 2:38",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 412,
-                    Question = "F5JnX/9LlBQ3tNkJnxvhs/INwvZ1cMaU5zDyd7jC2YJc4vggsnLxJD2WpT4pYuq/I1EhVFMv+Ash0jws0A2c2A==",
-                    AnswerHash = 1027236338,
-                    Answer = new List<string> { "k2EvSE7Xh9FvoVozVGHqkQ==","wuQwJRQlz1EtzqTmmZjrMA==","Sey7m3r48EH6wOyr0eNb6g==","zSXGkn4sdJkzMXORqcZ8ng==","dC6b6bI6O3BVXSEJyTKYCQ==","L6HdDIBSaH+MDMEvlpHtEA==","PAAvb4nJjDrKGUhdSeLcyA==","Ta7/VrMQfOA+0nfx2vSwTg==","q1s/UW3Xmr3r1JRV4LaOww==","4uKzwnb3S/WsgcbUiwlT6g==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==","hkEQWbOVLa1NsQStOE1luw==","Ta7/VrMQfOA+0nfx2vSwTg==","t5HSXFudEkkDFJ13rj2GXA==" },
+                    Question = "IPys0tJGNYcagF3zqnqybH0v/TgGYfsJcJbKrXNtIHeMJkMyWSFKDfNcWsoOkFCpri9nro+b46DdGEB78jR9+g==",
+                    AnswerHash = 572119918,
+                    RawAnswerCount = 16,
+                    RawAnswer = "JneoGsuFpKA30Y/1iz6GKnw7NL85beqc+LTGk+Jwio0WqEfZf66yBUGOIwkXgezMaJyJqolVlQau/oE94jeWakBBT8nSFHAXiLOUVWLvoLySHxU0gPOMjdo/6g7PLVzLb3jesiTC/IxiLJgBedzFrQ==",
                     WrongAnswers = null,
                     Passage = "Acts 19:2",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 413,
-                    Question = "IJYVGlLBc77961GiVm5c8HCQVKdz82bELd12XFPF7/TGmY4VbYETbz5VF3UsvnLEb+cBhGcK++fUzbE9DqIPXg==",
-                    AnswerHash = 404404661,
-                    Answer = new List<string> { "BNoTftyJlA/jf5gtzXAtoQ==","G58QSec11vDAjao7rRTwaA==","j9koNwPFQPuNxXf/Sbgodw==","e48khdK8A5zEaHPolKuQDg==","j3VmKRFjx1/CvS+CH0VNgg==","hIIzeeQ4AqVuLZ4uQ8ZCbQ==","3YBbiuCc/zJZ4fpkv7hhcA==","uHjamCtBuqlMB7S5mDwg9A==","i//QqOzrFaNRFpq8m2wBEQ==","j9koNwPFQPuNxXf/Sbgodw==","SD/rU6bGI2MkOV/UvJ4nrw==","rt6FcVW10WVVeh1+q/pcWQ==","tycvgLcm/pNUaHyasT8l8Q==","24bMLkKx8UUf0jQFT3E2QQ==","uHjamCtBuqlMB7S5mDwg9A==","/nnGx87awkIltGXBvxJnLQ==","j9koNwPFQPuNxXf/Sbgodw==","+f2dj+VyKrvPYaS7ppChaQ==","uHjamCtBuqlMB7S5mDwg9A==","LL9km5GrqF3Tf2jNuM41Gg==" },
+                    Question = "wij71uUEPO0rqZcY/9rH4jtcOsDfh+0mEOEEJ5rzAC+7hD+5L3HId/Q8cDtnhQaxkEgWEluae0r6YrJJOi0vmw==",
+                    AnswerHash = -884072162,
+                    RawAnswerCount = 20,
+                    RawAnswer = "nqSjOmTpz5rV+RltK/PFL1/EWMMr5BDlADuPfhndgHJO67I7OLR/as1MW0Jb83sxNgQCUsIYEJdtuknMyBHxZ5FmSUhFI0D8OsU3Us7E1oHO9Oop7XRpuYeJx9Jqa0044agbG4JUmHmBzvkRLj3ymw==",
                     WrongAnswers = null,
                     Passage = "John 15:26; 16:13; Acts 1:8",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 414,
-                    Question = "QP+3B9YBbzly/VLggj+zKNpJKs8bU43VCmszEBYLfLgpREsDRXm/Zgscnrb49UxM5QktfY4iK9Wb2mFJ8ZxpZd2pFAfeuR7xSsPlW77zdS0=",
-                    AnswerHash = 80788257,
-                    Answer = new List<string> { "ZLF9fXrYuUzwtuWRdxzqdw==","VFIl8cW9xe/PiDPSfBZTlg==","6+nghx+dvOHc1OTs0qH/DA==","suuhAUut/cxXHOFno3BdBw==","mOBycn0Ne0kYr2corUxTQQ==","12wH/uWP2+OyRbX+FvUqHA==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==","o+jt64Zi4IFhf0cdEy4Nqg==" },
+                    Question = "HeedcxgCd00hy/3pjsCdZXdtQKxX9pcUadTvb9N2zrCOqKo3f6dgqgCSEpAd7jArfpTYI4ZB+7pKNZYWzMGInDeo6Zdce2GHbv9Lqc2wf+s=",
+                    AnswerHash = -704452212,
+                    RawAnswerCount = 10,
+                    RawAnswer = "iP3Pa0DIJ4WWeK6fQkiP7xiDSIHZloxkVmQUQWweHqdcDF/AGj8DcLV3VjaWaDkVRkrpaz3OqwmaAS2V6jOhCJ2iv1+GekRs5LU/dYMiQZE=",
                     WrongAnswers = null,
                     Passage = "Acts 2:4",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 415,
-                    Question = "iPm1w1g3WMzhLSf4XfT8mvVHpXSEmWssmPRTqU8+4XGAPdUVXd4xeRy0cQJefaHtsPJAhWsjTJEfA4gKKpjSli7NNx0jQfSOeIDnzN2CEWdYNrSVVzDGffhRz9EdWr8zXCRqml3Tx6nAAHxqguPKQ/qkjRvflbGAyPUx0zlLUw4=",
-                    AnswerHash = -1961534612,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","ONLmW/be4SFiRtrQk7wxow==","OByf75d/b5HrheoAenFJNw==","zSXGkn4sdJkzMXORqcZ8ng==","xeeHE40gkN993SR0uYtJJA==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","UBHlVzoPIEaATtN0xs9QOA==","pZzYPc5qIAdWfnsDHNm9ug==","LfQXxBvFaebo9X+jvrtFdQ==" },
+                    Question = "cLbwdOFiZdYm0TuYPGmWDUbcQYHSD6rg4jb01/5ueHcdZUxiHvDTtpoTbBP5CEeVl3ReolZm1qsrDkSGCX3nL1efbCGiL5pSJ3XKTP5dCaEVBJWDNh5rCz3EgJYqQWFyWmFyZFQG6TSyaIskpE2i4hMPUlTEHKVYX/0YB1A9wC0=",
+                    AnswerHash = 1829270389,
+                    RawAnswerCount = 10,
+                    RawAnswer = "E0ICrn/v3tMlUOD4FhfHWa24dUc+PTrWwu+75siSr168td8O4y8AEWxD8kc/mWaAdWxMgPOtqU7dIjlyYK7TxA==",
                     WrongAnswers = null,
                     Passage = "Acts 2:4; 8:14-21; 9:17; 10:46; 19:6; 1 Corinthians 14:18",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 416,
-                    Question = "IhTi6r8Va40bRyJbGyAAgh7WEQIZRjUhGzVke8YIMqM=",
-                    AnswerHash = 481654428,
-                    Answer = new List<string> { "qohSNUC+kihiDp7/Ah4A2A==","ALhthSAlLY4b7ZvPQ3BZKg==","NHpPc8OuY086KCLljOogng==","byCWfbUkohZBKmNsbc2f0w==","IxuO2YBunvOctT8pIVojCg==","+TszyriWReSrFCoKe5qrxA==","yhosT8cR1+lQbpuXY8eEVg==","QPAxhD+/TFthtY9gectGBg==","USzQqTjeVjXh7mtnh9kB7g==","1Mn9ZUjcYm+EPs4+/kw1Ug==","LXGUkfuMGkmzo18UBx7JIQ==","e0yNFCHXotWomfACRwB8/g==","zSXGkn4sdJkzMXORqcZ8ng==","pXEs77zLO2ghD8HJUgWkjw==","yhosT8cR1+lQbpuXY8eEVg==","QPAxhD+/TFthtY9gectGBg==","DteZwv2zHaL2D2traDcIrA==","SD/rU6bGI2MkOV/UvJ4nrw==","GZJv7PgEbp3Q4GGa81mPcg==","/nnGx87awkIltGXBvxJnLQ==","Z/aBdrjhMOPElXOyuM7urw==","uHjamCtBuqlMB7S5mDwg9A==","zSXGkn4sdJkzMXORqcZ8ng==","V+stcPecGGb+vJM+EulTmA==","H5E2Iq4CCZ4XbCIjplQnOg==","j3VmKRFjx1/CvS+CH0VNgg==" },
+                    Question = "0aapLNd6dRe/P+TVR5l8zelkqt0NSm+O8fa4BsVuvQ4=",
+                    AnswerHash = -861542396,
+                    RawAnswerCount = 26,
+                    RawAnswer = "cE7pvuGMBUnkcPZEfH3gT/oAX6MPn58s3SX+k8D1DZ8djb8hwoUQp+tbSDK51egbEk8Wb977CYcQNRt1m9rBYRMXP4MaxX54BAp2aRGKmrErSipco+q/gAsPDtf+tqolYP2O9REuoImso8yxuqaMcvRzISXfqbadOjjXbz1a1Z+SLXxtpPircazdlz+kGFN/",
                     WrongAnswers = null,
                     Passage = "Colossians 1:18-24; 1 Peter 2:9",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 417,
-                    Question = "ahgZAelt5z90c8sFisUQZjObHH5ISej9Q+y4eAdfnIFO72cqcwDVaGXLCXDbp0HyqdJYf0LH7FuiD/zj3HFFzA==",
-                    AnswerHash = 1133293975,
-                    Answer = new List<string> { "4uXkm5Z8LsulS7B9rBfS5w==","Mz1o2XcfPnMTCtM6B6bQsw==","wmlEvFyTKum64q3UXtQG9Q==","b2Oa2zf4OzGfy2VsX9cLiQ==","byCWfbUkohZBKmNsbc2f0w==","SwfEhWWDOFSJkSljJDwNaQ==","XjLTtqd7nh8gxR/hnMx4oQ==","GZJv7PgEbp3Q4GGa81mPcg==","g6jtNBZe64cZrQV5HE61iQ==","SD/rU6bGI2MkOV/UvJ4nrw==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==" },
+                    Question = "CLhydcMSMgTdPVwIXFqbY9A600DmN2Hq2G9kmEnnqbEK8U2emn0c7hWAQlBr78u92RuPeOSM/NoydODoLhg2fg==",
+                    AnswerHash = -919981785,
+                    RawAnswerCount = 13,
+                    RawAnswer = "g5c6I88uuVw4OKg6fO8CGdlHc0wVE9IOFpQb8bhioz3hW1laWR5zutIFfwUdIIhnMqJNoMADRKmGe+ZYksv9s5A4Bwpq+amTItQUX5YeVTg=",
                     WrongAnswers = null,
                     Passage = "Romans 14:17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 418,
-                    Question = "bJvc14qPaKo2CQBhycchh5xeNHnCNSCGiyJXlHnAyE4=",
-                    AnswerHash = -1492676346,
-                    Answer = new List<string> { "ohNhHMyi7DAX2qXE+VKUQA==" },
+                    Question = "0xw1JokJzDBzpdQQ2EuR++C8XmZZp58X0q4JOrZZuDU=",
+                    AnswerHash = -1539749123,
+                    RawAnswerCount = 1,
+                    RawAnswer = "gGlb9VdWlcJ4V1fFd0gbLA==",
                     WrongAnswers = new List<string> {
-                        "JCJoIjcl9pD3U6boXzJ1Uw==",
-                        "WMLouTjN+JVGM/7J/w+YOw==",
-                        "xUbNXvY3HSw6dJvGQJbobw==",
-                        "RZzlQ2ddLAmy8zji3WLnSA==",
+                        "fBaLrePyDCXVAfJUQiKa0A==",
+                        "TUAi8tKNa+wkvyM1HWDX+w==",
+                        "PwWv9NJtgAw4z899OX5xdg==",
+                        "i7RN33G6euHpxVYpCTGfRw==",
                     },
                     Passage = "Ephesians 4:15",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 419,
-                    Question = "XUy485xB4oa5aO7P7fn2LhDPXxcr4b2YMO7dApi3Rsrq9Uw2ji/pbJwALi0JtX1C",
-                    AnswerHash = 1912324120,
-                    Answer = new List<string> { "Ukh10bASJQ3iuutJ2uK81w==" },
+                    Question = "l4o6C8IUIGL2VoBkFUnnCNDtl/7fxhRoaaPXlEGopOPrahJym4ibDpjdqc1dubed",
+                    AnswerHash = 1161047420,
+                    RawAnswerCount = 1,
+                    RawAnswer = "vMJRZWHcw+Vi9tVAcQ9RYQ==",
                     WrongAnswers = new List<string> {
-                        "+vGeA/ICJSh1jccroKIKOg==",
-                        "WMLouTjN+JVGM/7J/w+YOw==",
-                        "JCJoIjcl9pD3U6boXzJ1Uw==",
-                        "xUbNXvY3HSw6dJvGQJbobw==",
+                        "XnM4udo8i9h+OOUlGuiMfQ==",
+                        "TUAi8tKNa+wkvyM1HWDX+w==",
+                        "fBaLrePyDCXVAfJUQiKa0A==",
+                        "PwWv9NJtgAw4z899OX5xdg==",
                     },
                     Passage = "1 Corinthians 3:11",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 420,
-                    Question = "HS27/HbafYcdrABgXodD8FscMJREor5vyads8VKEhWiu5DD9sr/aEoBWcWIa/DYjAmJ5qqAvSSA9/UjSluG3QGF6KjBqOBIaulvPQGs8SC8=",
-                    AnswerHash = 196884855,
-                    Answer = new List<string> { "OvqxQ3QrYMCFz2mVQo/iiA==","V+stcPecGGb+vJM+EulTmA==","wktdr3ifFGETmwJtcmx6UQ==","C+QHtJ1vjX6ofcPhZtnFkw==","odPkzCRzPATC64PlaRV19w==","BGlVD2ZjUqfUiFZRzglc+Q==","yhc9zUrWKMIwN1qrgCwfbg==","e+VyHzSJm7q/d+aePHXfDw==","KbwjtXdeZQ8LHGuS/5xGPQ==","eFwc/agjdP74a66X43kl9w==","aHiAWBLZ/fHnmjA1Doh98Q==","znMmOdUW/d6AtrO/66RYQw==","KbwjtXdeZQ8LHGuS/5xGPQ==","SD/rU6bGI2MkOV/UvJ4nrw==","dLqm49OmDQSjXjn38tHcXQ==","g3ul2QlJ5vdem/H7zpOxrw==","nn6AFyLBkcVBvbYakTKTUw==","mSzew6bwgJAcOrztqho1AA==","KbwjtXdeZQ8LHGuS/5xGPQ==","cay9VNvKmAYQHyiK+LIvdw==","t5Pt+GzKs19IqPmG7hfrYg==","aHiAWBLZ/fHnmjA1Doh98Q==","0UmPkxGG3zkpYmjbI/UaYA==","KbwjtXdeZQ8LHGuS/5xGPQ==","XmexL604tA64aJR6mGCoww==" },
+                    Question = "HOJSxA5RMmlNZl9CdAt9GhdFp+zDJQAKOhEqqLnTkASpUTdawjm1qhPS4elAhu/iOqJ2Df4ODAI/PLdsu2qx6bZSuWQl5JXnC3NbRA0Lck4=",
+                    AnswerHash = 79822098,
+                    RawAnswerCount = 25,
+                    RawAnswer = "VLnON9n8O/bR8Ve02ILGwrtYospadmqFG1BPC9q85rpjfY1Wx6czpkwH6EnvmwQjlJN7oBJzJYhdaB+Kg9eSS8A4K23Coj4WbG3T3x40JzUe/HqnjQkY+bJMOzC2Jl+NCWfSTXRYPaQZt+JKj+xMoyIeY8MNiHQrkVMSQDWXgxI=",
                     WrongAnswers = null,
                     Passage = "Jeremiah 1:4-5",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 421,
-                    Question = "KpRlvgUsPh/QqjIad2frKQzlqSXDR+uI2CknJOU5eMauqX64WAhlRZY09y8azTLojN+Zexs/h844IRtf/JT+Vbl3zngab62f+xWXKj+kNmI=",
-                    AnswerHash = 834470702,
-                    Answer = new List<string> { "TluL8b2b9nx/Ysf6agKWub/m+sxERmYq3ovPJIFUQuo=" },
+                    Question = "Qw+oSp5LfGEUp+zBqav0ohxDlmrpq/bIieyQ+3qK/HZ4WB74SbyUrm1JD8CyOqD/WTiH5xMLp7b+Xi6B0IwBY/79+SybD4WN52nI46b6K5I=",
+                    AnswerHash = -1912880417,
+                    RawAnswerCount = 1,
+                    RawAnswer = "486UUKU2Hlqn7CupxtvESQcxfrE2cZU/7hhCQsIxIxU=",
                     WrongAnswers = new List<string> {
-                        "CtZtpWQH8i28PowD9MsWOJnPrVghNGUOLrjhOo8kq+o=",
-                        "38RfV1Y5XCa2Q6cQoY12GceSbJIRG3Vz+ItJZI3i/3M=",
-                        "k3GjFP+3pl8ZFkqg8fD0+2Nw+OPaHzNIDo1vd/pkQpo=",
-                        "0osDL8MDPNG9phRasG+1adoziYMxdEl08k0txd5JW0I=",
+                        "8Lr1cggVbCpQIHld4OACOyyP0lUled8KGkF8iOPbFH0=",
+                        "QqH7sJhwC3pPOlMh/qxMFzBL56NX22YcgerpiYnL9WE=",
+                        "9OM2JAOiL1+3TKLKqfJc6U4c52K9vV+eoOJFza12k+o=",
+                        "t7zXmncQYvll3zneYzsdkx525s51Oso0dbiqZzTbuGI=",
                     },
                     Passage = "1 Corinthians 3:9; 2 Corinthians 11:2, Ephesians 2:16, 20-21; 5:25-27",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 422,
-                    Question = "Nrm54MwnCl87JNNcsAo3eTz+89CWUQj8KSHD8t3/YAw=",
-                    AnswerHash = -1492676346,
-                    Answer = new List<string> { "ohNhHMyi7DAX2qXE+VKUQA==" },
+                    Question = "ID515sCNsTbSfg4E2jCeQKIgE7vpFzR66jhnKBC0oY0=",
+                    AnswerHash = -1539749123,
+                    RawAnswerCount = 1,
+                    RawAnswer = "gGlb9VdWlcJ4V1fFd0gbLA==",
                     WrongAnswers = new List<string> {
-                        "WMLouTjN+JVGM/7J/w+YOw==",
-                        "15eLbYN1wDccohuExfXzxA==",
-                        "mSURufU0p0gpxBljl6AoiQ==",
-                        "+OPMN4K1+jv4FYTB/h52iw==",
+                        "TUAi8tKNa+wkvyM1HWDX+w==",
+                        "jGAPxggWwJ+QH55pc5cGOQ==",
+                        "NYsfCnqZE6pzUFFBvuuklg==",
+                        "ULmxGv77jOIw5o4TB0rPsw==",
                     },
                     Passage = "Matthew 16:18",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 423,
-                    Question = "cyvonX3NOHmDIJ0qDyddh2EZg4o6Q9i6i6xSSktdHNkYXalgV2TERPbUSdTraJJa",
-                    AnswerHash = -1970826868,
-                    Answer = new List<string> { "mbN2SqM4Ms66XM3x4pO7MQ==","gVm+mDOVW527tFARsp1a9Q==","byCWfbUkohZBKmNsbc2f0w==","KbwjtXdeZQ8LHGuS/5xGPQ==","NBGWAbDfEpGZtuVECD6lNg==","Vj6Ghfy38vfJk38WHDq/tQ==","1IB8zb45XPxAlfAabh15hw==","BqHuXymoJUlaq9uOqEQa7w==","abYWldbrSWSSck+8BXh4gg==","3Ms4QVYJidef0vjhV12OWA==","KbwjtXdeZQ8LHGuS/5xGPQ==","UTgZ0QgwQDTe1kRPu+ECsA==","RsaVt0e7axGrJ8RpbZW/og==","5jGM2Hje8A7z12XnGOCtcQ==","SD/rU6bGI2MkOV/UvJ4nrw==","Pp8AMrw54b3T3a9WXLtzSg==","4ROpDELlhF+CwMRVw2VrDA==","csFNiXTSusApFcWTSa+MRQ==","ONLmW/be4SFiRtrQk7wxow==","hD4leEz4Yl/TFKgQ4qlkbw==","0xWnfp6qh/BEpjF9IeNaDA==" },
+                    Question = "5KIOUmYeOrjuMDvDTzKEbgVFaFNkGV2dwww3yJbVGQCb+gwAwFhoepX1hxgZbaXz",
+                    AnswerHash = -1533557497,
+                    RawAnswerCount = 21,
+                    RawAnswer = "Z/dOhvoFwKwKHulpZi0qko6WXAEAtqlAl8ijRD+yBO1GulxEyxng6drhfdj5J9QWRL6hLPkGYkd28Tu9jSTaAif84F56eHb010XJRb3FK+rbbOafzPyHtskz/rZDk35wqg4XUUnJ84E+6P1SSmsClw==",
                     WrongAnswers = null,
                     Passage = "Matthew 18:19",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 424,
-                    Question = "hWeGKxugSQNzpJaCcL0PW5xSVpTHDuqT4Z5ns4D78x2C76/O+PJ6gmAgcqY4513G",
-                    AnswerHash = 1925394572,
-                    Answer = new List<string> { "AnSofHLgQXVtiD5nWuaLaQ==","KzYtv0BMGJENnKG3p78kFw==","u5tJoMLD6tALPUILPIWO4Q==","zSXGkn4sdJkzMXORqcZ8ng==","xs/gktjYRVW2K+hyEcVF2w==","GZJv7PgEbp3Q4GGa81mPcg==","zoOMhfqDmPzQcjF0lASFzw==","zSXGkn4sdJkzMXORqcZ8ng==","+Evax0VjPo6Z0ZDu7FUv3w==","MkHKvjsw/vCeYFN6D7g58g==","uHjamCtBuqlMB7S5mDwg9A==","dF0d7zNzZl0FzkrSYxWPvw==" },
+                    Question = "qf4ZjHgam7zC2JV8wEL60oo65zCOfWOL95yDGp7GOXwktWuxWnzbt6K841uTSiyk",
+                    AnswerHash = 73806562,
+                    RawAnswerCount = 12,
+                    RawAnswer = "ZLwiB8k3uiHupsHgwwgIzQPoDicDbvZ3VCb1GNo1VIHL25Veqw9VhCQP0Gg3aCSvyIiaS/ec+j2YuvxqjqNS8g==",
                     WrongAnswers = null,
                     Passage = "Mark 16:15",
                     Type = QuestionTypeEnum.QuotationQuestion
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 425,
-                    Question = "tr+BA/8/lYakXHlsrKbaSarHxLCe0nH1aP5hjyc4XCxJScsBOA1X6G7/6pxTl0V+qPQ8IW9xaxfKRJFM5zCm4L5GpnBhdd56bGD8wg7bOlk=",
-                    AnswerHash = -1457666713,
-                    Answer = new List<string> { "ztRb4avVl7ecOoys/iyI6Ph4C/d4ngDSHJycLsAr7gY=" },
+                    Question = "2KBEqeUpIPq0aXn7BcI+r2WlKL8iQ8yCAzzWJQsr1qOOE6+Qh8ZZKHNJ5YafdFH+a5LONVvsNGMPemuExQrq9o8GicVt+4P43iCrvC4qKvg=",
+                    AnswerHash = 214797515,
+                    RawAnswerCount = 1,
+                    RawAnswer = "XRdCZhAGg/4b/ImbqZZ1D55lv+Jt7Wqg6DZfjCJoo1s=",
                     WrongAnswers = new List<string> {
-                        "xlEG7pUYlMoZW2ATXD0VGNkpGmkoVuDf3MfIA7rqgRE=",
-                        "pU+wXuCGNu6jtcs2sdIiJpcfUVKpeRXAOYxG8YoWWHo=",
-                        "HC7WfjymFX4+/RizHoOeiQ==",
-                        "tiV0MHjSmNvVdX0fiGQlQS40yEmlm8I1A3CLmjLICUM=",
+                        "bqAt2H+6SA8z2bICd2BMNsLTu2Pq9xrlrkvqDZH0fuY=",
+                        "uLf4uJJqrBFw6iyeYWVKBGn06sj1+ssbzdQOADIF8Ag=",
+                        "NZt/eb0/EJwcl+K9KsOb7Q==",
+                        "/bgaYbMn0cn0Kc6XCxXeBPebiUxEp5KHddeYkkW+aQk=",
                     },
                     Passage = "Matthew 21:13",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 426,
-                    Question = "n6D03RL0AfHtmGiNkdi/lpjWrcAwblD5t74rNrw+FYKfptgCk3ebpxzv8RdIO4yE",
-                    AnswerHash = 2023660120,
-                    Answer = new List<string> { "BNoTftyJlA/jf5gtzXAtoQ==","G58QSec11vDAjao7rRTwaA==","L6HdDIBSaH+MDMEvlpHtEA==","/n05yQOiwC6EAsIMbwp5Mg==","q0MVuhIfFguN/h48FRZmLA==","Ta7/VrMQfOA+0nfx2vSwTg==","ZdRnzq2zcjEoaZp8S29KmA==","G58QSec11vDAjao7rRTwaA==","byv61iTc1e48zgFL/TQTFA==" },
+                    Question = "wU4RAN6ZRBtHKWIaBas/QldlhVOHxSS7XmRrf76G0B02TNEk/3bw8dDhI/vHyMEy",
+                    AnswerHash = -835895890,
+                    RawAnswerCount = 9,
+                    RawAnswer = "6npy9HtCzwyv13Csxe60zNTSut6mb35LPkbw+rEANurnENT34D9fSCdNVRFojKjh",
                     WrongAnswers = null,
                     Passage = "Ephesians 4:11-13",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 427,
-                    Question = "oL61tSHC/c6XIS22/HC8unXn+X4NNhOBnLDFcGpawqPeVGllmcFOA1VK4xw2QUEU",
-                    AnswerHash = 1365795859,
-                    Answer = new List<string> { "qohSNUC+kihiDp7/Ah4A2A==","SNXcCU1ueCHwEMn2xcL5xQ==","dUuQc8pIJs9xWomZ4CZl9A==","QPAxhD+/TFthtY9gectGBg==","wmlEvFyTKum64q3UXtQG9Q==","qIELl2MJe3WAFk63RdqVcQ==","TLqyzNrtAYeh2zQ7oS11pg==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","2i4xbtWMUUcCUrJUjGpqwA==","uHjamCtBuqlMB7S5mDwg9A==","yR0YEboOYPPcgD7HM6/qPw==","zSXGkn4sdJkzMXORqcZ8ng==","V+stcPecGGb+vJM+EulTmA==","iP9SJOjZULUp+MiN7Ff+HQ==","wmlEvFyTKum64q3UXtQG9Q==","aCHvVE+RxDsvrx/sJyPLug==","qHwZWwVnSUnavKYKwWxoCg==","byCWfbUkohZBKmNsbc2f0w==","URCPZtq4xZGEpiCN5oFeuQ==" },
+                    Question = "NvoyqYhk/ivsr7/HiWYascFI6rxzZowtY8T1cFFjJyQKY2UIno2o5BgqypvQMN3M",
+                    AnswerHash = 1885228382,
+                    RawAnswerCount = 20,
+                    RawAnswer = "0yTyJvKTBvg1mTPa4V1qmFLGeHk3Lv+l11yumbd7JK5lf+LAuPX0lF4grAfRSpFWftctpJt7gKsnq3L50F1/hpUpFrEEwbh8J2LelZsGlU/ypMXqUfmSxeygv/Wf+hHV1Xwlh64a1kG7FXECXVDpdw==",
                     WrongAnswers = null,
                     Passage = "1 Timothy 1:12",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 428,
-                    Question = "7kEzYweipYHs+SbmNzxVYVI20aR0gNk+YuvE/K8z3R9JWQsWDjxLe1vaeHqFz7Qk",
-                    AnswerHash = -2115132994,
-                    Answer = new List<string> { "HirI+xpTNQW5n52dXbjWtw==","IyeGRmI011xKBNuCc9Jvgw==","GZJv7PgEbp3Q4GGa81mPcg==","ctrvpcsqY6ScDAvoak2cWg==","e0yNFCHXotWomfACRwB8/g==","wNhdm1nhYC1mptyDJciNAQ==","uHjamCtBuqlMB7S5mDwg9A==","g9KdJl7DfwpxzqnfgDz0Dw==","ONLmW/be4SFiRtrQk7wxow==","jzW8wYgwTxf1iJK17kYDeA==" },
+                    Question = "0yR8dwJBPH/ht2jN28bHwLFcLTRctbOwYf1PcMOK422AahZEz183Cx0IDKgUrCWW",
+                    AnswerHash = -1017822543,
+                    RawAnswerCount = 10,
+                    RawAnswer = "jIzjxTAx9BlL8RJKPD2fxf+pBqPc2lBzRVdlGzc9Y1SDtoCOUT+x+JI0yg5amqt43PAqfJ5Fvxye7IDrfklM7g==",
                     WrongAnswers = null,
                     Passage = "Malachi 3:10; 1 Corinthians 16:2",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 429,
-                    Question = "g+ajAW44lTkS45P7Qn7Se8ZZpLvg6aZJz9JLh0fyuII=",
-                    AnswerHash = 1464609772,
-                    Answer = new List<string> { "W/bqheG90gIUzrn1b6tWRA==","byCWfbUkohZBKmNsbc2f0w==","C4yumzHPOaNiniSSXkZbrg==","X4yn6vEa897xpaY6rQi85w==","12v4fH6Wqi+5TwlLe8T3kw==","ytDOZbvAKSYoeOh1mFgVrw==","uHjamCtBuqlMB7S5mDwg9A==","epoUy674U/s1cxM4Wqp50Q==","GZJv7PgEbp3Q4GGa81mPcg==","4bTrcCp7YxkUIzXRZZ7u4Q==","FJk2+V9+EtHcpO/KdBSc4w==","GPaq/ZNtsEZPfEAtJpvlMg==","uHjamCtBuqlMB7S5mDwg9A==","zSXGkn4sdJkzMXORqcZ8ng==","z2rcdK+3wSw9SGqoKbnSAw==","uHjamCtBuqlMB7S5mDwg9A==","KbHzvORT4F3O85e2kpLHmA==","ULHPCYCu3ZndFq2Hl5JcXQ==","IWQoGyDP0EOC4t+OdWLozA==" },
+                    Question = "wmVK+udOg9Yok+F9mvJs2YtVorTwhmedfEEbZYfELDA=",
+                    AnswerHash = -153455373,
+                    RawAnswerCount = 19,
+                    RawAnswer = "FGXpMMIbQkjc+hA1iKGW9jSJTWSbI9Dkq5Y8mXIweCaydzMq5d8ZOvpug7fup/O39xSpU8fHONPa9uwVmUHdlQDCh4MUhpwOIp3rgatX6zxDJ921wEulfNtBNHbjxlMnJKOlxHkeLqrdnURvOaBGjg==",
                     WrongAnswers = null,
                     Passage = "Leviticus 27:30-32; Malachi 3:10",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 430,
-                    Question = "dGvoxq3KTbJF6qNad8Z/HIpRqT3iQsb+JTwELJQEiGLrVGsSmGcePfw/81gsAUnAuhIRKtdWxlCZudlFmGvKbjFQXRI+rQXcX3kxojN+pfAW8ATy2RW6vfrGARH4hJob",
-                    AnswerHash = -2122180528,
-                    Answer = new List<string> { "ZQlkuWe4M2fw9sy02pFGWJDWVlKS6w2+WbFybo5k8Zxc9LZ4ivCOF5udpD7I+fCE" },
+                    Question = "qcOqxolzIiRXXgxmzkFHHoitIttQ9p0FTPDrxTCN+gP71dtWnEi1kQlZmWTT2JQT6e/QYvvB7b+QZn/DDxR1DCj4G5Rzxmdg9Nql6SytR+vYxXpmeqTeYcirCoIxmXIJ",
+                    AnswerHash = -327676624,
+                    RawAnswerCount = 1,
+                    RawAnswer = "oUkKMc2T6uNvUczU74R1SxscFkvn88V9mbCM0lglRGE6fM3AkW6QgbXRL5zmzxUw",
                     WrongAnswers = new List<string> {
-                        "wPcW1Huhox63sValPF9Uz4E9F84lnWH6DSgy1CV5nLc=",
-                        "44c4bya3xvurNcSvHYIBzjyle8/kYC+Zo6lTzMFTWbI=",
-                        "crcBYM+zDRGwYw6n5g2wr/+ErYKPAPoSQK+GftJzLF8=",
-                        "PcTJXBlLWXlVT2w+iCKNOah25iIT7TiBjso5D74BlFI=",
+                        "TUGk7asHRo7gvTzmS+lIdOVradNCIPLmhJMxCmbdq/g=",
+                        "ZNgSdmK7oqBejSvX1MIRFK9gZuL5Bk8DFTusNehotiw=",
+                        "5qDUxaNS6fQFPdg0Iub+XB1bpJIsUlMi7ysaD5T98oE=",
+                        "Ww+AF+nBLoICRva6GadVgjZ5dBcfPpYApQc8sJvc2kc=",
                     },
                     Passage = "Genesis 14:18-20",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 431,
-                    Question = "Sv9FtmuD5g7oMm9+Vo7EnYEzFzZcLPIrar06vFXUXxc=",
-                    AnswerHash = 189143332,
-                    Answer = new List<string> { "ANwvuvplRSIacALpUnEFBA==","GPaq/ZNtsEZPfEAtJpvlMg==","SD/rU6bGI2MkOV/UvJ4nrw==","KTwcXislwnY0jj1jo9tAYw==","Nby3zj7Xn5tGLiWOJSoTzA==","T3M0Hf+whdmEPgxHozgjGA==","uHjamCtBuqlMB7S5mDwg9A==","epoUy674U/s1cxM4Wqp50Q==","SD/rU6bGI2MkOV/UvJ4nrw==","cMd8J9z3DlqyU4wPNE6NLg==","uHjamCtBuqlMB7S5mDwg9A==","zSXGkn4sdJkzMXORqcZ8ng==","5kIox3CjLJyNVbMpHn/0KQ==" },
+                    Question = "ewgaScvMzTO8ueRJFCNFWUrQTnOdMgNRbWs+MTed+WU=",
+                    AnswerHash = 1068674017,
+                    RawAnswerCount = 13,
+                    RawAnswer = "++iYVVsrHZkcY8BC2yMmWmbwZ1Vn1qq9xgWDJid0xIU/i6Qy1yNPeXpl+SqLnOxesZQRAENVQjwqVysjvxjppljawb765OxShwtAs4pCmXM=",
                     WrongAnswers = null,
                     Passage = "Malachi 3:8",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 432,
-                    Question = "t7A/wKMnExNFAPfWjif+c86TAQKS4qmN6VHcgcfES9A6KVhlraAaSm5BfZ6b5zY7cZuUkOUyZwCVLHQa8fFG3g==",
-                    AnswerHash = -1046556117,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","H5E2Iq4CCZ4XbCIjplQnOg==","PAd42iCp7Y7AOJ7xw3GoQA==","zSXGkn4sdJkzMXORqcZ8ng==","SFOa7trDaQLeEJpNMCEH7Q==","MiGlGy1xQ8jjzh6Lx88Z8Q==","KTwcXislwnY0jj1jo9tAYw==","GZJv7PgEbp3Q4GGa81mPcg==","ZSfh+LRyBe63Zo0XmUTbyg==","1IB8zb45XPxAlfAabh15hw==","zSXGkn4sdJkzMXORqcZ8ng==","c664zXfKEmE59T99/NsdPA==","byCWfbUkohZBKmNsbc2f0w==","3g+0rrVIECuzqSCdjPiG0Q==","bhQuLgzC5rtNZcmZpuvY8w==" },
+                    Question = "P22Fs9FBh5LDqMBN6t5ZFVqNxXTxbLhNAT3o1FuPdIsExruYbbaHmX0rqW1A2wPJMlgkOc4dnYdtKKC9U4Fx8w==",
+                    AnswerHash = -1071513367,
+                    RawAnswerCount = 15,
+                    RawAnswer = "XWfNzZpCYlig2qVNT0WVoQJvM4X02JqgbC6i+eHPpguQa0jqvHlpCPKo8f3Kv+4hV1hmxps9kze4I60VtZdeCLP5TfdYLjsVA6sA79ADBsUUUq7k8DGuMwoF++W7qz+2",
                     WrongAnswers = null,
                     Passage = "Colossians 2:16,17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 433,
-                    Question = "7h/eU3HdE7/3ICQi63oxYQq4VmWTXlVKG209HTAequVvA3k/oBFRMBPi6lbph5Av",
-                    AnswerHash = 1789850357,
-                    Answer = new List<string> { "Aue03ocwkfm1EsWbIgVBOxT6/Bfkx7WhAmJBGMwRkrc=" },
+                    Question = "vsrw0t4XkpOp5lWHqWKPKpDuuZyQ8C2S2ZCJLpq9oMqqwShoEiy38csgmXed38WK",
+                    AnswerHash = 91943677,
+                    RawAnswerCount = 1,
+                    RawAnswer = "MseRSk0GuHKiO81pO5QBQhY+3JqzRcVUcwpChgtm0Nw=",
                     WrongAnswers = new List<string> {
-                        "3haDEeyY7rg9BD7dbbdnCVCebHYl4g7YcBfLLBvXzQI=",
-                        "fKkAJM0rplAK4z1FOtMSeBSt2HZjvlQGC4e4IBAud2c=",
-                        "/TYnR02bacEjYpPBKPfogB4ufZxDwawRpPQKrrl2nf4=",
-                        "9Bwpnt6hinCLjU5cTYlKKEE+lbSSnoE0H0v2Au5sR4w=",
+                        "PmgCuBRpPKhjq5f1DU50XRNjDIGlCtWDLxH88JJfZKY=",
+                        "u2LHhQ1NIH6+KrULphACkfvWf8qHyh41BpaHWiw63xk=",
+                        "A+/+sLrbIciSM9nCNjzdZ7S5M32rqe2LeqW8C4i1mSg=",
+                        "iSMyqbcuPEgZ6HbngwXWY3+kGIeiof+iJPqShyh0moA=",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 434,
-                    Question = "Nbqs/HQaLgTujVpGGlXEP8ij5CKw95k1G8taGTFGz5RNT+mgSbgLfK5GMw6koaFyI1s3L02t6bTz0TwJch30SA==",
-                    AnswerHash = 1006385607,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","RJcl/xuirTio8ilPjqIJ0w==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","OQXBdxtB/eEfC3QgFqZZKg==","6c6VKfOM2Su7P4aRGBiijQ==","z6okY4fRwxh3bPnhTbheIQ==","GZJv7PgEbp3Q4GGa81mPcg==","wmlEvFyTKum64q3UXtQG9Q==","9bzUSORDM9VFLERanu2Ztw==","b2Oa2zf4OzGfy2VsX9cLiQ==","SD/rU6bGI2MkOV/UvJ4nrw==","j3VmKRFjx1/CvS+CH0VNgg==" },
+                    Question = "gABSpu9/fwZjGFL8R1rIEY4Peyvg8nKATfXpaWZhYMkz3Q58iTqWpO4spMfgciuNGUmtFTIYmuXlztoug4/amA==",
+                    AnswerHash = -848768748,
+                    RawAnswerCount = 13,
+                    RawAnswer = "QwMe32j2s5BtQ3PIROmpWQEI4MDcd6H3HOHEdb+5MpA9YyFcoamKT0XRmkkm73PaLu4f35ytmkscYMB7NKo7TQ==",
                     WrongAnswers = null,
                     Passage = "Romans 6:4-6",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 435,
-                    Question = "p0PKieHHUWl9mve2C9nRO8VrPSSHxQ+y2wkAf4KR2Nx5yULTlSnF/PiGMhlIshfH",
-                    AnswerHash = -758210024,
-                    Answer = new List<string> { "K2cpBWTe9ZKhXFbJ2sFOSQ==","SNXcCU1ueCHwEMn2xcL5xQ==","yhosT8cR1+lQbpuXY8eEVg==","EAGW0Cfhe42s2QhpMXHc+w==","SD/rU6bGI2MkOV/UvJ4nrw==","H5E2Iq4CCZ4XbCIjplQnOg==","b4lPo8SMSYYarnJfPHVtAA==","12wH/uWP2+OyRbX+FvUqHA==","XIVffLkKfVEFsTRbEONUdQ==" },
+                    Question = "OiIFN/zIfouReiUQYpBHKvCCkb5H+eorR9aMHSuh8WfarZx/leRrSG+esABzPvLw",
+                    AnswerHash = -797549148,
+                    RawAnswerCount = 9,
+                    RawAnswer = "I1xTl241yRRbe3mZ/BbKCuU4O6c0xgaCWojSdz1cK/pRmj9tKgtiNjwhLsSVfL/9oBVslpUDqdQYMsIvQ0XyLg==",
                     WrongAnswers = null,
                     Passage = "Acts 2:41",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 436,
-                    Question = "1b0wHLo6NAjTKcm5jGvfu1Kvd2rHNh7MC8mxgBB27MJ9+eGY9K0B2ASdqMHWx/fG",
-                    AnswerHash = 1102055916,
-                    Answer = new List<string> { "nwem+GrC42B/3xN4g2Dx+wQscAPeIj3MWdg0a5fBNRY=" },
+                    Question = "qPkORNIuAkrVPCwrAC5NyA50VcXKAsP/dP4BJwqDhXpNJ0962DxChWGCzf7Vyqf/",
+                    AnswerHash = 805236410,
+                    RawAnswerCount = 1,
+                    RawAnswer = "/uSMsDP4YtSUgjMIJbtVozPDKaUjASUx95gaCxTMdqc=",
                     WrongAnswers = new List<string> {
-                        "fGE2EsIL3BcMpSwFQlO4RFEgoeiwSCeYqg/J+IuVrTQ=",
-                        "tp3ySItRFynA7gBCqni+eg==",
-                        "Pw0iyojiaVNgpcZ97bBt7A==",
-                        "qdvtopMG+dSxjtABylnYKw==",
+                        "0XDA0EWvI1jnco/2Q6dEVBqGw6tG7+ui5oQlASN5u3M=",
+                        "xWp3HC4D/7kr15EgGPIt5g==",
+                        "iCUH7PHJXkDh1lmqYARoEg==",
+                        "jvb5OE84f27SCwQr77baNA==",
                     },
                     Passage = "Acts 8:38",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 437,
-                    Question = "bHfhIfLVf8jsL706FvT7XH6s83zqnHyIeOWDHtDKAJ/jZJ5uNe56A0cIBAFUyZLR",
-                    AnswerHash = 1714151361,
-                    Answer = new List<string> { "YrrSt/baXt2vp2hoetCBgg==","zSXGkn4sdJkzMXORqcZ8ng==","buokk9O29BrVGvYJhUK4ZA==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","94C8L6Q37FDFU43dYL5ZDA==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","E95xNBdO33xP9iuDRqvxDA==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","P5lpOAmxOg/JhzYrLRngIA==","2i4xbtWMUUcCUrJUjGpqwA==" },
+                    Question = "4WzEdDydTySnihn5YVXhVZUNyKqTVwmsUtI6IQTTgH1Rh6AZ8NPPiqwq4L85y871",
+                    AnswerHash = -349634730,
+                    RawAnswerCount = 13,
+                    RawAnswer = "9/6IqKt7BatUuod4L97ZeqXujRjg6UbLJo9Hg4K4XAIGOB8fwB1jx3gE0OzyVq4Riwgn2JXERjX4qLq+GmYsHQ==",
                     WrongAnswers = null,
                     Passage = "Matthew 28:19",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 438,
-                    Question = "d5f3HzJMW6H+w6lLFiCHCcHuQoMoMasyBtZYgU01oEQC964fxsZaQMX4ciQr7c8iftbYsSEwu4ANNxWAjWPFWw==",
-                    AnswerHash = 578996520,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","mCDCAvKT3cUsL+zxeMxbvg==","GOA3mlrY3js/SQ6wB8Mc1w==","zSXGkn4sdJkzMXORqcZ8ng==","ALhthSAlLY4b7ZvPQ3BZKg==","byCWfbUkohZBKmNsbc2f0w==","XhEnXVTriOJA39m6Q7iKMw==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","rOt5MYb1YyVpx8oT0aZL8Q==","GOA3mlrY3js/SQ6wB8Mc1w==","3g+0rrVIECuzqSCdjPiG0Q==","Qk6pxY94ihhkiAVokS0+QA==","12v4fH6Wqi+5TwlLe8T3kw==","PpHU6q5PjRkQeSsG2niZAw==","QfD+I+flO6ksMV9XjYAe/A==","hD4leEz4Yl/TFKgQ4qlkbw==","qPoQSPLZzCWK6ydwuALa7g==","4rT2rmUsrv1VP/p78MmyRw==" },
+                    Question = "JmQPjl/Glt1+VjhkarwwX3qOOGTjpjsIithefxaReAMVBJjoQPozA72eqmFXU62jmXSs4oPun+0dESOdRgv0jw==",
+                    AnswerHash = 787291845,
+                    RawAnswerCount = 19,
+                    RawAnswer = "TftuVRzyDKe3XJ2clxRaxgehaizhy15TJzafUmWm+vT8+iX8+5COqDRg+5fRzSC1pitkOQUM1zJ2bqq6kqFXs/hGeaUT5q2HVA83NF1xcay/h2DemCO/rT8UvSuG8ZgKJsHa66eypV47xWmEqiLE4g==",
                     WrongAnswers = null,
                     Passage = "1 Corinthians 11:24,25",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 439,
-                    Question = "ccc6aXittKeIJvUrN9boYy6yOIoZXVHUGe70IRqNElNTG76Ro0a61wqiHHd9oYr0ZIu2IBaGIe5t4C4ZqKjQuwmftqKdqAZErnhuHascJgi4WtKhEnsOlvNdJ16485kZ",
-                    AnswerHash = -1685830835,
-                    Answer = new List<string> { "UnEUj+NubaAD2RSmXd+43w==","ZsGO6dUZeolU5iL73Zu9RA==","tEkAieN/MVKIUKuACah1tg==","KbwjtXdeZQ8LHGuS/5xGPQ==","Afj6YgaRijR0yVHjG+y0Sg==","odPkzCRzPATC64PlaRV19w==","mCDCAvKT3cUsL+zxeMxbvg==","GZJv7PgEbp3Q4GGa81mPcg==","9W1Vz2VRG2Gnj++02RR9fw==","odPkzCRzPATC64PlaRV19w==","JXOB/oa1WQBNwXFfGd1ssQ==","KbwjtXdeZQ8LHGuS/5xGPQ==","qH06W7X4ZjnXJoh7W8gVRw==","gERbz2NerMrpqkwfUSdhXg==","zSXGkn4sdJkzMXORqcZ8ng==","rl7YlMYO7KZqBi8HSvw7nw==","RJcl/xuirTio8ilPjqIJ0w==","jYN/xhChOahr8pmXd9ePHA==","GzJcqlsd4hR4TC9Vli1D+g==","Z+43JTKjgS05U1PDqbYVzA==","fZONb2B0YuJrRBJ3IAzUXA==" },
+                    Question = "BWB9MfGAyIjSMr9LofnxXnLvs7xVlR4Oo8vU4eRdCv0kumrwBtssDjxOC1kADci1beWpxW81WFAv9+VpRDb/s8Z9RcchxSqyy0rbomhicUD7ubDzY884PO1tUWzb+MKu",
+                    AnswerHash = -2127826546,
+                    RawAnswerCount = 21,
+                    RawAnswer = "qXfouWZvZS+w7xb64x3xFfipHB3iqyzKRfm/5m/AXRymWBjCG/Qpe8Sqj2YmqBgrUUbtdCZbQRsU7+zZkebatLWq6gzd7cW90iMQKJIqwsWWkKP9D8wGXwRsK1M7t5XhmJRJjMf4n0+3/vX/cZXsfA==",
                     WrongAnswers = null,
                     Passage = "1 Corinthians 11:26",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 440,
-                    Question = "8ZtG41UrMaa8kuYdsIcvzd84Pp3IduOhkK9773S7GLdrqmZKz01T9Gf7qutxsyI00GaJbtM8377lQPnKr3pAB0pPrLF04wU/+LDme8hDH7U=",
-                    AnswerHash = 227211779,
-                    Answer = new List<string> { "jTpO61CkhfdOL6/O6gofu6LOABr/tIEaKx4Oyjaz2GdEHcWuD9Y+qQlEJqZPSevX" },
+                    Question = "1PwiOvSNdyMab6a/qaCx9sk+oL+NqwoBPybuOB5/yMeBUvD9/VYfXWGOC49Y/l/vkSJyBrqU3oFKXe+JkI8ua7BXQqFZ7vp8Zq7SFoTCj7w=",
+                    AnswerHash = -316448221,
+                    RawAnswerCount = 1,
+                    RawAnswer = "Zl5lt5XZnelOcimYQ5u87+Fy9f3kjQzre4J1lUE9ZJZIr9avxpFqAOS9hlIJ5+qg",
                     WrongAnswers = new List<string> {
-                        "3LvLEv/PCJEZym7W0qbX7bo+g8g5Kj9NbzPI9TlaOBY=",
-                        "cziq7OP3shg4nRmgKtM306FVNmQwnir45zFn2tIN7uc=",
-                        "NtSwtBA5qt8+H1BeXiVhYKpJaOS/CLmwsGmlReY5SkM=",
-                        "yvxe+2DogLDUjIKrt5IJNHtyo3YCc+GVWPUxDBWXanY=",
+                        "SGnzD5QxPifhtvQegv9creo8/9VqjEoSu7zLL9tkjIo=",
+                        "HNAWvgIGnq0aXBiv1joWW/e3uz1+kil6VwBVLpyf7B4=",
+                        "j3KMHkU5doCaow+pi0XiyUE59Dc6WlXZM9QQx/rUc4I=",
+                        "eS7400alIjGZm0+MoW+fbUxgbZWmkODpN4edIO4kiH4=",
                     },
                     Passage = "1 Corinthians 11:28",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 441,
-                    Question = "kUwTdldMV+mlxKnyN7LKDXYe9szNbR6BODp+5aLrC7edRLkqbr60u5nqbDrnRgrs",
-                    AnswerHash = 1842537522,
-                    Answer = new List<string> { "vx6VPnEiWYoMr56v/KBeDoLFgCVVfedJ/6N9IR7axrc+ip/Sbb+/lFacIAYHBi2t" },
+                    Question = "9DjKZrvqqQWweMYOQ+tGfKMRAHrlrvFCq8ej33yGZWBlW8RbaOT2x28XO+KxerW8",
+                    AnswerHash = -1188958771,
+                    RawAnswerCount = 1,
+                    RawAnswer = "O+G7HcLh+6TEYrYFKHingWBAjMsSWGh2o0kcKTPkzUNS+CFZdJmoyuM3KUQwC4rb",
                     WrongAnswers = new List<string> {
-                        "jZYSC1raPsVfLkuo7HvCVF8XGND5s+D0bthi7QEcGn8=",
-                        "/KZaU5hq2MfDfJ+0xvHMcd0q6EnhwDmBeADUokEr/qc=",
-                        "nnUN/JQzCI1mMLHRnSM37gjdacmu7+2dNYvAy5OHm4A=",
-                        "Q9GMU2AnUsbtj0d0kpQDrFaNsp+RTEGzQ0z5Cl+iy9s=",
+                        "HtorxhomGyHadidpi8N/nDJx4xtcqPVw+D/9DJ0rYYY=",
+                        "wqaeOng+UvuwzEhNZNCBvG8BTcJxXahCuzbdaDnRktQ=",
+                        "lq+6goaDU4Nj61P+vpFzNuTD9deQviJotS8r0aBrBc0=",
+                        "Mr26dN6a+cZYKQBfX3ouBR3+rcTSR3wUApQgnnpX+Bk=",
                     },
                     Passage = "Romans 5:12; 8:18-23",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 442,
-                    Question = "huHVh+rxvz5yH6vRDZoYZaF6XZ/HgI0/JdeJeJufoRK6OAA2Q+cdwC86zYPUC7tqfo6EDye92Euz+p7lCFtJcw==",
-                    AnswerHash = -160407568,
-                    Answer = new List<string> { "PpHU6q5PjRkQeSsG2niZAw==","RfTQXBcuNzbtS8JFBIMTbA==","qPoQSPLZzCWK6ydwuALa7g==","Dag9nRtjjFZkHdBTLiUOTQ==","GZJv7PgEbp3Q4GGa81mPcg==","JuurAorNMXgaGubcTpIGxg==","qPoQSPLZzCWK6ydwuALa7g==","wy95bUNmgbovNkyhFptbjA==" },
+                    Question = "U095jDIZt9uzwmYlwm1JHNVEwtnWnWvMO25s8nYokKeS1fPlZZBTVDQWZUJOODEltRAm5+vukj16KEmwGae4lw==",
+                    AnswerHash = -529265023,
+                    RawAnswerCount = 8,
+                    RawAnswer = "Mh2d3PBBEYbZs4sXQ83AQqyWZMnHdjvqPn4srlIJO2oeWWWrVGxURRYkk+bR8CSZq7VpAJSh8xfM/lIE7J89Fw==",
                     WrongAnswers = null,
                     Passage = "Isaiah 53:4,5; Matthew 8:17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 443,
-                    Question = "iMKVdPXgpkqLQ+ziGtLuqbmXf1v5Uf4XcDyPPDpiV9H8DaMZi8WsYANIO2LPyzwy",
-                    AnswerHash = 1642957196,
-                    Answer = new List<string> { "O0l2CBT8CGAOsKx0tBXfbA==","HCxRfRVRUPmsGF1DIlsahQ==","epoUy674U/s1cxM4Wqp50Q==","zSXGkn4sdJkzMXORqcZ8ng==","s/1VYpsjGGG+FvQjCEiBwQ==","CkJNsMUuKuh2iOzEot+ivA==","ESApkXp5JCo8ZrywBO0UtQ==","byCWfbUkohZBKmNsbc2f0w==","x1fsSBInOZdlLL+iNejJkQ==" },
+                    Question = "7hGp0T3865vG0hpUzdj+YnQ1N73UZFUStKF7g93V5f2nCMqwplRsG08Kcg+Zw2hW",
+                    AnswerHash = -551151984,
+                    RawAnswerCount = 9,
+                    RawAnswer = "pz71En9YsiGlHgm9xKwB1Qicl4Ngy/rEWyk4atOL9LM/JQn6PIYY/QyQlWcmhtkhxHkUvYUztqYvTnxj+oL+4g==",
                     WrongAnswers = null,
                     Passage = "Acts 2:22",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 444,
-                    Question = "brLTQMrlCc8fxaloIOJTDLjHVKazjKMhqq1YZ+I9lMn5iGlv7swB3AJnGlr9/QQN",
-                    AnswerHash = 491811245,
-                    Answer = new List<string> { "+0xbX4A3crw1KuOo2Jee2w==","u5tJoMLD6tALPUILPIWO4Q==","2X35iMbP/ay31UwMrSTerQ==","12v4fH6Wqi+5TwlLe8T3kw==","Z+43JTKjgS05U1PDqbYVzA==","uHjamCtBuqlMB7S5mDwg9A==","wmlEvFyTKum64q3UXtQG9Q==","iOB/MHGSqRFqYRISO2iaWQ==","OByf75d/b5HrheoAenFJNw==","Nt754ibIur481zhYd6sKag==","hD4leEz4Yl/TFKgQ4qlkbw==","dWS8ojMlme7A3tcS9xD9Mw==" },
+                    Question = "2NxGOSpuKsFR5fCrgiwkl5VpxtgSd5eRKsp7VCIXDQkdHopMaK6m/E4Gecoe9WOM",
+                    AnswerHash = 324146877,
+                    RawAnswerCount = 12,
+                    RawAnswer = "EnkivrIeCXuFa4bSFsWTaVC315WYm9jGQQ6NDLRrK734GVhJuLT9xmmXq3sIxXMpbJXb6ie9+gBh23hc1Tcy/QXd2kmSTFwy2+oakVUej+U=",
                     WrongAnswers = null,
                     Passage = null,
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 445,
-                    Question = "3L5QTz+65y4Xlx3q4epo3iBqANtDQiOQa6XaiTXLD1OO3fXwp0F11cCsC+HUEBUbzWrqKlH7BdXVudMpSqSWPw==",
-                    AnswerHash = 1617502721,
-                    Answer = new List<string> { "EP51wDLkFwVVZCstdiDUAg==","4bTrcCp7YxkUIzXRZZ7u4Q==","gutuxtjReA/s9ovJkk2kJA==","zSXGkn4sdJkzMXORqcZ8ng==","0uVwUzfct4zeeBH88Ex+GA==","GMM9ZozuHCRnY6tnjmHalQ==","uHjamCtBuqlMB7S5mDwg9A==","P/wCmeHP44yrziDo5Eji1Q==","j9koNwPFQPuNxXf/Sbgodw==","VFIl8cW9xe/PiDPSfBZTlg==","07dxUq/+1ZzeIHJZ6lQWRg==","GZJv7PgEbp3Q4GGa81mPcg==","uejFTSjTY+Hi9jS+cRN4AA==","hD4leEz4Yl/TFKgQ4qlkbw==","epoUy674U/s1cxM4Wqp50Q==","uHjamCtBuqlMB7S5mDwg9A==","st7PrNuu573grNMH/FahdQ==","20ncNgz9m+Ir6/iJktjQYA==" },
+                    Question = "NqrOs+yKCJXEGe/gA+Ob5tL4Ia3Uhn7p8Vxm4BLIB8g877RzEqnhfarWlJslYF9IlY7lgNS9SyzO1zg44LCgbA==",
+                    AnswerHash = 1910934696,
+                    RawAnswerCount = 18,
+                    RawAnswer = "AxiqXTHVL3tDk6LsyX1MMKyge7BG+ac+za16c54cZfYFDaxThoZBK1bvoctKRor0Tu8q0wckvP/whYuOH9bn4ig/AvY47Oiv3PTzOjRfLx3H9n41twGpZct2cFBPzxAF",
                     WrongAnswers = null,
                     Passage = "James 5:14-16",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 446,
-                    Question = "p4WPSP8/Wklh54Zf5RY9T16Vhy14UBT24Z8k+ES+4pNlsRMoP2z8rWL1oZBWPqVq",
-                    AnswerHash = -590834059,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","tYbp5jTEHaUGp7WWYqHOoA==","byCWfbUkohZBKmNsbc2f0w==","H5E2Iq4CCZ4XbCIjplQnOg==","b4lPo8SMSYYarnJfPHVtAA==" },
+                    Question = "PTXmEistR/0ICUIKs5a8z1A19WqKkGnC1/X/DiUkfAKp6B3HZoVMoVcCmFLpZs+A",
+                    AnswerHash = -1891216858,
+                    RawAnswerCount = 5,
+                    RawAnswer = "2gHQOnCMDbKUdEXB22wM9uktIbwYLgkouI6labA5LtE=",
                     WrongAnswers = null,
                     Passage = "Titus 2:13",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 447,
-                    Question = "kBrGnysPG9AyzEubRYuCHFB+8x/ENCcQPs96ZI8jijs=",
-                    AnswerHash = -369993698,
-                    Answer = new List<string> { "PLdCqIrpntGI5VLMXixPlg==","H5E2Iq4CCZ4XbCIjplQnOg==","b4lPo8SMSYYarnJfPHVtAA==","Sk8lipGlICGKFgKQCoILbA==","uHjamCtBuqlMB7S5mDwg9A==","vVJYlou7ylR+f477BVZHIw==","3g+0rrVIECuzqSCdjPiG0Q==","LWf+vhNpKjNUHhyhhyx48A==","gJO15FRcrImQ79czwDG33g==","x45UKmfb9951ztFcWIXatA==","aOMbbeuj8y4GCvzmTy401w==","GZJv7PgEbp3Q4GGa81mPcg==","d9hr3lN050drjbR873/wjw==","byCWfbUkohZBKmNsbc2f0w==","odPkzCRzPATC64PlaRV19w==","xs/gktjYRVW2K+hyEcVF2w==" },
+                    Question = "w4rOTupknamYY+wCKDzfNi6SbktQikIMKOZRx7h2wSU=",
+                    AnswerHash = -2076869486,
+                    RawAnswerCount = 16,
+                    RawAnswer = "JMkK6lmQxvl8fV9nIyG7RJ9Hm55Z405cMy8rLlvf3cUygX1vi9z5IeIK4tPpKydEQjzprBxjB9TfzCfJiuI5wCGEnO0rlrxBtIULtm70zCIBLgDAN2lplngodtrAwNsoBltolRCHJGCbfwuhlcznSw==",
                     WrongAnswers = null,
                     Passage = "1 Thessalonians 4:16",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 448,
-                    Question = "Bp4nZBCH10T0dZ+lJSUpHZQz9Hmw/kr6zAHf3jS/0ZAlQiLBJ3rX20aVlQ/XWlkE",
-                    AnswerHash = 1274389486,
-                    Answer = new List<string> { "RL7WjN0GLv/J4a52UZsbpOEOWV6B53TC2iYPgynEiJU=" },
+                    Question = "5STOBmoxikIO3OQy5sfHkezUn2sU9VaIdEhe3QjGbPgDnGoRFirf4/yQ3jfOVm+C",
+                    AnswerHash = -1155610128,
+                    RawAnswerCount = 1,
+                    RawAnswer = "zlCm5Qt6c0MbKunFGAPCnObjd2QqAzKGOizqfiSqQFo=",
                     WrongAnswers = new List<string> {
-                        "+ymQcAD4LD/qdWhk/Km0Tg==",
-                        "4gJQpo91Rn/I/9r0BmOR+g==",
-                        "zijDI/5AnNrwo6t7Cecqh8L1ODvSrmm43jPDTJ6oeOU=",
-                        "RZzlQ2ddLAmy8zji3WLnSA==",
+                        "ezn60TtT1Dm4d/OoY/ae0g==",
+                        "2Ws3Ye3wY71WcCQ9nniAWg==",
+                        "sz4YZ1xtVxUkkIJQP2QCqrDylAer3vJDp7iISUUedAI=",
+                        "i7RN33G6euHpxVYpCTGfRw==",
                     },
                     Passage = "Matthew 24:36",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 449,
-                    Question = "OGlAf0FLSlbbFL7l2Mn9UtlCRHutpGfNMXSZXH14q8kT55jzMa1DK8XzE3M1QXQXnTp+HrNC+4lDjpaz0qbFiQ==",
-                    AnswerHash = -1824221200,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","L6HdDIBSaH+MDMEvlpHtEA==","csFNiXTSusApFcWTSa+MRQ==","hMYa40rWHg7YB/7RJZ7ctQ==","C+Lt5Lo5tduRgJ76xB/sdA==","SD/rU6bGI2MkOV/UvJ4nrw==","zSXGkn4sdJkzMXORqcZ8ng==","kb8TQPO3+NaUis3zry+oug==" },
+                    Question = "5tSVSHD5ot+VfKZjp3a0IcJ7cq3sQqcTRU3tASxVEWz39C7cxbE9n/YSBqV89OZFeNUeyLb8Xn6/SFGg4zw2Mw==",
+                    AnswerHash = -1137147907,
+                    RawAnswerCount = 8,
+                    RawAnswer = "KeiJ4ssu/mXtFG0ZgYSk36Dyu1BrNfeo04xU1jhQ16gJzRFxvg+2AZsFfwnSiT4i",
                     WrongAnswers = null,
                     Passage = "1 Thessalonians 5:4",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 450,
-                    Question = "qDYlyucAVSjxImAlxYRZafuQuI5OIoeYp4JebVaI9HwelU9fjN2rx5rpHtbkW54g6VAd25r7cjTvPDvxpm528/qWqjuM6LMv/801Y547oqk=",
-                    AnswerHash = -1769377320,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","ckSvKN7pmnMieeYd0ZNEyg==","byCWfbUkohZBKmNsbc2f0w==","L6HdDIBSaH+MDMEvlpHtEA==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","foO1KmNgECFNw71DqgYdAw==","2D3ipf+TvGg+Il2hkIhScg==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","yrBElzL5BM3i1FPm9URONQ==" },
+                    Question = "aQZFrlQu6SHKVsnxd8RFqBsJqGSncwHWj+H6zTHT7mkZDT5SNufXUa16O5xGDkyfmRKiYoBZt2so4UEy4NjvZT77WnaVHtTh+4RrgEF8qJo=",
+                    AnswerHash = -2113977588,
+                    RawAnswerCount = 11,
+                    RawAnswer = "RDix3rkSze2BWGRDhpqk3s6vUyPxF9Bds5IrEvpiLs7BxGoTEugObDTbmbbrJIqZwPPJGBvh1aVZ2W71qq0c6g==",
                     WrongAnswers = null,
                     Passage = "2 Corinthians 5:10; Revelation 19:7-9",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 451,
-                    Question = "NMhOylAuw08Az4syb677Gr73/+NGe7qBXp4m6KkYU/w=",
-                    AnswerHash = -2067095047,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","n8KGXmw4szVmPdtJBe/Z3g==","qcLVM4UMxlFGfd7DYxH2Cg==","OByf75d/b5HrheoAenFJNw==","wmlEvFyTKum64q3UXtQG9Q==","bWgPhT934CUwI+M+B10fZA==","byCWfbUkohZBKmNsbc2f0w==","L7FbDCbQbGIyyeHU7OB8dQ==","5uwj4icnBqz5BMPMv3LCGQ==","GZJv7PgEbp3Q4GGa81mPcg==","PrvE5ec6G1F3FLqwUBFfuA==","eFwc/agjdP74a66X43kl9w==","zSXGkn4sdJkzMXORqcZ8ng==","vVqnmH3/flDzRnR4eq8UYQ==","rPcBYPiQfS/C+tCbTXjWSQ==" },
+                    Question = "OX3dYr6FZ+muWWfA4wlri4cpecT2I15abJkdxPKeamA=",
+                    AnswerHash = 133751422,
+                    RawAnswerCount = 15,
+                    RawAnswer = "VwjUDFyOd7jub0FH2EKrRYRJ3ufO+PCyewY12nJQY0tNMmQePXuJYgC2xa4IJUd2FIFnhMq4LwDskYzATa8TUtw+J6CMfvcJfzRLotvOwizULT8PsIhWU3Yhm75IXqBk",
                     WrongAnswers = null,
                     Passage = "Matthew 24:21",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 452,
-                    Question = "oL61tSHC/c6XIS22/HC8ujY2cAW7lCuZIKCCxsrv6LCAJm9SOrf9TAy2aY2flnYBZDclDCd5eNBLluYQsJ28yw==",
-                    AnswerHash = -306682562,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","CliTOM5Wa4UjJeaHj3xV0g==","yhosT8cR1+lQbpuXY8eEVg==","4ROpDELlhF+CwMRVw2VrDA==","VgGafUGvi/jwCkxVZYJSkg==","zSXGkn4sdJkzMXORqcZ8ng==","xs/gktjYRVW2K+hyEcVF2w==","fJU25mpLXFLQv1+22nhI8w==","zSXGkn4sdJkzMXORqcZ8ng==","n8KGXmw4szVmPdtJBe/Z3g==","qcLVM4UMxlFGfd7DYxH2Cg==","GZJv7PgEbp3Q4GGa81mPcg==","4ROpDELlhF+CwMRVw2VrDA==","PQpX77TMmVmMcvrjHhEDVQ==","uHjamCtBuqlMB7S5mDwg9A==","ZuVeP7gqZWEZYKwHknHzQw==","u5tJoMLD6tALPUILPIWO4Q==","+TszyriWReSrFCoKe5qrxA==","KTwcXislwnY0jj1jo9tAYw==","sR2//piUjsdv7/o8TnRGrw==","12wH/uWP2+OyRbX+FvUqHA==","epoUy674U/s1cxM4Wqp50Q==" },
+                    Question = "NvoyqYhk/ivsr7/HiWYasWOGHDU7Vna/T1kcMpG1OWw0A10q/sXaVNg7+2I7Cz4H7ATKtaeLE52M1V0Cp2Ghqg==",
+                    AnswerHash = 809345724,
+                    RawAnswerCount = 22,
+                    RawAnswer = "m6Jp8mq7nQ8fjG6FPEpMz78qpDCkw2SEJpDGpZe0k25rhvkAHrNibM9HjvCTX4GuuxcWo3mp5ZoXf5gaAwtrHyhSLraYY6vCRgl+Oi+Kuubu+5JzGvQYsOMnvfOX08XNbI9V0Sf6EhlhFJFHmpAHhj/7GYf2tgV8ZnOgze1v0qI=",
                     WrongAnswers = null,
                     Passage = "2 Thessalonians 2:3,4",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 453,
-                    Question = "GE5510LGYrG0VNde4YIsiJHLPFJbMHsv6EHgClQWatY=",
-                    AnswerHash = 449035111,
-                    Answer = new List<string> { "qohSNUC+kihiDp7/Ah4A2A==","vfIIF0js1oAyRX358BQISQ==","bWgPhT934CUwI+M+B10fZA==","byCWfbUkohZBKmNsbc2f0w==","WMy5NmBGoZBvi9EWyqLZ5A==","59OSlRvN04qTRamlM03R/Q==","FmGsVpdzIFqXqIJDxz1srQ==","DXTrNGXg2yckxxN58y+W2Q==","H5E2Iq4CCZ4XbCIjplQnOg==","b4lPo8SMSYYarnJfPHVtAA==","Gx3rV280IxsiO3cTLLwXeg==","VgGafUGvi/jwCkxVZYJSkg==","0BSnTVxtWMKHmLwwXhH2mQ==","zSXGkn4sdJkzMXORqcZ8ng==","BqHuXymoJUlaq9uOqEQa7w==" },
+                    Question = "z9O05DZ7SPF8bKgP1mrB5v9gSx4LPL2CNokasPun3oY=",
+                    AnswerHash = 1422968704,
+                    RawAnswerCount = 15,
+                    RawAnswer = "Fz5xWVoUHrCUM5TgjFw8EByopua4sDrZwZK8tnnrU0xxx21HvvvrZjc/Z1Q9MloI4SGxA2VMAkPuSDLggBQARcCNMpwa6i3IaYxf4nrlCqdpTMdNwoAuuoNZ1mNGZ92z",
                     WrongAnswers = null,
                     Passage = "Revelation 20:4",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 454,
-                    Question = "MKGUb5FB5CCMHMOtipOVfYz7JSQCaW3PO6OjuTyr5qnGHD/iQTLrOgkdcQZLyBz4Tzdcp+0icMBqZZsb1LAqnQ==",
-                    AnswerHash = -643305887,
-                    Answer = new List<string> { "PpHU6q5PjRkQeSsG2niZAw==","4ROpDELlhF+CwMRVw2VrDA==","FJk2+V9+EtHcpO/KdBSc4w==","IGtG4StFqi18rJR/gYWWHA==","SD/rU6bGI2MkOV/UvJ4nrw==","wmlEvFyTKum64q3UXtQG9Q==","V32WzdXX1L23rNnJdOyNYg==","Cg6y57HXh9bS1v+bfATKog==","q0MVuhIfFguN/h48FRZmLA==","SESNeD1EtiCtWOHkaVmC+w==","GzJcqlsd4hR4TC9Vli1D+g==","iWV2Fw5Izv1AdvJuZHpvUg==","aTOx9v60mVR3Teg0z+6+aA==","mAhtoAY6eiqufRn5opya7Q==" },
+                    Question = "eBb6StWtA0SdvHBv9P8hRQcWh0UlEnuUTV7yKDIV6Otf89JlXS4IjLYi4BxYJnGYm9Lab4ltFNpBYWBBpjd6WA==",
+                    AnswerHash = -1090720521,
+                    RawAnswerCount = 14,
+                    RawAnswer = "A1yLNUa3l5o7iBExDTe/uSYEyuOdO3GsHb5DCHQcPxZ4y8mfFloecHLDK3BfK09v17Eg7tO6XxWkIgiWbhfee8AgZt02zEgKzQGQJtPcCrQ=",
                     WrongAnswers = null,
                     Passage = "Revelation 20:1-3",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 455,
-                    Question = "MKGUb5FB5CCMHMOtipOVffydtraRn9sR2UaQiHL4M9QvdBnArlGV2Ky/xrJOsXJw0oUIrzPTpmi/OXQccfkV5g==",
-                    AnswerHash = -1516070249,
-                    Answer = new List<string> { "shBackh9UCjorZF4fPPf4g==","4ROpDELlhF+CwMRVw2VrDA==","FJk2+V9+EtHcpO/KdBSc4w==","rzNXEFYbg07aWeVaMCwK1Q==","e0yNFCHXotWomfACRwB8/g==","zSXGkn4sdJkzMXORqcZ8ng==","V32WzdXX1L23rNnJdOyNYg==","2WZPMl6i8CZA3I8GtG/FgQ==","GZJv7PgEbp3Q4GGa81mPcg==","j3VmKRFjx1/CvS+CH0VNgg==","hIIzeeQ4AqVuLZ4uQ8ZCbQ==","4ROpDELlhF+CwMRVw2VrDA==","KDDHL67xZbsN7lnOSlnv1Q==","2UQUq38H2L7ZSBOHw7bL7g==","sR2//piUjsdv7/o8TnRGrw==","GZJv7PgEbp3Q4GGa81mPcg==","8em3vnSerFh9/QdMHy8F3Q==","NX5PDjpNPvHjO7eGl60fNA==" },
+                    Question = "eBb6StWtA0SdvHBv9P8hRfhWKJ2zLqXg04d+Ps0xhqe37dyqnil7s1XkYBHue45VKLLY2/iGlKg53d8zQvtkJQ==",
+                    AnswerHash = -212312816,
+                    RawAnswerCount = 18,
+                    RawAnswer = "NcE18FavEIaUgvqxjQC9maVEZi6szm1XSl8RfzrGo4GMx2Pm0WpeS0H1s25qFdSECzZrNyi0OYRgzIRFbFvySG9Unt3TqgdKrL94AJ0hFaAlcFqsJFMmPW6WxECrakdtSArySZp6RDtjK9MDjpw1zg==",
                     WrongAnswers = null,
                     Passage = "Revelation 20:1-3,7-10",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 456,
-                    Question = "BpEZr5AqTllFPCqP4TQL2GUhrqchmWYzOgwOvwiLSITf5/cJqNne7gWSqr5IP97g",
-                    AnswerHash = -1267821202,
-                    Answer = new List<string> { "FNGwI+Zsxvl6CGpUkyk9v7UqK+HREon+9MUOHHIDwVc=" },
+                    Question = "Ah1ts3f2cXLS2XChlk5XPMnL7vC0uMWcho4x3NJVdpjITecukpsyPe6D/0mMf8Ah",
+                    AnswerHash = -1494987894,
+                    RawAnswerCount = 1,
+                    RawAnswer = "bQClh7Kl3j6MI5/GI5biAMipVFD8Ogrqc2QTmmtAjqM=",
                     WrongAnswers = new List<string> {
-                        "qA8sQFv0+oXqGz5yH4BwJw==",
-                        "r1o5YeuCbzeuzqXDQQTMiY98XnzJKA5juQ+0eUonS/E=",
-                        "feCGEDyaxOHMsPjzajeV04KYJMwFTFNzYorDYqgg7qw=",
-                        "fKkAJM0rplAK4z1FOtMSeBSt2HZjvlQGC4e4IBAud2c=",
+                        "yMeqFNUEW+5nCD0JElCLlA==",
+                        "qP2P5HojsQXjqp/TXO1IF0ZVOw++V/Oh/C6kAjVqQ9Q=",
+                        "H3ynRoEoVSt5mofRq6XDMzVj5A6kXGp1hiI4jR1OIPc=",
+                        "u2LHhQ1NIH6+KrULphACkfvWf8qHyh41BpaHWiw63xk=",
                     },
                     Passage = "Hebrews 9:27",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 457,
-                    Question = "ah7InF7W0MFdXoIy23TZqQ==",
-                    AnswerHash = -129125560,
-                    Answer = new List<string> { "VpEyazIfiaS3EwkBCtRFSg==","OByf75d/b5HrheoAenFJNw==","zSXGkn4sdJkzMXORqcZ8ng==","/zofrivHas94/ByfYh725A==","byCWfbUkohZBKmNsbc2f0w==","yQzIfpOMzFy8oyopFzNufg==","g6jtNBZe64cZrQV5HE61iQ==","12v4fH6Wqi+5TwlLe8T3kw==","epoUy674U/s1cxM4Wqp50Q==","OByf75d/b5HrheoAenFJNw==","v7vW/YzshWlQz9dn8oxADQ==","hD4leEz4Yl/TFKgQ4qlkbw==","wNhdm1nhYC1mptyDJciNAQ==","yhosT8cR1+lQbpuXY8eEVg==","a53mZyi+Gj5g6hqzEDi4tA==","XTIn7XKZreoRpBpFI7fq4w==","GZJv7PgEbp3Q4GGa81mPcg==","5QtHOeoJ9A+Et+J+6s/qgQ==","H5E2Iq4CCZ4XbCIjplQnOg==","b4lPo8SMSYYarnJfPHVtAA==","12wH/uWP2+OyRbX+FvUqHA==","eMILHmYiElWlkHXCK54Ezw==","KOflm+lNd0Dlx1Vahiv3oQ==" },
+                    Question = "mZhMZ+C5DQnYq26K+/gyYg==",
+                    AnswerHash = -1487895952,
+                    RawAnswerCount = 23,
+                    RawAnswer = "D52YZjTYg8QRnZuqeaGJEoNaquh7QigrnkysrkQeXNkvTo9DrCbtlJOrJUYe46M7Bdd8g6SyjpW/65okQVCFa7D3ytoSDVg9mc5cQqSsKXDCsHQVXlXOtfrG4UdyQWDF2AzgFf01qHJx/gN+KOpuGmEduMyl3RJAEmOhuCkBc+4=",
                     WrongAnswers = null,
                     Passage = "Matthew 25:34",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 458,
-                    Question = "VpVZgtXpmRJ923aKRNP7Z8lVxZ5VN1hMBr/kZc/6tlj4LKWbe0ULsFtTVZvUNBeI0Q19rAGE/ugkN7Bt0SNFfQ==",
-                    AnswerHash = 1687334407,
-                    Answer = new List<string> { "O0l2CBT8CGAOsKx0tBXfbA==","yJG2sDVzjbm+RV7TG87UbA==","Yh1cyWil4nkIUPf1ivKEbw==","NA3gs6clk4eg5BG1tpKsjg==" },
+                    Question = "hIuKGCVS+71Sd3rpfPVAtWAitz237yrCnCpZf/E40MVFolyZ9eMh1o0Raj9Wr2oydldWKoMrXtOPugRsqFSaRg==",
+                    AnswerHash = 707447142,
+                    RawAnswerCount = 4,
+                    RawAnswer = "2NdOPvYjWenJr8P13drc4bQ3nswK/7mlOCkV4qfE1WI=",
                     WrongAnswers = null,
                     Passage = "1 John 3:2,3",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 459,
-                    Question = "+4Y1bSyK39q6sA8JiesrnC52oRDMbvrJq1HzeR5jqAr1sogg1qC8GIhrTODLHbHN",
-                    AnswerHash = 1868091600,
-                    Answer = new List<string> { "slPFZIs8n6t0PZ5Rb00X9A==","yhosT8cR1+lQbpuXY8eEVg==","5QtHOeoJ9A+Et+J+6s/qgQ==","j3VmKRFjx1/CvS+CH0VNgg==","hIIzeeQ4AqVuLZ4uQ8ZCbQ==","12wH/uWP2+OyRbX+FvUqHA==","XIVffLkKfVEFsTRbEONUdQ==","GZJv7PgEbp3Q4GGa81mPcg==","tA/MwlDA6f2zOGaq4HOHfQ==","f5SBrDv65Hjl5Ff1YkFsqQ==","qH06W7X4ZjnXJoh7W8gVRw==","bHp2wvAUEPejD+cPKH3HGg==","SD/rU6bGI2MkOV/UvJ4nrw==","zSXGkn4sdJkzMXORqcZ8ng==","E5gVIJipFCrVVjrlP+Dv2A==","E1w/mHWGPvci81jNa2WaHA==","byCWfbUkohZBKmNsbc2f0w==","3yfGfl5lMn8+yn07aRxWzw==" },
+                    Question = "qX73qF3ZGjdJ762GIlyrW9EAzGIm7Vexgo7vBxSn0UwdfoXuJi8EKo17fVfiT0mo",
+                    AnswerHash = -1695451291,
+                    RawAnswerCount = 18,
+                    RawAnswer = "ONeiGO1iuvcRLZ6CooRUd5lxQHCHbK+CNErMJQxguvTZO9HaNdZhuqUKQnKcwKeVr0/IH2Iq+Q0ADF0MG7ahTgTeL0fkzvQ1lYPL4dtHtrfxqM1iy8p+eGfUSY8ArEtCcyuUnsVco03l3o5VyrUw0Q==",
                     WrongAnswers = null,
                     Passage = "Revelation 21:27",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 460,
-                    Question = "Q25OOLrmY1xJPOZiG7Up9+H/kz8LlBOVEYEd5hQbaNNc3Q+GZZUkPjn4MakIp8NkanwFUnIyHtrcvyXYpIYwUA==",
-                    AnswerHash = -345126239,
-                    Answer = new List<string> { "/UielK+sVJTCKU459NzTeNy7VPGFN1gi0bWjNSZfWJBNzmGqpO3ioJJTKMWf8EwL" },
+                    Question = "9nC92fJwajkQDxZOnE878KrUrDMyOchp5VVpc21TvcBOcaLnnsMIlJlGXEb5bcHMAr3QnHBECcImMtswX/7a9w==",
+                    AnswerHash = 2120307112,
+                    RawAnswerCount = 1,
+                    RawAnswer = "hgY1+v5nl7ykqCDc2mxpH/vISMQEQMQmKne7vlb3EUcU1eU6fKrPVZEree1iPCaT",
                     WrongAnswers = new List<string> {
-                        "iIYJQXoRrcFJAw2340NK6gAfDZfXpuQOFoaSMcLaj/c=",
-                        "Mx0n8v3lBdwfTvhTMCpt6XwrdgbP8qYfnBuVo6XU0rCI1caQnRYc7Zn0C5+ADPihiQXb4/oY19wT2BJ8JMpJMQ==",
-                        "gVcivo0bnrsjpi+a9YqT+lPpAnfhCwPdHi7lp7CI8HBlPdhWk/Tz4bthjWSd/nOG",
-                        "2FH+QkruOYmCklhiv68KBTmvj4fK+EOYmxa2mlH5YlNSanG1g1rkEt2nXsYCrdVltVaBuYKCPt7fldgF7m8h7A==",
-                        "oM670zfHqnufJjmQnzcKPmXjkhIzQM8PRxOYFLAx3dqomI1mjPvE7d/d6qlKVvq3BlJgKHrXxT6WuqrphXMneg==",
+                        "Mo/Xzvpu+35VYSE9LaD1wBkvbFbSMIfSsDLWUnG6pv4=",
+                        "U7koXyl1WLhpXcv0uJxKRsus9ldjUC1GweBtvKzfIWi5MDDtUpfEOTmUQ8F+UQRVHP6CgCEtCK3gVARlLiaIBA==",
+                        "tV10KSeGdpDpQnZZcJpcRu9mEKNiwQ/Q8P1vSKyFetsNeN1WDNIMQRZVcbc2Ytsz",
+                        "ykyve7azE+ULIKXiIdNGZrHo6YLfRnvnO5ZITCdr9yc9vp1xE0paWXw00sefQ3GndnwiX8dpPf/vWZr1D7AtZg==",
+                        "H0gqw9lNxYaGzFXrNLFudle0uF4Pax5Kyg2tcAA6BgCfvVnB6sGnwv93rDnboaff8syqfsaQ5Z7MBW72Cy34NQ==",
                     },
                     Passage = "Revelation 21:4,27",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 461,
-                    Question = "IDZ92/Lu5/hfPYOetxqGnphWA9SUsFKd9M+DPC6wACE9I9KuZ5wpTQV77cDqcQM1",
-                    AnswerHash = 1029942770,
-                    Answer = new List<string> { "yCUdomc253fz3lm6OPW6Yg==" },
+                    Question = "gadxoDnHlc7rE7QOemLPCIw0vXlr7DkY92J5mygcdsyH2rg7PHF67ttNzsxyewLS",
+                    AnswerHash = -175627748,
+                    RawAnswerCount = 1,
+                    RawAnswer = "HjVTkccqilGbGcmptZKAWw==",
                     WrongAnswers = new List<string> {
-                        "shBackh9UCjorZF4fPPf4g==",
-                        "L5TaQ3bCChZrKCHwwJ4EyA==",
-                        "UxluTucfwICWu+4M6+37zQ==",
-                        "Gugu0hQNh4dcHv+Wqy5FXQ==",
+                        "SHwOBh7P3x0mWj9r8h8dNQ==",
+                        "uX4hlgcsfIM+4K+q98WnpQ==",
+                        "HOu5MRHh+S+A0yB9Uc/ViQ==",
+                        "VNbEu+pkvM3iQpOJhvX8pQ==",
                     },
                     Passage = "1 Corinthians 15:25,26",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 462,
-                    Question = "1KOJdRAKDl5b07Jt6Am1tg==",
-                    AnswerHash = -968590721,
-                    Answer = new List<string> { "qohSNUC+kihiDp7/Ah4A2A==","/zofrivHas94/ByfYh725A==","byCWfbUkohZBKmNsbc2f0w==","yQzIfpOMzFy8oyopFzNufg==","ieKedosT6gG5BjnGyroy8Q==","Nt754ibIur481zhYd6sKag==","GZJv7PgEbp3Q4GGa81mPcg==","XadGRwlGD+ECv1/2klX77w==" },
+                    Question = "29cMDNVDlgoNgsRJaIYAdg==",
+                    AnswerHash = -649200413,
+                    RawAnswerCount = 8,
+                    RawAnswer = "pPj+KTzbxfyVQCP0gmTlKdzGt8T7okSu9O/6ki0sqM5tKNoinX+1xEHo7pmchBjH",
                     WrongAnswers = null,
                     Passage = "Mark 9:43-48; Luke 16:23",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 463,
-                    Question = "3llNCz0rz763fF3CV4S8DIvzwZqOkfX7+oa9bldunHQ=",
-                    AnswerHash = 1771695122,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","wRZKO33K7Yk4FyNDJcAo1Q==","GZJv7PgEbp3Q4GGa81mPcg==","8em3vnSerFh9/QdMHy8F3Q==","AvXWWB+oGN6bROz2dkX78A==" },
+                    Question = "lLEMrOwQGRwKvIaS7dlNqYxp6N1q7MDSFWKduvhz0UU=",
+                    AnswerHash = 39095337,
+                    RawAnswerCount = 5,
+                    RawAnswer = "lrgG5/7Bv2Ynik7EYLpK3wEOCvUkv5US6Sfvjo+csFE=",
                     WrongAnswers = null,
                     Passage = "Matthew 25:41",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 464,
-                    Question = "+4Y1bSyK39q6sA8JiesrnBOX6vEGXLEtuyB4X0zmFuwvUBh7dxlQieRqdO7xknMX",
-                    AnswerHash = 875876991,
-                    Answer = new List<string> { "BKtpQncZuqhyzPt+wbtl4Q==","yhosT8cR1+lQbpuXY8eEVg==","InSMAMi75HvDcSovhkG3ew==","j3VmKRFjx1/CvS+CH0VNgg==","hIIzeeQ4AqVuLZ4uQ8ZCbQ==","12wH/uWP2+OyRbX+FvUqHA==","XIVffLkKfVEFsTRbEONUdQ==","GZJv7PgEbp3Q4GGa81mPcg==","tA/MwlDA6f2zOGaq4HOHfQ==","f5SBrDv65Hjl5Ff1YkFsqQ==","qH06W7X4ZjnXJoh7W8gVRw==","hMYa40rWHg7YB/7RJZ7ctQ==","bHp2wvAUEPejD+cPKH3HGg==","SD/rU6bGI2MkOV/UvJ4nrw==","zSXGkn4sdJkzMXORqcZ8ng==","E5gVIJipFCrVVjrlP+Dv2A==","E1w/mHWGPvci81jNa2WaHA==","byCWfbUkohZBKmNsbc2f0w==","3yfGfl5lMn8+yn07aRxWzw==" },
+                    Question = "qX73qF3ZGjdJ762GIlyrW2/JTnar8NYJEEq1nsHuAM+RjNledYPKDKNFNCfO67pn",
+                    AnswerHash = -1881853156,
+                    RawAnswerCount = 19,
+                    RawAnswer = "tMdumTLpShAX6xjma4OQGdY0GxI7ma+V9mHjIMs9ozBhgqGurnFYOX5n4OUHAwCkgXH6jxBs3E9AjBDC6l27v4RVKykukUEZI8AI1sOAijahLkt3nUs6Tv1wFSDXClThOPbus2CMaRu6zquqU6rqSw==",
                     WrongAnswers = null,
                     Passage = "Revelation 20:15",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 465,
-                    Question = "WzB7jNyC9mbHzW+E0Uq5Y8UPVdEOa5sboJesPcEtRsE=",
-                    AnswerHash = -1918571186,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","wRZKO33K7Yk4FyNDJcAo1Q==","wENxmG1vlqQwYtHDngT1Kg==","0hoMe18VLQxfVlMv0UskJA==","Cm9mJ405RXWlx2sJMGqBOA==","tsKlX5zpF33De8jtGxPQpw==","g9KdJl7DfwpxzqnfgDz0Dw==","epoUy674U/s1cxM4Wqp50Q==","q1s/UW3Xmr3r1JRV4LaOww==","uHjamCtBuqlMB7S5mDwg9A==","mGp+I5mSnWSxgg8eJO/uuw==","hD4leEz4Yl/TFKgQ4qlkbw==","3B++S56N+JCuyJ7E0/adnQ==","uHjamCtBuqlMB7S5mDwg9A==","ZuVeP7gqZWEZYKwHknHzQw==","vAi2sdibsHIFhtclVBsrsQ==","7LwcuRQE/7HPMGdqIRXA5Q==","unBcFvP/6kf8UrV90LapMw==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "EmlTZMDMq2S3d+gNlm2D3EyWR6sXmMqDI9Uwz7BrujM=",
+                    AnswerHash = 167945746,
+                    RawAnswerCount = 19,
+                    RawAnswer = "Jtu9YPc4yDPS2Bby4Jj2AGgwLuoYUgzU0bhUux2Tgt7aEK+JERFgMLbwSYjCq+y4g7dhz/xRn2P0DRtH0c0tme6gAKQoqDrxTsXmAvqfoQLi1hTG83pfYauHCnz5X6lpGNCH9EKzTmuB5ZNeZ6rhjg==",
                     WrongAnswers = null,
                     Passage = "Isaiah 14:12-15; Ezekiel 28:11-18",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 466,
-                    Question = "8IUH2Frz2tt3g3dEjktygAxSAXZuAkTrgBTJ6SDWJbIyXpIs5aqp+wUlNMBzJp0f",
-                    AnswerHash = -697762157,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","wRZKO33K7Yk4FyNDJcAo1Q==","0hoMe18VLQxfVlMv0UskJA==","MAQlHANFCQCAp5BVXm1HqQ==","hvn2dcx1ISwWniJsOCA47Q==","epoUy674U/s1cxM4Wqp50Q==","GZJv7PgEbp3Q4GGa81mPcg==","3qjkOZp0mqZlGd2MnI32yg==","USzQqTjeVjXh7mtnh9kB7g==","D3qe7+y+OFGaeEJOq8vjvQ==","hvn2dcx1ISwWniJsOCA47Q==","ilj/fxOuvPlAkJk9ZciBzA==","RJcl/xuirTio8ilPjqIJ0w==","GZJv7PgEbp3Q4GGa81mPcg==","bhQuLgzC5rtNZcmZpuvY8w==" },
+                    Question = "S665DkBpghGJXbHPTfph+X1d7Vl75+IumqCOylDUlTsgN8VWdNy05tnP8OnbHipC",
+                    AnswerHash = 1913324949,
+                    RawAnswerCount = 15,
+                    RawAnswer = "pa0K/hDPkq7jt2ehwEWL8EfaVS9cQf+SRPKAuHn7HUGY2Gwmm4KLv5NAzutrBDlrA+vafFYrfCd2vTncVGDdV0UcQ+WSIg4yMmA+Sn25wbOeJMTMVg3Y0Duqah0Putcc",
                     WrongAnswers = null,
                     Passage = "John 16:11; Colossians 1:16",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 467,
-                    Question = "PuWwcz4U3Yf8OHQ/IM0Ix/4KWCYa318uNJljj2zMhsU2NNBnOgq0UaichdyyUB88",
-                    AnswerHash = 988695175,
-                    Answer = new List<string> { "uiydGL58iMY2PyrvRHJQiQ==","zSXGkn4sdJkzMXORqcZ8ng==","qoQS6w/lp25cM1IYMNum5Q==","2i4xbtWMUUcCUrJUjGpqwA==","yhosT8cR1+lQbpuXY8eEVg==","dTEmW0aTVRd/AxtgI4MIQg==","SD/rU6bGI2MkOV/UvJ4nrw==","KbwjtXdeZQ8LHGuS/5xGPQ==","OByf75d/b5HrheoAenFJNw==","7LwcuRQE/7HPMGdqIRXA5Q==","unBcFvP/6kf8UrV90LapMw==","zSXGkn4sdJkzMXORqcZ8ng==","Opkx6wh4DJEkxFGBZHzG9Q==","yhosT8cR1+lQbpuXY8eEVg==","dTEmW0aTVRd/AxtgI4MIQg==","SD/rU6bGI2MkOV/UvJ4nrw==","zSXGkn4sdJkzMXORqcZ8ng==","xs/gktjYRVW2K+hyEcVF2w==" },
+                    Question = "/6agqsXihjDM2uEkv/LMNCtNpskhpDlWujuy2wXoIPrJfTxfdv+CqI2BwyI4P0L3",
+                    AnswerHash = 1980128205,
+                    RawAnswerCount = 18,
+                    RawAnswer = "8/ca69AVF6Ah0rBBrXUbuOG4Odr/Bex+WIj6Xbl+M3qK10KcLJV09/MIvhvdFg49w31JxaN2P4NoQ/U/EOzqwPDZHb41a0wyH2rlhrfjMAxRwNMWSPYkRfi8bVkPZMtt",
                     WrongAnswers = null,
                     Passage = "1 John 4:4",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 468,
-                    Question = "NSTMOK/fkDAOHBbOEci+ASgkcwwZbAxusudQPFZ4lzOJDlYQSDb5bT7h0i0gn+htTkPwadfJ/8pHrO8Nfi+iTQYnpInVvuRwsaLVv5TA3MXAfVngkHHql+a2tFXqyQsk",
-                    AnswerHash = -621924708,
-                    Answer = new List<string> { "L6HdDIBSaH+MDMEvlpHtEA==","4bTrcCp7YxkUIzXRZZ7u4Q==","thjk8alSuoQqStkrY2sWTw==","u5tJoMLD6tALPUILPIWO4Q==","eqj3JXp5Wblio6JDA+K9Ig==","HtddtvlvRMpCQ8ul1jwQHg==","Bva/qzBwFwP324HUHz5LQA==","QJQaqK00tcHaI9mCjbycxQ==","TaGlKf4YaBx6xPdqnPh/Ig==","MVI+tz866uw17HFBRDqNaQ==","8UXU/rh4kAcQaeDuARleqw==" },
+                    Question = "CA/TQOFvzQH5iHE9PX5TUDlB4Z3s9+64QYkKP4YJFyWgKLMMBtvvCwg2ZPSGSpYJtwpSqxLGRNKYtvpptFjNWDeIc5HcfJ+hhkUu2Lgj05UwxJtMkxDuhxOjz3addKAx",
+                    AnswerHash = -1302552631,
+                    RawAnswerCount = 11,
+                    RawAnswer = "BOD80be0n0DsaJOzZn5ebNhW+dGHTvf5mYkHpyqgO3iyeWAflxP0dFF/XpNPpMBFc6pCtzoUSVm6lMiTUTlCAbOXXMayp/Dani1nkKikql+Q68HnEPHDArIERabXXHWv",
                     WrongAnswers = null,
                     Passage = "Isaiah 47:12-15",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 469,
-                    Question = "6x0gLo14i9yf0rS/94dABoH7tEO9zayjIGFWhs0nQkQ17vUcAwNy86ecfH/xATZ+Hh25WD9UkIwBMgXHlB82Wg==",
-                    AnswerHash = -955838971,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","ycEDVS1u9ks/6SYMie8S8Q==","sBjX/MBb0jUZGUM1OqkcHA==","GZJv7PgEbp3Q4GGa81mPcg==","Opkx6wh4DJEkxFGBZHzG9Q==","7jlneQ5vxQ9gCdPUz41cVg==","xbLGouGPyHhYjcxJoXMkQQ==","uHjamCtBuqlMB7S5mDwg9A==","FJk2+V9+EtHcpO/KdBSc4w==","VFIl8cW9xe/PiDPSfBZTlg==","zSXGkn4sdJkzMXORqcZ8ng==","3sqKk3xm/SLP9v2KPTpLTg==" },
+                    Question = "NF/FSHW+n9vPvX0PC0n/JRYoEG4eub+Fj/Y8Ri6GX8lxz8TRq8I+uKxXOx6J91eK53djKc7Zi0cmycKZN/N+BA==",
+                    AnswerHash = 907716136,
+                    RawAnswerCount = 12,
+                    RawAnswer = "aTSTM1im2AUSH7oyBb7+APovlGHCS1179lC+wTWSfnrs/un2oB0Y6VTGe5sDfLjLXq21zTaM1RSq5Pb6e7EvS0bFpSkMuyDCf10v8cPgS2k=",
                     WrongAnswers = null,
                     Passage = "2 Corinthians 5:8",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 470,
-                    Question = "UdqMrlZjAa8PVGbuBBMJ4F0iHTFiw+l4N0gvJvVTnRxeOJHtqpClxNCgVRGE5ZAiynMm8YWhOPfby/3S2ch6+Gnwpg5fCyoJlq+zxQWSjRSKf5DuzOk2teTnOsspBfWx",
-                    AnswerHash = -395655436,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","cpfiBqXFa5rFAjwToBvnNg==","byCWfbUkohZBKmNsbc2f0w==","4u1jaQfNjxyuCcLfn9u2ig==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","/T3J9qjjY5ZTGhOeRilzrQ==","CliTOM5Wa4UjJeaHj3xV0g==" },
+                    Question = "zp0qXBAtHeh9txoHHW1JRr0W+2Bptwzm5bK5KmDbrBwS2gNHKVU9oUoXT/TQ1Sk2pf9AO2IPH+qwjeGmr/6uzg4UrmJi+0tfIYwpwu5RsITPGtbZGvOBIFdlgUAQ82MU",
+                    AnswerHash = -585695232,
+                    RawAnswerCount = 8,
+                    RawAnswer = "OHuJaaKhJgCBwv72fA5uC6zBWwi0fW3S4hW58JwO5MAlPXccIVt0fWq+ms8XlN0l",
                     WrongAnswers = null,
                     Passage = "Luke 16:19-31",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 471,
-                    Question = "SCgbrbGZ8eMrYz9GQu611gQ0Lt8lqtD7g5f5LI8HTfHnRmluM9fGRtWF21BCK/9MgBmD2MCgV3DZyU8mWSC21QpUZ3W7zOsQmIWW/9p7SEE=",
-                    AnswerHash = 1081742296,
-                    Answer = new List<string> { "Irr8j7wIiKcH3cWRPFhyPA==","NdDYS1jCg0hXx4Jidh5+kQ==","SESNeD1EtiCtWOHkaVmC+w==","b69SKr7ML6O5j5cB8k2ozw==","Im8iBP/B+t0xhygDBgVhMg==","GzJcqlsd4hR4TC9Vli1D+g==","0+1U10HmNzlaDM/0KkudyA==","z190lKWOCu+2X0GGsMT3ag==","GZJv7PgEbp3Q4GGa81mPcg==","8em3vnSerFh9/QdMHy8F3Q==","ALhthSAlLY4b7ZvPQ3BZKg==","BsjNPr1qEWIybKTYbYfGzA==","GzJcqlsd4hR4TC9Vli1D+g==","0+1U10HmNzlaDM/0KkudyA==","FJk2+V9+EtHcpO/KdBSc4w==","a6bz8+6IB8r7/EdxX44ANg==","GZJv7PgEbp3Q4GGa81mPcg==","3a4BMeo/MElOOyPlzlsFzw==","t+VDIostOJizlH/1ikFbbg==" },
+                    Question = "FNVMzqzeokaLCHzcwHg5m1NcFDu+Y91fd7ThYj8jMQVcx2Rar0C+5STfRt7PvvFmhgCiyOQYBeUjPHIjIfaXtK9WgXQD5UMkfBpoTJtpEDc=",
+                    AnswerHash = 1255693708,
+                    RawAnswerCount = 19,
+                    RawAnswer = "qm4A02mQh8O/yzctaoOA+aW08Vmjsr5O5DDxItP/b1oiFvHW6VR44n4LqJqrYfR++wv5YCIOt0k1yxUYF8Tv31gmzVktR5sgJNpSSjuOdc8T/4jPOgqZd85PGlP2Ak8vNzPQNfnQtHC4l+XSmF+Y4A==",
                     WrongAnswers = null,
                     Passage = "Job 19:25,26",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 472,
-                    Question = "kkDG8xzE/YmM51VHgwfFteqW+0PxlLJHWRuTmloNEfo=",
-                    AnswerHash = 1011491039,
-                    Answer = new List<string> { "mwWFY2/PlGr92UxPr4GraA==","zSXGkn4sdJkzMXORqcZ8ng==","JU45TLnrCcZ9AMM9UIDRsQ==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","sKKDQOCSc8+zOhaci4mv/A==","JU45TLnrCcZ9AMM9UIDRsQ==","uHjamCtBuqlMB7S5mDwg9A==","jXAoRScxfFhzOuzZmTUCng==","yQzIfpOMzFy8oyopFzNufg==","b2Oa2zf4OzGfy2VsX9cLiQ==","GZJv7PgEbp3Q4GGa81mPcg==","zSXGkn4sdJkzMXORqcZ8ng==","IY4ZrUra0LWU7kaYTB89Pw==","uHjamCtBuqlMB7S5mDwg9A==","jXAoRScxfFhzOuzZmTUCng==","yQzIfpOMzFy8oyopFzNufg==","Nt754ibIur481zhYd6sKag==" },
+                    Question = "DTfMv1b6kO+pDc93So5qgvc0Gy/RwZljjU5J9KPGRvA=",
+                    AnswerHash = 144105637,
+                    RawAnswerCount = 18,
+                    RawAnswer = "WPD1Ibz8DLokVe4jRc2vfRYyDAnDEhQjvcAFZxS0rZba+GAm9Cgmclx5pnWuekIJPw+GOX9FpMOGYaxM+PPJmaOezx6d1tugus/UzYqOkTfhzhP5tevl4aetsty83ZqXX76jd2UTF8UrO0vFLVqtNp6HJulpC5Ljb3+GZJM/8TY=",
                     WrongAnswers = null,
                     Passage = "John 5:28,29",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 473,
-                    Question = "hVtgtXZWA4rg10wRt7eYa5TigfSrazk+X8XzAMcGBOpf5OiFQ8XFDG1aDNYdbBLu7dukUP/QB7xHuvtgP0TQ/5PaFbcqtXTbZnWsGj0FRo8=",
-                    AnswerHash = -1899917208,
-                    Answer = new List<string> { "Ye1PdU6h1wFFPV/gE/JlcKMZLmMzzOWmYxN1WLBRsP0=" },
+                    Question = "EngC/YANIhgdvWx267iQIzhmlWamtadnzH/orF3tw7rtr8a5GEvAfnF+BJXMAYaOq6oYSUfglj0+wsfHfALoSkvrNW0b7yXWrd1B6yKxrP4=",
+                    AnswerHash = -1431109698,
+                    RawAnswerCount = 1,
+                    RawAnswer = "YspnYxz3k1cYHbZVeoTlu0nxPcAoUP068CvTJ4nAGw4=",
                     WrongAnswers = new List<string> {
-                        "p0W6pMkDeB/TfcT8k1Xg+A==",
-                        "Ye1PdU6h1wFFPV/gE/JlcKMZLmMzzOWmYxN1WLBRsP0=",
-                        "U5XQ+N4m3Dv9EG2IDfpHRw==",
-                        "zzjaJKC5Qh1rH+nwdMVbvw==",
+                        "7JoqvF4OHm92qXTvvrKoEA==",
+                        "YspnYxz3k1cYHbZVeoTlu0nxPcAoUP068CvTJ4nAGw4=",
+                        "K0hJQnnzpNVMedXVS6s+Cg==",
+                        "qwqRlk0+coiRw0T8zJCTug==",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 474,
-                    Question = "KKGpHCvX5Oiuip0nXelMl7+O3qyE73WPDN90EQKaZlQ0wMJNvKg+6LRL4FBiTKRx7lZixscIJJNbrEqRA2DsSs10Qh3RIz5MaI6J23umDh5fwdZ3/+/o10n6/t84AP04NW/UG5WIVeEUNRniGu1OrA==",
-                    AnswerHash = -550682300,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","YJZdxI2a5xW44zZMekIxOg==","byCWfbUkohZBKmNsbc2f0w==","wmlEvFyTKum64q3UXtQG9Q==","9bzUSORDM9VFLERanu2Ztw==","f/XPuHOtQR0QzJlDtsTuuw==","e0yNFCHXotWomfACRwB8/g==","wmlEvFyTKum64q3UXtQG9Q==","VpIQIH6aVzdAEfzoVUySDw==" },
+                    Question = "yewfwD27bsv5KOYWPOxytPqpLQAS91xu+vUbvIA2w8sQGqReQHMhH718RPgdv+h7nIXmVk4IHJe57BfWaOjglimt80MCRwuSAVAO4ZAeMjmFFGeHZl+ZtbBEcwbMnzBzeWS0OWA+EBfKhDGbWXtHrw==",
+                    AnswerHash = 1602726669,
+                    RawAnswerCount = 9,
+                    RawAnswer = "XFuys4cCT6Cz6h+2FEC/m2PQleEJgSDSB/F8Uq0810T7m1p5vR2nnAQK9YILhgYK",
                     WrongAnswers = null,
                     Passage = "1 Corinthians 15:36-44",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 475,
-                    Question = "kxb6WhMjJXN2+HMAf56ksfy8IJobA79YibHxtJ1hjEtubKmKAgRjB4Iso8/yzJhf1STANwzcaO/v54TfFze1q+65dQ+mjGkRvw0iUi1R46YCZUoaCLtNpUuCrYdXvpIN",
-                    AnswerHash = 328813902,
-                    Answer = new List<string> { "cmzW/0Es9KTJSsBsZYgbaw==" },
+                    Question = "4BBsR6M2HoM34I799Vhg5voAzQM9/x6QsJq/p42rBkzW2lED1q+Wt39QH4zBfQUegoeEx9Si5Xq0naxW2RbKbywI7TZZE1o5llBf8Q0WXf+DrwwqcCE86sxiel+YaaKL",
+                    AnswerHash = 1039391240,
+                    RawAnswerCount = 1,
+                    RawAnswer = "ZVhbF7cm6OWS6OuRAufWOg==",
                     WrongAnswers = new List<string> {
-                        "bjKleTEKtG+8rGBcqN/oxA==",
-                        "jphEV31VLGolCJfAB2MuVg==",
-                        "CT3yje9U66qzucxQmjkpmA==",
-                        "GRtfOumQqsM9m7CV3ToCjw==",
+                        "kovMUsyS/1y7sGc3DSdOjA==",
+                        "ilYW2SXAFpJagj4HhxNhAg==",
+                        "QQZOc9Uw76D74goqeCstgw==",
+                        "Lt+kLkdKNv+tDHy5fXa7+g==",
                     },
                     Passage = null,
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 476,
-                    Question = "kkEQnUMMmqKyItldgea3OHMJABR8X2roKtKCknvAouH8AU1W2miEbYJ4UyquQLZOqUbqVisOhWiLzxdPJ4ufYQ==",
-                    AnswerHash = 1473411742,
-                    Answer = new List<string> { "gR3z0qYwozZQhAP1L0nVBg==","zSXGkn4sdJkzMXORqcZ8ng==","0zjqzqvP2Cq/dt/XbtdJWQ==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","LfQXxBvFaebo9X+jvrtFdQ==" },
+                    Question = "m8xGTU7AZktD09Gqz7O4D+L/Zpc1gz45/lXyjIli6SkVDBC1VmbjaVMOmuLrEycw1SzVO4P4ZW1SNWrTGS0UkA==",
+                    AnswerHash = 1187727324,
+                    RawAnswerCount = 6,
+                    RawAnswer = "Z8wCVXRsKlsQJplfDMQx+ZwfM2tcGsLUfFQBgDQDZ9c=",
                     WrongAnswers = null,
                     Passage = "1 Thessalonians 4:16,17",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 477,
-                    Question = "tr+BA/8/lYakXHlsrKbaSTfI5w538XWEExAnh48MIUF7vtde2QJVHfUWRTuML+DxSKCrttNp+FJqImpocTjpaytBSVDNv4Ip0qVLGwZ4lWs=",
-                    AnswerHash = -1112211639,
-                    Answer = new List<string> { "rmZsdoW/3igv9FnMtM9SFA==" },
+                    Question = "2KBEqeUpIPq0aXn7BcI+r4ZqezIQzO2cHyyyHcHm8aDJGmwLM4bJWNHqxIRdgXBYZ6yQY+uJtge6tdtelGkTA7asDwOhj8YRW0oJcHD6bJE=",
+                    AnswerHash = -1407315470,
+                    RawAnswerCount = 1,
+                    RawAnswer = "O70qD8lHDCWT1me+qI1Oow==",
                     WrongAnswers = new List<string> {
-                        "JOx1+Td34hGboFyMX4rBow==",
-                        "fQaosb2oP1+S1gccpFHO4g==",
-                        "tf0YCJaq1outZugRj6w1TqYkcBHw5v8zkqLVhsMwFEk=",
-                        "3bSovTyNhy+9pXs5kw4y3Q==",
+                        "nq2omkjxmWTbTXwn3KdAHg==",
+                        "6cOh5i5GTA8Tbq9uuxKL8g==",
+                        "2191xBiY7JSMaD1fNntKJJahprVUOQk8bW0BKCyWTrE=",
+                        "SeWqOx3uMWkRlKis+ipACQ==",
                     },
                     Passage = "Luke 17:26-28",
                     Type = QuestionTypeEnum.MultipleChoice
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 478,
-                    Question = "oL61tSHC/c6XIS22/HC8ujY2cAW7lCuZIKCCxsrv6LB8e3mcm1ygoEj7BIObC+FWvy+mWmHU/O0HW6YFSEZsfw==",
-                    AnswerHash = 844206012,
-                    Answer = new List<string> { "3g+0rrVIECuzqSCdjPiG0Q==","tYbp5jTEHaUGp7WWYqHOoA==","uHjamCtBuqlMB7S5mDwg9A==","BqHuXymoJUlaq9uOqEQa7w==","uHjamCtBuqlMB7S5mDwg9A==","VgGafUGvi/jwCkxVZYJSkg==","GZJv7PgEbp3Q4GGa81mPcg==","PHzEC4Nc1LwFiP+Mn/eXQQ==","hD4leEz4Yl/TFKgQ4qlkbw==","WMy5NmBGoZBvi9EWyqLZ5A==","59OSlRvN04qTRamlM03R/Q==","FmGsVpdzIFqXqIJDxz1srQ==","c+C5pwoOfUUC9KOfF776cA==","zSXGkn4sdJkzMXORqcZ8ng==","n8KGXmw4szVmPdtJBe/Z3g==","qcLVM4UMxlFGfd7DYxH2Cg==" },
+                    Question = "NvoyqYhk/ivsr7/HiWYasWOGHDU7Vna/T1kcMpG1OWyuIGqMp7IvX3HbBM/b7mqIGTUGlDEpykuh96XhiZB6lg==",
+                    AnswerHash = 1896731795,
+                    RawAnswerCount = 16,
+                    RawAnswer = "tQDVX2a0XdqpUpZv1GBi7n2M4SvlXD5r6pCv3YqrOX92jeoVZcFhvtNHJhyG/skkIoOv6HePfLjnmi96j7BUEOmcu31AQnJl4lKDSkTUKxbwkW5MUocjhk2dCFGT1r00",
                     WrongAnswers = null,
                     Passage = "2 Thessalonians 2:8; Revelation 20:4-6",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 479,
-                    Question = "GyNQpae79BOzZTO2iNbpixTP5CwnoqbNKbns12Sz3tNmYfqiJ9L9AEYjIYESad44cPgUqo3P5GGoqP17jjm7KA==",
-                    AnswerHash = 1616958764,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","Lt7JbhffXm5175epI5pCSQ==","GZJv7PgEbp3Q4GGa81mPcg==","L3ejmEWIgWxiKl/0hB6AOQ==","kwVT/v/UFNDi4XcRp0twAg==" },
+                    Question = "WNOAdZqVIjZVSUkYaSalJuFuvW26IyNJh9kHyYtWtMNf7j/kVh2Xi6f6laoT37hICSAA/LX/t1E2PyWid06GKQ==",
+                    AnswerHash = 1265932254,
+                    RawAnswerCount = 5,
+                    RawAnswer = "OaWZiSShNLpvfdwVHaQX1c1twYqPQEcHt/9dutMDoh+fcjv/A7wT5lWCcMq2d3w4",
                     WrongAnswers = null,
                     Passage = "1 Thessalonians 4:16,17; 2 Thessalonians 2:8",
                     Type = QuestionTypeEnum.Jumble
                 },
-                new QuestionInfo {
+                new RawQuestionInfo {
                     Number = 480,
-                    Question = "76gsBoqufGw9mNZfuqGnkOWGiPlR5WF/vSuPW37v6OMsx4RKVupnOYb19nQLxiGnb/Y5rnrucWDgO9TRg1G1lLOmFEsKZvqfGRLiBbIbP+LIIfRCfYkukPcFNHeDUSGE1noB4O3JC2ZfxHf0fhaxCQ==",
-                    AnswerHash = -1729703941,
-                    Answer = new List<string> { "1bIrpFm5pUBDoNKezRpitw==","dvJAJyk3ONlnWYDmtu7oOg==","byCWfbUkohZBKmNsbc2f0w==","zSXGkn4sdJkzMXORqcZ8ng==","8/AS0dqChYj1MF0IgvTpjA==","OMtrQwZNFb9DeZfAtbbZPQ==","GZJv7PgEbp3Q4GGa81mPcg==","8/AS0dqChYj1MF0IgvTpjA==","JYicknQIzd6MX5RuF2XJsQ==","2swqXP8dd8X3UFiBfhobSw==" },
+                    Question = "pADnkNY9jLKlAK+NlLDWN3OKh13DemkhrbGitepgWhjVXHOF+4XQjr4gsb7sMIXmRKkec2h15lElZhXGe2JS3jsI0mLj6NSlgp8i+5eaOxln3soTf/y6meBPcpM5IgNnGi993m8OO/SLVWTz+v/JvA==",
+                    AnswerHash = -1808318443,
+                    RawAnswerCount = 10,
+                    RawAnswer = "5A8ky7yPyhbg4LILRd+EvXRjbiVh7no6+nU5yKokvE9+glwpw6t6sk4HVjRHl1bJNhdCo5r9C81EyVEqjwSoDQ==",
                     WrongAnswers = null,
                     Passage = "Matthew 25:1-13",
                     Type = QuestionTypeEnum.Jumble
@@ -1998,26 +2190,27 @@ namespace JBQCompleteIt.Repository
         }
 
         /// <inheritdoc />
-        public IEnumerable<QuestionInfo> GetAll()
-        {
-            return _data.Select(x => DecryptSingle(x)).ToList();
-        }
-
-        /// <inheritdoc />
         public QuestionInfo? GetByNumber(int number)
         {
             var retVal = _data.SingleOrDefault(x => x.Number == number);
             return retVal == null ? null : DecryptSingle(retVal);
         }
 
-        private static QuestionInfo DecryptSingle(QuestionInfo value)
+        private static QuestionInfo DecryptSingle(RawQuestionInfo value)
         {
+            var splitAnswer = DecryptString(value.RawAnswer).Split('|');
+
+            if(splitAnswer.Length != value.RawAnswerCount)
+            {
+                throw new InvalidOperationException($"Mismatch on answer element count for question# {value.Number}");
+            }
+
             return new QuestionInfo
             {
                 Number = value.Number,
                 Question = DecryptString(value.Question),
                 AnswerHash = value.AnswerHash,
-                Answer = value.Answer.Select(DecryptString).ToList(),
+                Answer = splitAnswer.ToList(),
                 WrongAnswers = value.WrongAnswers?.Select(DecryptString).ToList(),
                 Passage = value.Passage,
                 Type = value.Type
