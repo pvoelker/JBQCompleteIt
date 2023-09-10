@@ -51,11 +51,8 @@ namespace JBQCompleteIt.ViewModel
             get => _correctIndexes;
             set
             {
-                WasWrong = IsWrong;
-
                 SetProperty(ref _correctIndexes, value);
-                OnPropertyChanged(nameof(IsCorrect));
-                OnPropertyChanged(nameof(IsWrong));
+                OnPropertyChanged(nameof(IsOrderGivenWrong));
             }
         }
 
@@ -68,11 +65,10 @@ namespace JBQCompleteIt.ViewModel
             get => _givenIndex;
             set
             {
-                WasWrong = IsWrong;
+                WasWrong = IsOrderGivenWrong;
 
                 SetProperty(ref _givenIndex, value);
-                OnPropertyChanged(nameof(IsCorrect));
-                OnPropertyChanged(nameof(IsWrong));
+                OnPropertyChanged(nameof(IsOrderGivenWrong));
                 OnPropertyChanged(nameof(IsOrderGiven));
                 OnPropertyChanged(nameof(IsOrderNotGiven));
             }
@@ -86,6 +82,11 @@ namespace JBQCompleteIt.ViewModel
         public bool IsOrderNotGiven
         {
             get => !GivenIndex.HasValue;
+        }
+
+        public bool IsOrderGivenWrong
+        {
+            get => IsOrderGiven && (CorrectIndexes == null || !CorrectIndexes.Any(x => x == GivenIndex));
         }
 
         private string _text = null;
@@ -105,16 +106,6 @@ namespace JBQCompleteIt.ViewModel
         public bool IsBlank
         {
             get => string.IsNullOrEmpty(_text);
-        }
-
-        public bool IsCorrect
-        {
-            get => IsPartOfAnswer && CorrectIndexes.Any(x => x == Index);
-        }
-
-        public bool IsWrong
-        {
-            get => IsOrderGiven && (CorrectIndexes == null || !CorrectIndexes.Any(x => x == GivenIndex));
         }
 
         private bool _wasWrong = false;

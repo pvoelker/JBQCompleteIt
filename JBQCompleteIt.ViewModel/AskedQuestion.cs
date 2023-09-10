@@ -180,7 +180,7 @@ namespace JBQCompleteIt.ViewModel
         
         public List<AnswerSegment> GetWrongElements()
         {
-            return PossibleAnswerSegments.Where(x => x.IsWrong).ToList();
+            return PossibleAnswerSegments.Where(x => x.IsOrderGivenWrong).ToList();
         }
 
         public int GetFirstAvailableGivenIndex()
