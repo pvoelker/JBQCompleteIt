@@ -25,7 +25,7 @@ namespace JBQCompleteIt
                 }
                 else
                 {
-                    await Navigation.PushAsync(new QuizPage(context.StartQuestionNumber, context.EndQuestionNumber, context.Difficulty, context.EnableHints));
+                    await Navigation.PushAsync(new QuizPage(context.StartQuestionNumber, context.EndQuestionNumber, context.Difficulty, context.LearningMode));
                 }
             }
             else

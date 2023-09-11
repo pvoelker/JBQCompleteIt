@@ -8,7 +8,7 @@ namespace JBQCompleteIt.ViewModel
 
         public const string EndQuestionRange = "end_question_range";
 
-        public const string EnableHints = "enable_hints";
+        public const string LearningMode = "learning_mode";
 
         public const string Difficulty = "difficulty";
     }

@@ -22,6 +22,14 @@ namespace JBQCompleteIt.ViewModel
 
         private QuestionProvider _questionProvider = null;
 
+        static QuizPage()
+        {
+            var minDim = Math.Min(DeviceDisplay.Current.MainDisplayInfo.Height, DeviceDisplay.Current.MainDisplayInfo.Width);
+            var minDimDensityRatio = minDim / DeviceDisplay.Current.MainDisplayInfo.Density;
+
+            _isSmallScreen = minDimDensityRatio < 600;
+        }
+
         public QuizPage()
         {
             SubmitAnswer = new RelayCommand(() =>
@@ -29,7 +37,7 @@ namespace JBQCompleteIt.ViewModel
                 if (CurrentQuestion.IsCorrectAnswerGiven)
                 {
                     // Reset hint timer
-                    if (_hintTimer.Enabled)
+                    if (EnableHints == true)
                     {
                         _hintTimer.Stop();
                         _hintTimer.Start();
@@ -78,7 +86,8 @@ namespace JBQCompleteIt.ViewModel
 
             _hintTimer.Elapsed += _timer_Elapsed;
 
-            _hintTimer.Interval = 10000;
+            _hintTimer.Interval = 5000;
+            _hintTimer.AutoReset = false;
 
             _hintTimer.Enabled = EnableHints;
             if (EnableHints == true)
@@ -100,7 +109,15 @@ namespace JBQCompleteIt.ViewModel
                         await nextCorrectAnswerElement.ShowHint.ExecuteAsync(this);
                     }
                 }
+
+                _hintTimer.Start();
             }
+        }
+
+        private static bool _isSmallScreen = false;
+        public bool IsSmallScreen
+        {
+            get => _isSmallScreen;
         }
 
         private AskedQuestion _currentQuestion = null;

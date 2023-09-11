@@ -50,9 +50,16 @@
 
         <Style x:Key="correctBase" TargetType="Label">
             <Setter Property="FontFamily" Value="MorningRainbow" />
-            <Setter Property="FontSize" Value="{OnPlatform Default='28', MacCatalyst='40'}" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='36', MacCatalyst='51.4'}" />
+            <Setter Property="VerticalOptions" Value="Center" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Style.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=IsSmallScreen}" Value="True">
+                    <Setter Property="FontSize" Value= "{OnPlatform Default='20', MacCatalyst='28.6'}" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="correctCount" TargetType="Label" BasedOn="{StaticResource correctBase}">
@@ -65,11 +72,17 @@
 
         <Style x:Key="checkButton" TargetType="Button">
             <Setter Property="FontFamily" Value="MorningRainbow" />
-            <Setter Property="FontSize" Value="{OnPlatform Default='24', MacCatalyst='31.6'}" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='36', MacCatalyst='51.4'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="VerticalOptions" Value="Center" />
             <Setter Property="BackgroundColor" Value="Blue" />
             <Setter Property="TextColor" Value="WhiteSmoke" />
+            <Style.Triggers>
+                <DataTrigger TargetType="Button"
+                             Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=IsSmallScreen}" Value="True">
+                    <Setter Property="FontSize" Value= "{OnPlatform Default='20', MacCatalyst='28.6'}" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="givenElementBubbles" TargetType="local:BalloonButton">
@@ -149,7 +162,7 @@
                                         </DataTrigger>
                                         <MultiTrigger TargetType="local:BalloonButton">
                                             <MultiTrigger.Conditions>
-                                                <BindingCondition Binding="{Binding Path=IsWrong}" Value="True" />
+                                                <BindingCondition Binding="{Binding Path=IsOrderGivenWrong}" Value="True" />
                                                 <BindingCondition Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=EnableHints}" Value="True" />
                                             </MultiTrigger.Conditions>
                                             <Setter Property="BackgroundColor" Value= "Orange" />

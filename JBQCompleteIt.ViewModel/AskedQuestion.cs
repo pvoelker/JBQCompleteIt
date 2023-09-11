@@ -201,11 +201,58 @@ namespace JBQCompleteIt.ViewModel
 
         public AnswerSegment GetNextCorrectAnswerElement()
         {
-            // TODO not working
-            return PossibleAnswerSegments
-                .Where(x => x.IsPartOfAnswer)
-                .OrderBy(x => x.Index)
-                .FirstOrDefault(x => x.IsOrderNotGiven);
+            var prevIndex = -1;
+            foreach(var x in GivenAnswer)
+            {
+                if(x.IsOrderGivenWrong)
+                {
+                    return null;
+                }
+                else if(!x.IsBlank)
+                {
+                    Debug.Assert(x.IsPartOfAnswer);
+
+                    prevIndex = x.Index.Value;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            var retValIndex = prevIndex + 1;
+            if (retValIndex == CorrectAnswerSegmentCount)
+            {
+                return null;
+            }
+            else
+            {
+                var found = PossibleAnswerSegments.Single(x => x.Index == retValIndex);
+
+                Debug.Assert(found != null);
+
+                // In the case there are duplicate words in the answer, the duplicate words may be out of order...
+
+                AnswerSegment retVal = null;
+                if (found.IsOrderGiven)
+                {
+                    var altSegments = PossibleAnswerSegments.Where(x => x.Index != found.Index && x.CorrectIndexes.Any(y => y == found.Index));
+                    foreach(var alt in altSegments)
+                    {
+                        if(alt.IsOrderNotGiven)
+                        {
+                            retVal = alt;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    retVal = found;
+                }
+
+                return retVal;
+            }
         }
 
         /// <summary>
