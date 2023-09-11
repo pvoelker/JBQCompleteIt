@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:b="clr-namespace:JBQCompleteIt.Behaviors"
              xmlns:c="clr-namespace:JBQCompleteIt.Converters"
@@ -145,10 +145,11 @@
                     <DataTemplate>
                         <!-- PEV - 9/11/2023 - Target null value for text being used to deal with problems with button sizing on MacOS/iOS -->
                         <local:BalloonButton x:DataType="vm:AnswerSegment"
-                            Text="{Binding Path=Text, TargetNullValue=' '}"
+                            Text="{Binding Path=Text, TargetNullValue='?'}"
                             FontSize="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.PossibleAnswerSegments.Count, Converter={StaticResource SegmentCountToFontSize}}"
                             Command="{Binding Clicked}"
-                            MinimumWidthRequest="60">
+                            MinimumWidthRequest="60"
+                            FlexLayout.AlignSelf="Center">
                             <local:BalloonButton.Style>
                                 <Style TargetType="local:BalloonButton"  BasedOn="{StaticResource givenElementBubbles}">
                                     <Style.Triggers>
