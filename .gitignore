@@ -11,6 +11,7 @@
 
 # Android secure files (not to be added to source control)
 *.keystore
+*.keystore.password.txt
 
 # User-specific files
 *.rsuser
