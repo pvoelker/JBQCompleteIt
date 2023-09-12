@@ -149,6 +149,16 @@ namespace JBQCompleteIt.ViewModel
             private set => SetProperty(ref _givenAnswer, value);
         }
 
+        private int _givenAnswerSegmentCount;
+        /// <summary>
+        /// The number of answer segments that are part of the given answer
+        /// </summary>
+        public int GivenAnswerSegmentCount
+        {
+            get => _givenAnswerSegmentCount;
+            private set => SetProperty(ref _givenAnswerSegmentCount, value);
+        }
+
         private string _passage;
         /// <summary>
         /// Passage reference for the question
@@ -170,12 +180,12 @@ namespace JBQCompleteIt.ViewModel
 
         public bool IsCompleteAnswerGiven
         {
-            get => GivenAnswer.Count(x => !x.IsBlank) == PossibleAnswerSegments.Count(x => x.IsPartOfAnswer);
+            get => GivenAnswerSegmentCount == CorrectAnswerSegmentCount;
         }
 
         public bool IsCorrectAnswerGiven
         {
-            get => GivenAnswer.Where(x => !x.IsBlank).All(x => x.CorrectIndexes != null && x.CorrectIndexes.Any(y => y == x.GivenIndex));
+            get => IsCompleteAnswerGiven && GivenAnswer.All(x => x.CorrectIndexes != null && x.CorrectIndexes.Any(y => y == x.GivenIndex));
         }
         
         public List<AnswerSegment> GetWrongElements()
@@ -262,18 +272,29 @@ namespace JBQCompleteIt.ViewModel
         {
             Debug.WriteLine($"{nameof(AskedQuestion)} - {memberName} - Rebuilding given answer");
 
-            var givenAnswer = new ObservableCollection<AnswerSegment>();
+            var givenAnswer = new List<AnswerSegment>(CorrectAnswerSegmentCount);
 
+            var segCount = 0;
             for (int i = 0; i < CorrectAnswerSegmentCount; i++)
             {
-                var element = PossibleAnswerSegments.SingleOrDefault(x => x.GivenIndex == i);
+                // PEV - 9/11/2023 - Switching from SingleOrDefault since FirstOrDefault is faster
+                var element = PossibleAnswerSegments.FirstOrDefault(x => x.GivenIndex == i);
 
-                element ??= new AnswerSegment();
+                if(element == null)
+                {
+                    element ??= new AnswerSegment();
+                }
+                else
+                {
+                    segCount++;
+                }
 
                 givenAnswer.Add(element);
             }
 
-            GivenAnswer = givenAnswer;
+            GivenAnswerSegmentCount = segCount;
+
+            GivenAnswer = new ObservableCollection<AnswerSegment>(givenAnswer);
 
             OnPropertyChanged(nameof(IsCompleteAnswerGiven));
             OnPropertyChanged(nameof(IsCorrectAnswerGiven));

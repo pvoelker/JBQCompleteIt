@@ -86,7 +86,7 @@ namespace JBQCompleteIt.ViewModel
 
             _hintTimer.Elapsed += _timer_Elapsed;
 
-            _hintTimer.Interval = 5000;
+            _hintTimer.Interval = 3000;
             _hintTimer.AutoReset = false;
 
             _hintTimer.Enabled = EnableHints;

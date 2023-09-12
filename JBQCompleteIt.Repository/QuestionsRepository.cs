@@ -2192,7 +2192,8 @@ namespace JBQCompleteIt.Repository
         /// <inheritdoc />
         public QuestionInfo? GetByNumber(int number)
         {
-            var retVal = _data.SingleOrDefault(x => x.Number == number);
+            // PEV - 9/11/2023 - Switching from SingleOrDefault as FirstOrDefault is faster and we can assume not duplicates are present
+            var retVal = _data.FirstOrDefault(x => x.Number == number);
             return retVal == null ? null : DecryptSingle(retVal);
         }
 
