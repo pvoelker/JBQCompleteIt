@@ -32,6 +32,31 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Release'">
+		<CodesignKey>Developer ID Application: Paul Voelker (3LHZQRQA4Q)</CodesignKey>
+		<CodesignEntitlements>Platforms\MacCatalyst\Entitlements.plist</CodesignEntitlements>
+		<CodesignProvision>JBQ Complete It (MacOS Catalyst Non-App Store)</CodesignProvision>
+		<CreatePackage>true</CreatePackage>
+		<EnableCodeSigning>true</EnableCodeSigning>
+		<EnablePackageSigning>true</EnablePackageSigning>
+		<MtouchLink>SdkOnly</MtouchLink>
+		<PackageSigningKey>Developer ID Installer: Paul Voelker (3LHZQRQA4Q)</PackageSigningKey>
+		<UseHardenedRuntime>true</UseHardenedRuntime>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Debug'">				
+		<CodesignKey>iPhone Distribution: Paul Voelker (3LHZQRQA4Q)</CodesignKey>
+		<CodesignProvision>JBQ Complete It</CodesignProvision>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="$(TargetFramework.Contains('-ios')) and '$(Configuration)' == 'Release'">				
+		<RuntimeIdentifier>ios-arm64</RuntimeIdentifier>
+		<CodesignKey>iPhone Distribution: Paul Voelker (3LHZQRQA4Q)</CodesignKey>
+		<CodesignProvision>JBQ Complete It</CodesignProvision>
+		<ArchiveOnBuild>true</ArchiveOnBuild>
+		<CreatePackage>true</CreatePackage>
+	</PropertyGroup>
+
 	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows' and '$(Configuration)' == 'Release'">
 		<AppxPackageSigningEnabled>true</AppxPackageSigningEnabled>
 		<PackageCertificateThumbprint>8fd9f7c803428d3d12ff9586e0a5dcf9f0f7424f</PackageCertificateThumbprint>
@@ -53,7 +78,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -90,5 +114,11 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
+
+	<Target Name="_SkipCodesignVerify" BeforeTargets="_CodesignVerify" AfterTargets="_CodesignAppBundle">  
+      <PropertyGroup>    
+          <_RequireCodeSigning>false</_RequireCodeSigning>  
+      </PropertyGroup>
+	</Target>
 
 </Project>
