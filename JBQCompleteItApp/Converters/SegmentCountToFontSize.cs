@@ -29,7 +29,7 @@ namespace JBQCompleteIt.Converters
 
             var origSize = 24m;
 
-            if (values[0] == null || values[1] == null)
+            if (values[0] == null)
             {
                 // PEV - 9/12/2023 - During initialization we expect a few runs of the converter with null values
                 return origSize;
