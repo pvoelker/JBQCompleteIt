@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace JBQCompleteIt.Converters
 {
-    public class SegmentCountToFontSize : IValueConverter
+    public class SegmentCountToFontSize : IMultiValueConverter
     {
         static bool _isSmallScreen = false;
 
@@ -20,11 +20,23 @@ namespace JBQCompleteIt.Converters
             }
         }
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var count = (int)value;
+            if(values.Length != 2)
+            {
+                throw new ArgumentException($"Two values expected for {nameof(SegmentCountToFontSize)} converter");
+            }
 
             var origSize = 24m;
+
+            if (values[0] == null || values[1] == null)
+            {
+                // PEV - 9/12/2023 - During initialization we expect a few runs of the converter with null values
+                return origSize;
+            }
+
+            var count = (int)values[0];
+            var text = (string)values[1];
 
             // Adjust font size for small screens
             if (_isSmallScreen)
@@ -37,12 +49,26 @@ namespace JBQCompleteIt.Converters
                 {
                     origSize = 20m;
                 }
+
+                if (text != null)
+                {
+                    var len = text.Length;
+
+                    if (len > 40)
+                    {
+                        origSize = Math.Min(16m, origSize);
+                    }
+                    else if (len > 20)
+                    {
+                        origSize = Math.Min(20m, origSize);
+                    }
+                }
             }
 
             return AdjustFontSize(origSize);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }

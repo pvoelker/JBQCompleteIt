@@ -146,10 +146,15 @@
                         <!-- PEV - 9/11/2023 - Target null value for text being used to deal with problems with button sizing on MacOS/iOS -->
                         <local:BalloonButton x:DataType="vm:AnswerSegment"
                             Text="{Binding Path=Text, TargetNullValue='?'}"
-                            FontSize="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.PossibleAnswerSegments.Count, Converter={StaticResource SegmentCountToFontSize}}"
                             Command="{Binding Clicked}"
                             MinimumWidthRequest="60"
                             FlexLayout.AlignSelf="Center">
+                            <local:BalloonButton.FontSize>
+                                <MultiBinding Converter="{StaticResource SegmentCountToFontSize}">
+                                    <Binding Path="CurrentQuestion.PossibleAnswerSegments.Count" Source="{RelativeSource AncestorType={x:Type vm:QuizPage}}" />
+                                    <Binding Path="Text" />
+                                </MultiBinding>
+                            </local:BalloonButton.FontSize>
                             <local:BalloonButton.Style>
                                 <Style TargetType="local:BalloonButton"  BasedOn="{StaticResource givenElementBubbles}">
                                     <Style.Triggers>
@@ -204,9 +209,14 @@
                     <DataTemplate>
                         <local:BalloonButton x:DataType="vm:AnswerSegment"
                             Text="{Binding Text}"
-                            FontSize="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.PossibleAnswerSegments.Count, Converter={StaticResource SegmentCountToFontSize}}"
                             Command="{Binding Clicked}"
                             IsVisible="{Binding IsOrderNotGiven}">
+                            <local:BalloonButton.FontSize>
+                                <MultiBinding Converter="{StaticResource SegmentCountToFontSize}">
+                                    <Binding Path="CurrentQuestion.PossibleAnswerSegments.Count" Source="{RelativeSource AncestorType={x:Type vm:QuizPage}}" />
+                                    <Binding Path="Text" />
+                                </MultiBinding>
+                            </local:BalloonButton.FontSize>                            
                             <local:BalloonButton.Style>
                                 <Style TargetType="local:BalloonButton" BasedOn="{StaticResource elementBubbles}">
                                     <Style.Triggers>
