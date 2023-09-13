@@ -55,7 +55,8 @@
 
         <Style x:Key="startButton" TargetType="Button">
             <Setter Property="TextColor" Value="{StaticResource White}" />
-            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+            <!-- PEV - 9/13/2023 - Using Background because BackgroundColor has issues on iOS/Android -->
+            <Setter Property="Background" Value="{StaticResource Primary}" />
             <Setter Property="FontFamily" Value="OpenSansRegular" />
             <Setter Property="FontSize" Value="{OnPlatform Default='32', MacCatalyst='41.6'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
@@ -65,7 +66,8 @@
 
         <Style x:Key="aboutButton" TargetType="Button">
             <Setter Property="TextColor" Value="{StaticResource White}" />
-            <Setter Property="BackgroundColor" Value="Orange" />
+            <!-- PEV - 9/13/2023 - Using Background because BackgroundColor has issues on iOS/Android -->
+            <Setter Property="Background" Value="Orange" />
             <Setter Property="FontFamily" Value="OpenSansRegular" />
             <Setter Property="FontSize" Value="{OnPlatform Default='18', MacCatalyst='23.4'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
