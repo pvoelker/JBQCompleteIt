@@ -1,8 +1,10 @@
+using JBQCompleteIt.ViewModel;
+
 namespace JBQCompleteIt;
 
 public partial class QuizPage : ContentPage
 {
-	public QuizPage(int? startQuestionNumber, int? endQuestionNumber, bool enableHints)
+	public QuizPage(int? startQuestionNumber, int? endQuestionNumber, DifficultyEnum difficulty, bool enableHints)
 	{
 		InitializeComponent();
 
@@ -12,6 +14,7 @@ public partial class QuizPage : ContentPage
         {
             context.StartQuestionNumber = startQuestionNumber;
             context.EndQuestionNumber = endQuestionNumber;
+            context.Difficulty = difficulty;
             context.EnableHints = enableHints;
 
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed

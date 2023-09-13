@@ -17,7 +17,11 @@ namespace JBQCompleteIt.ViewModel
 
             StartQuestionNumberStr = Preferences.Default.Get<string>(PreferenceKeys.StartQuestionRange, null);
             EndQuestionNumberStr = Preferences.Default.Get<string>(PreferenceKeys.EndQuestionRange, null);
-            EnableHints = Preferences.Default.Get<bool>(PreferenceKeys.EnableHints, false);
+            LearningMode = Preferences.Default.Get<bool>(PreferenceKeys.LearningMode, false);
+            if (Enum.TryParse<DifficultyEnum>(Preferences.Default.Get<string>(PreferenceKeys.Difficulty, null), out var diffEnum))
+            {
+                Difficulty = diffEnum;
+            }
 
             var assembly = Assembly.GetEntryAssembly();
 
@@ -68,14 +72,27 @@ namespace JBQCompleteIt.ViewModel
             private set => SetProperty(ref _copyright, value);
         }
 
-        private bool _enableHints = false;
-        public bool EnableHints
+        public IReadOnlyList<string> AllDifficulties { get; } = Enum.GetNames(typeof(DifficultyEnum));
+
+        private DifficultyEnum _difficulty = DifficultyEnum.Easy;
+        public DifficultyEnum Difficulty
         {
-            get => _enableHints;
+            get => _difficulty;
             set
             {
-                Preferences.Default.Set(PreferenceKeys.EnableHints, value);
-                SetProperty(ref _enableHints, value);
+                Preferences.Default.Set(PreferenceKeys.Difficulty, Enum.GetName(typeof(DifficultyEnum), value));
+                SetProperty(ref _difficulty, value);
+            }
+        }
+
+        private bool _learningMode = false;
+        public bool LearningMode
+        {
+            get => _learningMode;
+            set
+            {
+                Preferences.Default.Set(PreferenceKeys.LearningMode, value);
+                SetProperty(ref _learningMode, value);
             }
         }
 

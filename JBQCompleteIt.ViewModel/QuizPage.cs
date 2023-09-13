@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using JBQCompleteIt.Repository;
 using JBQCompleteIt.ViewModel.Providers;
-using System.Diagnostics;
 
 namespace JBQCompleteIt.ViewModel
 {
@@ -23,6 +22,14 @@ namespace JBQCompleteIt.ViewModel
 
         private QuestionProvider _questionProvider = null;
 
+        static QuizPage()
+        {
+            var minDim = Math.Min(DeviceDisplay.Current.MainDisplayInfo.Height, DeviceDisplay.Current.MainDisplayInfo.Width);
+            var minDimDensityRatio = minDim / DeviceDisplay.Current.MainDisplayInfo.Density;
+
+            _isSmallScreen = minDimDensityRatio < 600;
+        }
+
         public QuizPage()
         {
             SubmitAnswer = new RelayCommand(() =>
@@ -30,7 +37,7 @@ namespace JBQCompleteIt.ViewModel
                 if (CurrentQuestion.IsCorrectAnswerGiven)
                 {
                     // Reset hint timer
-                    if (_hintTimer.Enabled)
+                    if (EnableHints == true)
                     {
                         _hintTimer.Stop();
                         _hintTimer.Start();
@@ -45,7 +52,7 @@ namespace JBQCompleteIt.ViewModel
                     }
                     else
                     {
-                        CurrentQuestion = _questionProvider.GetNextQuestion();
+                        CurrentQuestion = _questionProvider.GetNextQuestion(Difficulty);
                     }
                 }
                 else
@@ -60,7 +67,7 @@ namespace JBQCompleteIt.ViewModel
             {
                 LottieImageFile = null;
 
-                CurrentQuestion = _questionProvider.GetNextQuestion();
+                CurrentQuestion = _questionProvider.GetNextQuestion(Difficulty);
             });
 
             AnimationComplete = new RelayCommand(() =>
@@ -75,11 +82,12 @@ namespace JBQCompleteIt.ViewModel
         {
             _questionProvider = new QuestionProvider(new QuestionsRepository(), null, null);
 
-            CurrentQuestion = _questionProvider.GetNextQuestion();
+            CurrentQuestion = _questionProvider.GetNextQuestion(Difficulty);
 
             _hintTimer.Elapsed += _timer_Elapsed;
 
-            _hintTimer.Interval = 10000;
+            _hintTimer.Interval = 3000;
+            _hintTimer.AutoReset = false;
 
             _hintTimer.Enabled = EnableHints;
             if (EnableHints == true)
@@ -101,7 +109,15 @@ namespace JBQCompleteIt.ViewModel
                         await nextCorrectAnswerElement.ShowHint.ExecuteAsync(this);
                     }
                 }
+
+                _hintTimer.Start();
             }
+        }
+
+        private static bool _isSmallScreen = false;
+        public bool IsSmallScreen
+        {
+            get => _isSmallScreen;
         }
 
         private AskedQuestion _currentQuestion = null;
@@ -118,11 +134,26 @@ namespace JBQCompleteIt.ViewModel
             set => SetProperty(ref _lottieImageFile, value);
         }
 
+        private DifficultyEnum _difficulty;
+        public DifficultyEnum Difficulty
+        {
+            get => _difficulty;
+            set => SetProperty(ref _difficulty, value);
+        }
+
         private bool _enableHints = false;
         public bool EnableHints
         {
             get => _enableHints;
-            set => SetProperty(ref _enableHints, value);
+            set
+            {
+                SetProperty(ref _enableHints, value);
+                OnPropertyChanged(nameof(AreHintsNotEnabled));
+            }
+        }
+        public bool AreHintsNotEnabled
+        {
+            get => !_enableHints;
         }
 
         private int? _startQuestionNumber = null;

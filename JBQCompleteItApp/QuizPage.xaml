@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:b="clr-namespace:JBQCompleteIt.Behaviors"
              xmlns:c="clr-namespace:JBQCompleteIt.Converters"
@@ -13,6 +13,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Resources>
         <c:ObjectNotNullToBool x:Key="ObjectNotNullToBool" />
+        <c:SegmentCountToFontSize x:Key="SegmentCountToFontSize" />
         <c:LottieImageSourceConverter x:Key="LottieImageSourceConverter" />
 
         <Style x:Key="quizInstructions" TargetType="Label">
@@ -49,9 +50,16 @@
 
         <Style x:Key="correctBase" TargetType="Label">
             <Setter Property="FontFamily" Value="MorningRainbow" />
-            <Setter Property="FontSize" Value="{OnPlatform Default='32', MacCatalyst='41.6'}" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='36', MacCatalyst='51.4'}" />
+            <Setter Property="VerticalOptions" Value="Center" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Style.Triggers>
+                <DataTrigger TargetType="Label"
+                             Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=IsSmallScreen}" Value="True">
+                    <Setter Property="FontSize" Value= "{OnPlatform Default='20', MacCatalyst='28.6'}" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="correctCount" TargetType="Label" BasedOn="{StaticResource correctBase}">
@@ -64,16 +72,27 @@
 
         <Style x:Key="checkButton" TargetType="Button">
             <Setter Property="FontFamily" Value="MorningRainbow" />
-            <Setter Property="FontSize" Value="{OnPlatform Default='24', MacCatalyst='31.6'}" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='36', MacCatalyst='51.4'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="VerticalOptions" Value="Center" />
             <Setter Property="BackgroundColor" Value="Blue" />
             <Setter Property="TextColor" Value="WhiteSmoke" />
+            <Style.Triggers>
+                <DataTrigger TargetType="Button"
+                             Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=IsSmallScreen}" Value="True">
+                    <Setter Property="FontSize" Value= "{OnPlatform Default='20', MacCatalyst='28.6'}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="givenElementBubbles" TargetType="local:BalloonButton">
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=WhiteSmoke}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=Green, Dark=DarkGreen}" />
         </Style>
 
         <Style x:Key="elementBubbles" TargetType="local:BalloonButton">
             <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=WhiteSmoke}" />
-            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=Orchid, Dark=DarkViolet}" />
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=BlueViolet, Dark=DarkViolet}" />
         </Style>
     </ContentPage.Resources>
     <Grid Margin="20">
@@ -95,11 +114,11 @@
                 <Style TargetType="Label" BasedOn="{StaticResource quizInstructions}">
                     <Style.Triggers>
                         <DataTrigger TargetType="Label"
-                                                 Binding="{Binding Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
+                                     Binding="{Binding Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
                             <Setter Property="Text" Value= "Select from one of the choices!" />
                         </DataTrigger>
                         <DataTrigger TargetType="Label"
-                                                 Binding="{Binding Path=CurrentQuestion.IsQuotationQuestionType}" Value="True">
+                                     Binding="{Binding Path=CurrentQuestion.IsQuotationQuestionType}" Value="True">
                             <Setter Property="Text" Value= "Complete the Bible quotation!" />
                         </DataTrigger>
                     </Style.Triggers>
@@ -113,91 +132,116 @@
 
         <Label Grid.Row="3" Margin="5" Style="{StaticResource passage}" HorizontalOptions="Center" Text="{Binding Path=CurrentQuestion.Passage, Mode=OneWay, StringFormat='Passage: {0}', TargetNullValue=' '}" />
 
-        <FlexLayout Grid.Row="4"
-                    AlignContent="Start"
-                    AlignItems="Start"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="Fill"
-                    Direction="Row"
-                    JustifyContent="Start"
-                    Wrap="Wrap"
-                    BindableLayout.ItemsSource="{Binding CurrentQuestion.GivenAnswer}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <local:BalloonButton x:DataType="vm:AnswerSegment"
-                        Text="{Binding Text}"
-                        Command="{Binding Clicked}"
-                        MinimumWidthRequest="80">
-                        <local:BalloonButton.Style>
-                            <Style TargetType="local:BalloonButton"  BasedOn="{StaticResource elementBubbles}">
-                                <Style.Triggers>
-                                    <DataTrigger TargetType="local:BalloonButton"
-                                        Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
-                                        <Setter Property="MinimumWidthRequest" Value= "400" />
-                                    </DataTrigger>
-                                    <MultiTrigger TargetType="local:BalloonButton">
-                                        <MultiTrigger.Conditions>
-                                            <BindingCondition Binding="{Binding Path=IsWrong}" Value="True" />
-                                            <BindingCondition Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=EnableHints}" Value="True" />
-                                        </MultiTrigger.Conditions>
-                                        <Setter Property="BackgroundColor" Value= "Orange" />
-                                    </MultiTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </local:BalloonButton.Style>
-                        <local:BalloonButton.Behaviors>
-                            <b:JiggleAnswer/>
-                        </local:BalloonButton.Behaviors>
-                    </local:BalloonButton>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-            <FlexLayout.Style>
-                <Style TargetType="FlexLayout">
-                    <Style.Triggers>
-                        <DataTrigger TargetType="FlexLayout"
-                                                 Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
-                            <Setter Property="JustifyContent" Value= "Center" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </FlexLayout.Style>
-        </FlexLayout>
+        <ScrollView Grid.Row="4" Orientation="Vertical">
+            <FlexLayout AlignContent="Start"
+                        AlignItems="Start"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Fill"
+                        Direction="Row"
+                        JustifyContent="Start"
+                        Wrap="Wrap"
+                        BindableLayout.ItemsSource="{Binding Path=CurrentQuestion.GivenAnswer, Mode=OneWay}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <!-- PEV - 9/11/2023 - Target null value for text being used to deal with problems with button sizing on MacOS/iOS -->
+                        <local:BalloonButton x:DataType="vm:AnswerSegment"
+                            Text="{Binding Path=Text, TargetNullValue='?'}"
+                            Command="{Binding Clicked}"
+                            MinimumWidthRequest="60"
+                            FlexLayout.AlignSelf="Center">
+                            <local:BalloonButton.FontSize>
+                                <MultiBinding Converter="{StaticResource SegmentCountToFontSize}">
+                                    <Binding Path="CurrentQuestion.PossibleAnswerSegments.Count" Source="{RelativeSource AncestorType={x:Type vm:QuizPage}}" />
+                                    <Binding Path="Text" />
+                                </MultiBinding>
+                            </local:BalloonButton.FontSize>
+                            <local:BalloonButton.Style>
+                                <Style TargetType="local:BalloonButton"  BasedOn="{StaticResource givenElementBubbles}">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="local:BalloonButton"
+                                            Binding="{Binding PreAnswered}" Value="True">
+                                            <Setter Property="Command" Value= "{x:Null}" />
+                                            <Setter Property="BackgroundColor" Value= "Gray" />
+                                        </DataTrigger>
+                                        <DataTrigger TargetType="local:BalloonButton"
+                                            Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
+                                            <Setter Property="MinimumWidthRequest" Value= "400" />
+                                        </DataTrigger>
+                                        <MultiTrigger TargetType="local:BalloonButton">
+                                            <MultiTrigger.Conditions>
+                                                <BindingCondition Binding="{Binding Path=IsOrderGivenWrong}" Value="True" />
+                                                <BindingCondition Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=EnableHints}" Value="True" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="BackgroundColor" Value= "Orange" />
+                                        </MultiTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </local:BalloonButton.Style>
+                            <local:BalloonButton.Behaviors>
+                                <b:JiggleSegment/>
+                            </local:BalloonButton.Behaviors>
+                        </local:BalloonButton>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+                <FlexLayout.Style>
+                    <Style TargetType="FlexLayout">
+                        <Style.Triggers>
+                            <DataTrigger TargetType="FlexLayout"
+                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
+                                <Setter Property="JustifyContent" Value= "Center" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </FlexLayout.Style>
+            </FlexLayout>
+        </ScrollView>
 
-        <FlexLayout Grid.Row="5"
-                    AlignContent="Start"
-                    AlignItems="Start"
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="Fill"
-                    Direction="Row"
-                    JustifyContent="Start"
-                    Wrap="Wrap"
-                    BindableLayout.ItemsSource="{Binding CurrentQuestion.PossibleAnswerSegements}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <local:BalloonButton x:DataType="vm:AnswerSegment"
-                        Text="{Binding Text}"
-                        Command="{Binding Clicked}"
-                        IsVisible="{Binding IsOrderNotGiven}">
-                        <local:BalloonButton.Style>
-                            <Style TargetType="local:BalloonButton" BasedOn="{StaticResource elementBubbles}">
-                                <Style.Triggers>
-                                    <DataTrigger TargetType="local:BalloonButton"
-                                        Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
-                                        <Setter Property="MinimumWidthRequest" Value= "100" />
-                                    </DataTrigger>
-                                    <DataTrigger TargetType="local:BalloonButton" Binding="{Binding Path=WasWrong}" Value="True">
-                                        <Setter Property="BackgroundColor" Value= "Orange" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </local:BalloonButton.Style>
-                        <local:BalloonButton.Behaviors>
-                            <b:JiggleAnswer/>
-                        </local:BalloonButton.Behaviors>
-                    </local:BalloonButton>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </FlexLayout>
+        <ScrollView Grid.Row="5" Orientation="Vertical">
+            <FlexLayout AlignContent="Start"
+                        AlignItems="Start"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Fill"
+                        Direction="Row"
+                        JustifyContent="Start"
+                        Wrap="Wrap"
+                        BindableLayout.ItemsSource="{Binding Path=CurrentQuestion.PossibleAnswerSegments, Mode=OneWay}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <local:BalloonButton x:DataType="vm:AnswerSegment"
+                            Text="{Binding Text}"
+                            Command="{Binding Clicked}"
+                            IsVisible="{Binding IsOrderNotGiven}">
+                            <local:BalloonButton.FontSize>
+                                <MultiBinding Converter="{StaticResource SegmentCountToFontSize}">
+                                    <Binding Path="CurrentQuestion.PossibleAnswerSegments.Count" Source="{RelativeSource AncestorType={x:Type vm:QuizPage}}" />
+                                    <Binding Path="Text" />
+                                </MultiBinding>
+                            </local:BalloonButton.FontSize>                            
+                            <local:BalloonButton.Style>
+                                <Style TargetType="local:BalloonButton" BasedOn="{StaticResource elementBubbles}">
+                                    <Style.Triggers>
+                                        <DataTrigger TargetType="local:BalloonButton"
+                                            Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
+                                            <Setter Property="MinimumWidthRequest" Value= "100" />
+                                        </DataTrigger>
+                                        <MultiTrigger TargetType="local:BalloonButton">
+                                            <MultiTrigger.Conditions>
+                                                <BindingCondition Binding="{Binding Path=WasWrong}" Value="True" />
+                                                <BindingCondition Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=EnableHints}" Value="True" />
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="BackgroundColor" Value= "Orange" />
+                                        </MultiTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </local:BalloonButton.Style>
+                            <local:BalloonButton.Behaviors>
+                                <b:JiggleSegment/>
+                            </local:BalloonButton.Behaviors>
+                        </local:BalloonButton>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </FlexLayout>
+        </ScrollView>
 
         <Grid Grid.Row="6">
             <Grid.ColumnDefinitions>
@@ -208,11 +252,13 @@
 
             <Label
                 Style="{StaticResource correctCount}"
+                IsVisible="{Binding AreHintsNotEnabled}"
                 Grid.Column="0"
                 Text="{Binding Path=CorrectAnswers, Mode=OneWay, StringFormat='Correct: {0}'}">
             </Label>
 
             <Button Grid.Column="1"
+                    Margin="2"
                     Style="{StaticResource checkButton}"
                     IsEnabled="{Binding CurrentQuestion.IsCompleteAnswerGiven}"
                     Text="Check Me!"
@@ -220,6 +266,7 @@
 
             <Label
                 Style="{StaticResource wrongCount}"
+                IsVisible="{Binding AreHintsNotEnabled}"
                 Grid.Column="2"
                 Text="{Binding Path=WrongAnswers, Mode=OneWay, StringFormat='Wrong: {0}'}">
             </Label>

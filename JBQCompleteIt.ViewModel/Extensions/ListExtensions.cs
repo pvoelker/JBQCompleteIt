@@ -4,7 +4,7 @@ namespace JBQCompleteIt.ViewModel.Extensions
 {
     public static class ListExtensions
     {
-        public static void Shuffle<T>(this IList<T> list)
+        public static IList<T> Shuffle<T>(this IList<T> list)
         {
             if (list == null) throw new ArgumentNullException(nameof(list));
             int n = list.Count;
@@ -14,6 +14,7 @@ namespace JBQCompleteIt.ViewModel.Extensions
                 int k = ThreadSafeRandom.Next(n + 1);
                 (list[n], list[k]) = (list[k], list[n]);
             }
+            return list;
         }
     }
 

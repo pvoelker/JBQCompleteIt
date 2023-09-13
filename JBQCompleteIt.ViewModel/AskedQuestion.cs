@@ -4,11 +4,13 @@ using JBQCompleteIt.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace JBQCompleteIt.ViewModel
 {
     /// <summary>
-    /// A question to ask
+    /// An asked question in the game
     /// </summary>
     public class AskedQuestion : ObservableObject
     {
@@ -59,10 +61,10 @@ namespace JBQCompleteIt.ViewModel
 
         private ObservableCollection<AnswerSegment> _possibleAnswerSegments;
         /// <summary>
-        /// Answer broken down into segments. Not all segements are part of the correct answer
+        /// Answer broken down into segments. Not all segments are part of the correct answer
         /// </summary>
         /// <remarks>Segments are randomized before this property is set</remarks>
-        public ObservableCollection<AnswerSegment> PossibleAnswerSegements
+        public ObservableCollection<AnswerSegment> PossibleAnswerSegments
         {
             get => _possibleAnswerSegments;
             set
@@ -73,7 +75,7 @@ namespace JBQCompleteIt.ViewModel
                     RemoveCollectionItems(_possibleAnswerSegments);
                 }
                 SetProperty(ref _possibleAnswerSegments, value);
-                CorrectAnswerSegmentCount = _possibleAnswerSegments.Count(x => x.HasCorrectIndexes);
+                CorrectAnswerSegmentCount = _possibleAnswerSegments.Count(x => x.IsPartOfAnswer);
                 if (_possibleAnswerSegments != null)
                 {
                     _possibleAnswerSegments.CollectionChanged += Answer_CollectionChanged;
@@ -99,7 +101,10 @@ namespace JBQCompleteIt.ViewModel
 
             AddCollectionItems((IEnumerable<AnswerSegment>)e.NewItems);
 
-            RebuildGivenAnswer();
+            if (e.OldItems != null || e.NewItems != null)
+            {
+                RebuildGivenAnswer();
+            }
         }
 
         private void RemoveCollectionItems(IEnumerable<AnswerSegment> coll)
@@ -134,13 +139,24 @@ namespace JBQCompleteIt.ViewModel
             }
         }
 
-        private ObservableCollection<AnswerSegment> _givenAnswer = new ObservableCollection<AnswerSegment>();
+        private ObservableCollection<AnswerSegment> _givenAnswer = null;
         /// <summary>
         /// Answer broken down into elements
         /// </summary>
         public ObservableCollection<AnswerSegment> GivenAnswer
         {
             get => _givenAnswer;
+            private set => SetProperty(ref _givenAnswer, value);
+        }
+
+        private int _givenAnswerSegmentCount;
+        /// <summary>
+        /// The number of answer segments that are part of the given answer
+        /// </summary>
+        public int GivenAnswerSegmentCount
+        {
+            get => _givenAnswerSegmentCount;
+            private set => SetProperty(ref _givenAnswerSegmentCount, value);
         }
 
         private string _passage;
@@ -164,54 +180,121 @@ namespace JBQCompleteIt.ViewModel
 
         public bool IsCompleteAnswerGiven
         {
-            get => GivenAnswer.Count(x => x != null) == PossibleAnswerSegements.Count(x => x.HasCorrectIndexes);
+            get => GivenAnswerSegmentCount == CorrectAnswerSegmentCount;
         }
 
         public bool IsCorrectAnswerGiven
         {
-            get => GivenAnswer.Where(x => x != null).All(x => x.CorrectIndexes.Any(y => y == x.GivenIndex));
+            get => IsCompleteAnswerGiven && GivenAnswer.All(x => x.CorrectIndexes != null && x.CorrectIndexes.Any(y => y == x.GivenIndex));
         }
         
         public List<AnswerSegment> GetWrongElements()
         {
-            return PossibleAnswerSegements.Where(x => x.IsWrong).ToList();
+            return PossibleAnswerSegments.Where(x => x.IsOrderGivenWrong).ToList();
         }
 
         public int GetFirstAvailableGivenIndex()
         {
             var retVal = 0;
+
             foreach (var x in GivenAnswer)
             {
-                if (x == null)
+                if (x.IsBlank)
                 {
                     break;
                 }
                 retVal++;
             }
+
             return retVal;
         }
 
         public AnswerSegment GetNextCorrectAnswerElement()
         {
-            return PossibleAnswerSegements
-                .Where(x => x.HasCorrectIndexes)
-                .OrderBy(x => x.Index)
-                .FirstOrDefault(x => x.IsOrderNotGiven);
+            var prevIndex = -1;
+            foreach(var x in GivenAnswer)
+            {
+                if(x.IsOrderGivenWrong)
+                {
+                    return null;
+                }
+                else if(!x.IsBlank)
+                {
+                    Debug.Assert(x.IsPartOfAnswer);
+
+                    prevIndex = x.Index.Value;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            var retValIndex = prevIndex + 1;
+            if (retValIndex == CorrectAnswerSegmentCount)
+            {
+                return null;
+            }
+            else
+            {
+                var found = PossibleAnswerSegments.Single(x => x.Index == retValIndex);
+
+                Debug.Assert(found != null);
+
+                // In the case there are duplicate words in the answer, the duplicate words may be out of order...
+
+                AnswerSegment retVal = null;
+                if (found.IsOrderGiven)
+                {
+                    var altSegments = PossibleAnswerSegments.Where(x => x.Index != found.Index && x.CorrectIndexes.Any(y => y == found.Index));
+                    foreach(var alt in altSegments)
+                    {
+                        if(alt.IsOrderNotGiven)
+                        {
+                            retVal = alt;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    retVal = found;
+                }
+
+                return retVal;
+            }
         }
 
         /// <summary>
         /// Rebuild the given answer anytime something changes with the answer elements
         /// </summary>
-        private void RebuildGivenAnswer()
+        private void RebuildGivenAnswer([CallerMemberName] string memberName = "")
         {
-            GivenAnswer.Clear();
+            Debug.WriteLine($"{nameof(AskedQuestion)} - {memberName} - Rebuilding given answer");
 
+            var givenAnswer = new List<AnswerSegment>(CorrectAnswerSegmentCount);
+
+            var segCount = 0;
             for (int i = 0; i < CorrectAnswerSegmentCount; i++)
             {
-                var element = PossibleAnswerSegements.SingleOrDefault(x => x.GivenIndex == i);
+                // PEV - 9/11/2023 - Switching from SingleOrDefault since FirstOrDefault is faster
+                var element = PossibleAnswerSegments.FirstOrDefault(x => x.GivenIndex == i);
 
-                GivenAnswer.Add(element);
+                if(element == null)
+                {
+                    element ??= new AnswerSegment();
+                }
+                else
+                {
+                    segCount++;
+                }
+
+                givenAnswer.Add(element);
             }
+
+            GivenAnswerSegmentCount = segCount;
+
+            GivenAnswer = new ObservableCollection<AnswerSegment>(givenAnswer);
 
             OnPropertyChanged(nameof(IsCompleteAnswerGiven));
             OnPropertyChanged(nameof(IsCorrectAnswerGiven));

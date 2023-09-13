@@ -2,6 +2,8 @@
 using JBQCompleteIt.Repository;
 using JBQCompleteIt.ViewModel.Extensions;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
 
 namespace JBQCompleteIt.ViewModel.Providers
 {
@@ -10,7 +12,7 @@ namespace JBQCompleteIt.ViewModel.Providers
     /// </summary>
     public class QuestionProvider
     {
-        private readonly Random _random = new Random();
+        static private readonly Random _random = new Random();
 
         private readonly Dictionary<int, int> _timesAsked = new Dictionary<int, int>();
 
@@ -71,9 +73,10 @@ namespace JBQCompleteIt.ViewModel.Providers
         /// <summary>
         /// Gets the next question
         /// </summary>
+        /// <param name="difficulty">Game difficulty</param>
         /// <returns>A question with a correct answer and one or more wrong answers</returns>
         /// <exception cref="InvalidOperationException">Question was not found in question number tracking</exception>
-        public AskedQuestion GetNextQuestion()
+        public AskedQuestion GetNextQuestion(DifficultyEnum difficulty)
         {
             var minTimesAsked = _timesAsked.Min(x => x.Value);
 
@@ -129,6 +132,15 @@ namespace JBQCompleteIt.ViewModel.Providers
                     }
                     else
                     {
+                        if (question.Type == QuestionTypeEnum.MultipleChoice)
+                        {
+                            var found = retVal.PossibleAnswerSegments.FirstOrDefault(x => x.GivenIndex != null);
+                            if (found != null)
+                            {
+                                found.GivenIndex = null;
+                            }
+                        }
+
                         answerElement.GivenIndex = retVal.GetFirstAvailableGivenIndex();
                     }
                 });
@@ -143,12 +155,14 @@ namespace JBQCompleteIt.ViewModel.Providers
             {
                 var altCorrectElements = answerElements.Where(x => x.Index != element.Index && x.Text == element.Text);
 
-                element.CorrectIndexes.AddRange(altCorrectElements.Select(x => x.Index));
+                element.CorrectIndexes.AddRange(altCorrectElements.Select(x => x.Index.Value));
             }
 
             if (question.WrongAnswers != null)
             {
-                foreach (var element in question.WrongAnswers)
+                var trimmedWrongAnswers = question.WrongAnswers.Shuffle().Take(3);
+
+                foreach (var element in trimmedWrongAnswers)
                 {
                     var answerElement = new AnswerSegment
                     {
@@ -164,7 +178,16 @@ namespace JBQCompleteIt.ViewModel.Providers
                         }
                         else
                         {
-                            var maxGivenIndex = retVal.PossibleAnswerSegements.MaxBy(x => x.GivenIndex).GivenIndex;
+                            if (question.Type == QuestionTypeEnum.MultipleChoice)
+                            {
+                                var found = retVal.PossibleAnswerSegments.FirstOrDefault(x => x.GivenIndex != null);
+                                if (found != null)
+                                {
+                                    found.GivenIndex = null;
+                                }
+                            }
+
+                            var maxGivenIndex = retVal.PossibleAnswerSegments.MaxBy(x => x.GivenIndex).GivenIndex;
                             if (maxGivenIndex.HasValue)
                             {
                                 answerElement.GivenIndex = maxGivenIndex + 1;
@@ -181,7 +204,12 @@ namespace JBQCompleteIt.ViewModel.Providers
             }
             answerElements.Shuffle();
 
-            retVal.PossibleAnswerSegements = new ObservableCollection<AnswerSegment>(answerElements);
+            retVal.PossibleAnswerSegments = new ObservableCollection<AnswerSegment>(answerElements);
+
+            if (retVal.Type == QuestionTypeEnum.Jumble || retVal.Type == QuestionTypeEnum.QuotationQuestion)
+            {
+                PreAnswerJumbleSegments(retVal, difficulty);
+            }
 
             return retVal;
         }
@@ -211,6 +239,36 @@ namespace JBQCompleteIt.ViewModel.Providers
                 int max = _repository.GetMaxNumber();
 
                 return _random.Next(min, max + 1);
+            }
+        }
+
+        static private void PreAnswerJumbleSegments(AskedQuestion question, DifficultyEnum difficulty)
+        {
+            Debug.Assert(question.Type == QuestionTypeEnum.Jumble || question.Type == QuestionTypeEnum.QuotationQuestion);
+
+            int segmentCount = question.CorrectAnswerSegmentCount;
+
+            int segmentCountToPreAnswer = 0;
+            if(difficulty == DifficultyEnum.Easy)
+            {
+                segmentCountToPreAnswer = (int)Math.Floor(segmentCount * .75);
+            }
+            else if(difficulty == DifficultyEnum.Normal)
+            {
+                segmentCountToPreAnswer = (int)Math.Floor(segmentCount * .5);
+            }
+
+            for (int i = 0; i < segmentCountToPreAnswer; i++)
+            {
+                // Random pick a segment that has not be answered yet
+                var segmentToAnswer = question.PossibleAnswerSegments.ElementAt(_random.Next(segmentCount));
+                while(segmentToAnswer.IsOrderGiven)
+                {
+                    segmentToAnswer = question.PossibleAnswerSegments.ElementAt(_random.Next(segmentCount));
+                }
+
+                segmentToAnswer.GivenIndex = segmentToAnswer.Index;
+                segmentToAnswer.PreAnswered = true;
             }
         }
     }

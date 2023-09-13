@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
 using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace JBQCompleteIt
@@ -19,10 +18,6 @@ namespace JBQCompleteIt
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("MorningRainbow.ttf", "MorningRainbow");
                 });
-
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
 
             return builder.Build();
         }

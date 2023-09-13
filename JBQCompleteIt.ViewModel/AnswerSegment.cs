@@ -6,11 +6,39 @@ namespace JBQCompleteIt.ViewModel
 {
     public class AnswerSegment : ObservableObject
     {
-        private int _index = 0;
-        public int Index
+        /// <summary>
+        /// True if the answer segment is 'pre-answered' based on game difficulty settings
+        /// </summary>
+        private bool _preAnswered = false;
+        public bool PreAnswered
+        {
+            get => _preAnswered;
+            set => SetProperty(ref _preAnswered, value);
+        }
+
+        /// <summary>
+        /// Correct order index for the answer segment.  Null if segment is not part of answer
+        /// </summary>
+        private int? _index = null;
+        public int? Index
         {
             get => _index;
-            set => SetProperty(ref _index, value);
+            set
+            {
+                SetProperty(ref _index, value);
+                OnPropertyChanged(nameof(IsPartOfAnswer));
+                OnPropertyChanged(nameof(IsNotPartOfAnswer));
+            }
+        }
+
+        public bool IsPartOfAnswer
+        {
+            get => _index.HasValue;
+        }
+
+        public bool IsNotPartOfAnswer
+        {
+            get => !_index.HasValue;
         }
 
         private List<int> _correctIndexes;
@@ -23,18 +51,9 @@ namespace JBQCompleteIt.ViewModel
             get => _correctIndexes;
             set
             {
-                SetWasWrong();
-
                 SetProperty(ref _correctIndexes, value);
-                OnPropertyChanged(nameof(IsCorrect));
-                OnPropertyChanged(nameof(IsWrong));
-                OnPropertyChanged(nameof(HasCorrectIndexes));
+                OnPropertyChanged(nameof(IsOrderGivenWrong));
             }
-        }
-
-        public bool HasCorrectIndexes
-        {
-            get => CorrectIndexes != null && CorrectIndexes.Count() > 0;
         }
 
         private int? _givenIndex;
@@ -46,11 +65,10 @@ namespace JBQCompleteIt.ViewModel
             get => _givenIndex;
             set
             {
-                SetWasWrong();
+                WasWrong = IsOrderGivenWrong;
 
                 SetProperty(ref _givenIndex, value);
-                OnPropertyChanged(nameof(IsCorrect));
-                OnPropertyChanged(nameof(IsWrong));
+                OnPropertyChanged(nameof(IsOrderGivenWrong));
                 OnPropertyChanged(nameof(IsOrderGiven));
                 OnPropertyChanged(nameof(IsOrderNotGiven));
             }
@@ -66,29 +84,28 @@ namespace JBQCompleteIt.ViewModel
             get => !GivenIndex.HasValue;
         }
 
-        private string _text;
+        public bool IsOrderGivenWrong
+        {
+            get => IsOrderGiven && (CorrectIndexes == null || !CorrectIndexes.Any(x => x == GivenIndex));
+        }
+
+        private string _text = null;
         /// <summary>
         /// Answer segment text
         /// </summary>
         public string Text
         {
             get => _text;
-            set => SetProperty(ref _text, value);
+            set
+            {
+                SetProperty(ref _text, value);
+                OnPropertyChanged(nameof(IsBlank));
+            }
         }
 
-        public bool IsCorrect
+        public bool IsBlank
         {
-            get => HasCorrectIndexes && CorrectIndexes.Any(x => x == Index);
-        }
-
-        public bool IsWrong
-        {
-            get => IsOrderGiven && CorrectIndexes != null && !CorrectIndexes.Any(x => x == GivenIndex);
-        }
-
-        private void SetWasWrong()
-        {
-            WasWrong = IsWrong;
+            get => string.IsNullOrEmpty(_text);
         }
 
         private bool _wasWrong = false;

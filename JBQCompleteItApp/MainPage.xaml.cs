@@ -19,13 +19,13 @@ namespace JBQCompleteIt
             {
                 var errors = context.GetErrors();
 
-                if (errors.Count() > 0)
+                if (errors.Any())
                 {
                     await DisplayAlert("Cannot Start Quizzing", string.Join(Environment.NewLine, errors.DistinctBy(x => x.ErrorMessage).Select(x => $"• {x.ErrorMessage}")), "OK");
                 }
                 else
                 {
-                    await Navigation.PushAsync(new QuizPage(context.StartQuestionNumber, context.EndQuestionNumber, context.EnableHints));
+                    await Navigation.PushAsync(new QuizPage(context.StartQuestionNumber, context.EndQuestionNumber, context.Difficulty, context.LearningMode));
                 }
             }
             else

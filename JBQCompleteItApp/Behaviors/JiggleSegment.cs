@@ -3,7 +3,7 @@ using System;
 
 namespace JBQCompleteIt.Behaviors
 {
-    public class JiggleAnswer : Behavior<BalloonButton>
+    public class JiggleSegment : Behavior<BalloonButton>
     {
         protected override void OnAttachedTo(BalloonButton control)
         {
