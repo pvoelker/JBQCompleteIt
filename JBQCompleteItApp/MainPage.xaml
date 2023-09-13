@@ -150,7 +150,7 @@
                     Title="Select a game difficulty:"
                     ItemsSource="{Binding AllDifficulties}"
                     SelectedIndex="{Binding Difficulty, Converter={StaticResource EnumToIntConverter}, ConverterParameter={x:Type vm:DifficultyEnum}}" />
-                <Label Style="{StaticResource optionsText}" VerticalOptions="Center" Text="Learning Mode:" Margin="20,0,0,0" />
+                <Label Style="{StaticResource optionsText}" VerticalOptions="Center" Text="Learning Mode:" Margin="5,0,0,0" />
                 <CheckBox VerticalOptions="Center" IsChecked="{Binding Path=LearningMode}" />
             </HorizontalStackLayout>
 
