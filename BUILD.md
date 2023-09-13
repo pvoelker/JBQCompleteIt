@@ -32,7 +32,7 @@ Always make sure to update the dotnet workloads:
 
 ## Android
 
-- The jbqquizme.keystore needs to be copied to the JBQQuizMeApp project directory
+- The jbqcompleteit.keystore needs to be copied to the JBQQuizMeApp project directory
 - Make sure you know the password to the keystore file and will be referenced as '[kspassword]'
 
 > dotnet publish -f:net7.0-android -c:Release /p:AndroidSigningKeyPass=[kspassword] /p:AndroidSigningStorePass=[kspassword]

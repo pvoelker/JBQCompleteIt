@@ -60,7 +60,7 @@
 	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
 		<AndroidKeyStore>True</AndroidKeyStore>
 		<AndroidSigningKeyStore>jbqcompleteit.keystore</AndroidSigningKeyStore>
-		<AndroidSigningKeyAlias>key</AndroidSigningKeyAlias>
+		<AndroidSigningKeyAlias>jbqcompleteit</AndroidSigningKeyAlias>
 		<AndroidSigningKeyPass></AndroidSigningKeyPass>
 		<AndroidSigningStorePass></AndroidSigningStorePass>
 		<AndroidLinkTool>r8</AndroidLinkTool>
