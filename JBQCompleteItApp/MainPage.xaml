@@ -90,8 +90,6 @@
                 Style="{StaticResource Key=jbqMotto}"
                 Text="Practice Junior Bible Quizzing.  Put the word of God into your heart!" />
 
-            <Label HorizontalOptions="Center" TextColor="Red">Alpha Version: Not for general release</Label>
-
             <Image
                 Margin="10"
                 Source="bible_and_cross.png"
