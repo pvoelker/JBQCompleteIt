@@ -26,12 +26,18 @@
         </Style>
 
         <Style x:Key="currentQuestion" TargetType="Label">
-            <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=White}" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=Yellow}" />
             <Setter Property="FontFamily" Value="OpenSansRegular" />
-            <Setter Property="FontSize" Value="{OnPlatform Default='24', MacCatalyst='31.2'}" />
+            <Setter Property="FontSize" Value="{OnPlatform Default='32', MacCatalyst='41.6'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="HorizontalTextAlignment" Value="Center" />
             <Setter Property="LineBreakMode" Value="WordWrap" />
+            <Style.Triggers>
+                <DataTrigger TargetType="Label"
+                    Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=IsSmallScreen}" Value="True">
+                    <Setter Property="FontSize" Value= "{OnPlatform Default='24', MacCatalyst='31.2'}" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="passage" TargetType="Label">
@@ -96,7 +102,7 @@
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=BlueViolet, Dark=DarkViolet}" />
         </Style>
     </ContentPage.Resources>
-    <Grid Margin="20">
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -148,8 +154,8 @@
                         <local:BalloonButton x:DataType="vm:AnswerSegment"
                             Text="{Binding Path=Text, TargetNullValue='?'}"
                             Command="{Binding Clicked}"
-                            MinimumWidthRequest="60"
-                            FlexLayout.AlignSelf="Center">
+                            TextColor="White"
+                            MinimumWidthRequest="50">
                             <local:BalloonButton.FontSize>
                                 <MultiBinding Converter="{StaticResource SegmentCountToFontSize}">
                                     <Binding Path="CurrentQuestion.PossibleAnswerSegments.Count" Source="{RelativeSource AncestorType={x:Type vm:QuizPage}}" />
@@ -188,7 +194,7 @@
                     <Style TargetType="FlexLayout">
                         <Style.Triggers>
                             <DataTrigger TargetType="FlexLayout"
-                                                     Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
+                                Binding="{Binding Source={RelativeSource AncestorType={x:Type vm:QuizPage}}, Path=CurrentQuestion.IsMultipleChoiceType}" Value="True">
                                 <Setter Property="JustifyContent" Value= "Center" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -211,6 +217,8 @@
                         <local:BalloonButton x:DataType="vm:AnswerSegment"
                             Text="{Binding Text}"
                             Command="{Binding Clicked}"
+                            TextColor="White"
+                            MinimumWidthRequest="50"
                             IsVisible="{Binding IsOrderNotGiven}">
                             <local:BalloonButton.FontSize>
                                 <MultiBinding Converter="{StaticResource SegmentCountToFontSize}">
@@ -259,11 +267,11 @@
             </Label>
 
             <Button Grid.Column="1"
-                    Margin="2"
-                    Style="{StaticResource checkButton}"
-                    IsEnabled="{Binding CurrentQuestion.IsCompleteAnswerGiven}"
-                    Text="Check Me!"
-                    Command="{Binding SubmitAnswer}" />
+                Margin="2"
+                Style="{StaticResource checkButton}"
+                IsEnabled="{Binding CurrentQuestion.IsCompleteAnswerGiven}"
+                Text="Check Me!"
+                Command="{Binding SubmitAnswer}" />
 
             <Label
                 Style="{StaticResource wrongCount}"

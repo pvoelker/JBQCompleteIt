@@ -43,11 +43,11 @@ namespace JBQCompleteIt.Converters
             {
                 if (count > 15)
                 {
-                    origSize = 16m;
+                    origSize = 18m;
                 }
                 else if (count > 10)
                 {
-                    origSize = 20m;
+                    origSize = 22m;
                 }
 
                 if (text != null)
@@ -56,11 +56,11 @@ namespace JBQCompleteIt.Converters
 
                     if (len > 40)
                     {
-                        origSize = Math.Min(16m, origSize);
+                        origSize = Math.Min(18m, origSize);
                     }
                     else if (len > 20)
                     {
-                        origSize = Math.Min(20m, origSize);
+                        origSize = Math.Min(22m, origSize);
                     }
                 }
             }
