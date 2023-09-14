@@ -55,7 +55,8 @@
 
         <Style x:Key="startButton" TargetType="Button">
             <Setter Property="TextColor" Value="{StaticResource White}" />
-            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+            <!-- PEV - 9/13/2023 - Using Background because BackgroundColor has issues on iOS/Android -->
+            <Setter Property="Background" Value="{StaticResource Primary}" />
             <Setter Property="FontFamily" Value="OpenSansRegular" />
             <Setter Property="FontSize" Value="{OnPlatform Default='32', MacCatalyst='41.6'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
@@ -65,7 +66,8 @@
 
         <Style x:Key="aboutButton" TargetType="Button">
             <Setter Property="TextColor" Value="{StaticResource White}" />
-            <Setter Property="BackgroundColor" Value="Orange" />
+            <!-- PEV - 9/13/2023 - Using Background because BackgroundColor has issues on iOS/Android -->
+            <Setter Property="Background" Value="Orange" />
             <Setter Property="FontFamily" Value="OpenSansRegular" />
             <Setter Property="FontSize" Value="{OnPlatform Default='18', MacCatalyst='23.4'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
@@ -89,8 +91,6 @@
             <Label
                 Style="{StaticResource Key=jbqMotto}"
                 Text="Practice Junior Bible Quizzing.  Put the word of God into your heart!" />
-
-            <Label HorizontalOptions="Center" TextColor="Red">Alpha Version: Not for general release</Label>
 
             <Image
                 Margin="10"
@@ -150,7 +150,7 @@
                     Title="Select a game difficulty:"
                     ItemsSource="{Binding AllDifficulties}"
                     SelectedIndex="{Binding Difficulty, Converter={StaticResource EnumToIntConverter}, ConverterParameter={x:Type vm:DifficultyEnum}}" />
-                <Label Style="{StaticResource optionsText}" VerticalOptions="Center" Text="Learning Mode:" Margin="20,0,0,0" />
+                <Label Style="{StaticResource optionsText}" VerticalOptions="Center" Text="Learning Mode:" Margin="5,0,0,0" />
                 <CheckBox VerticalOptions="Center" IsChecked="{Binding Path=LearningMode}" />
             </HorizontalStackLayout>
 

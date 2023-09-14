@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
@@ -19,10 +18,10 @@
 		<ApplicationIdGuid>6fbe210d-8624-4838-a57c-d9a8a33912f7</ApplicationIdGuid>
 
 		<!-- Versions -->
-		<AssemblyVersion>0.1.0.0</AssemblyVersion>
-		<FileVersion>0.1.0.0</FileVersion>
-		<ApplicationDisplayVersion>0.1.0</ApplicationDisplayVersion>
-		<ApplicationVersion>1</ApplicationVersion>
+		<AssemblyVersion>0.2.0.0</AssemblyVersion>
+		<FileVersion>0.2.0.0</FileVersion>
+		<ApplicationDisplayVersion>0.2.0</ApplicationDisplayVersion>
+		<ApplicationVersion>2</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
@@ -32,6 +31,17 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<AssemblyName>JBQCompleteIt</AssemblyName>
+		<Authors>Paul Voelker</Authors>
+		<PublisherName>Paul Voelker</PublisherName>
+		<Title>JBQ Complete It!</Title>
+		<Product>JBQ Complete It!</Product>
+		<Description>Game for practicing 20-point questions in Junior Bible Quizzing (JBQ)</Description>
+		<Copyright>Copyright © 2023 Paul Voelker</Copyright>
+		<DefaultLanguage>en</DefaultLanguage>
+	</PropertyGroup>
+	
 	<PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst')) and '$(Configuration)' == 'Release'">
 		<CodesignKey>Developer ID Application: Paul Voelker (3LHZQRQA4Q)</CodesignKey>
 		<CodesignEntitlements>Platforms\MacCatalyst\Entitlements.plist</CodesignEntitlements>

@@ -170,21 +170,23 @@ namespace JBQCompleteIt.ViewModel
         {
             var instance = (MainPage)context.ObjectInstance;
 
+            const string bfpMsg = "This game only uses 20 point questions from the Bible Fact-Pak™.";
+
             if (instance.StartQuestionNumber.HasValue && (instance.StartQuestionNumber < instance.MinQuestionNumber))
             {
-                return new("Start question number must be greater than or equal to the first question number");
+                return new($"Start question number must be greater than or equal to {instance.MinQuestionNumber}. {bfpMsg}");
             }
             else if (instance.EndQuestionNumber.HasValue && (instance.EndQuestionNumber < instance.MinQuestionNumber))
             {
-                return new("End question number must be greater than or equal to the first question number");
+                return new($"End question number must be greater than or equal to {instance.MinQuestionNumber}. {bfpMsg}");
             }
             else if (instance.StartQuestionNumber.HasValue && (instance.StartQuestionNumber > instance.MaxQuestionNumber))
             {
-                return new($"Start question number must be equal to or less than {instance.MaxQuestionNumber}. This game only uses 10 point questions from the Bible Fact-Pak™.");
+                return new($"Start question number must be equal to or less than {instance.MaxQuestionNumber}. {bfpMsg}");
             }
             else if (instance.EndQuestionNumber.HasValue && (instance.EndQuestionNumber > instance.MaxQuestionNumber))
             {
-                return new($"End question number must be equal to or less than {instance.MaxQuestionNumber}. This game only uses 10 point questions from the Bible Fact-Pak™.");
+                return new($"End question number must be equal to or less than {instance.MaxQuestionNumber}. {bfpMsg}");
             }
             else if ((instance.StartQuestionNumber.HasValue && instance.StartQuestionNumber.Value != 0)
                 ^ (instance.EndQuestionNumber.HasValue && instance.EndQuestionNumber.Value != 0))

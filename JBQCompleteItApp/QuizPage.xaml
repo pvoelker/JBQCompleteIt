@@ -75,7 +75,8 @@
             <Setter Property="FontSize" Value="{OnPlatform Default='36', MacCatalyst='51.4'}" />
             <Setter Property="HorizontalOptions" Value="Center" />
             <Setter Property="VerticalOptions" Value="Center" />
-            <Setter Property="BackgroundColor" Value="Blue" />
+            <!-- PEV - 9/13/2023 - Using Background because BackgroundColor is not working on Android/iOS -->
+            <Setter Property="Background" Value="Blue" />
             <Setter Property="TextColor" Value="WhiteSmoke" />
             <Style.Triggers>
                 <DataTrigger TargetType="Button"
@@ -285,7 +286,7 @@
             <skia:SKLottieView
                 IsVisible="{Binding Path=LottieImageFile, Converter={StaticResource ObjectNotNullToBool}}"
                 Source="{Binding Path=LottieImageFile, Converter={StaticResource LottieImageSourceConverter}}"
-                RepeatCount="1"                
+                RepeatCount="{Binding Path=LottieRepeatCount}"                
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
                 AnimationCompleted="SKLottieView_AnimationCompleted">

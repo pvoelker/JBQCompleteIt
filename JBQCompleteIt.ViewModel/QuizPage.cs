@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using JBQCompleteIt.Repository;
 using JBQCompleteIt.ViewModel.Providers;
+using System;
 
 namespace JBQCompleteIt.ViewModel
 {
@@ -15,6 +16,8 @@ namespace JBQCompleteIt.ViewModel
             "animation_llk4zljq.json",
             "animation_llk528hr.json"
         };
+
+        private static string _defaultSuccessLottie = "animation_lmiimwnq.json";
 
         private Random _random = new Random();
 
@@ -48,11 +51,13 @@ namespace JBQCompleteIt.ViewModel
                     if (IsGoodRole(.3))
                     {
                         int index = _random.Next(_successLotties.Count);
+                        LottieRepeatCount = 1;
                         LottieImageFile = _successLotties[index];
                     }
                     else
                     {
-                        CurrentQuestion = _questionProvider.GetNextQuestion(Difficulty);
+                        LottieRepeatCount = 0;
+                        LottieImageFile = _defaultSuccessLottie;
                     }
                 }
                 else
@@ -132,6 +137,16 @@ namespace JBQCompleteIt.ViewModel
         {
             get => _lottieImageFile;
             set => SetProperty(ref _lottieImageFile, value);
+        }
+
+        private int _lottieRepeatCount = 0;
+        /// <summary>
+        /// This is how many additional times to run the Lottie animation.  The animation will always play once
+        /// </summary>
+        public int LottieRepeatCount
+        {
+            get => _lottieRepeatCount;
+            set => SetProperty(ref _lottieRepeatCount, value);
         }
 
         private DifficultyEnum _difficulty;
