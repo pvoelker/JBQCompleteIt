@@ -102,7 +102,7 @@
             <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=BlueViolet, Dark=DarkViolet}" />
         </Style>
     </ContentPage.Resources>
-    <Grid Margin="10">
+    <Grid Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
