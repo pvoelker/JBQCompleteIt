@@ -286,7 +286,7 @@
             <skia:SKLottieView
                 IsVisible="{Binding Path=LottieImageFile, Converter={StaticResource ObjectNotNullToBool}}"
                 Source="{Binding Path=LottieImageFile, Converter={StaticResource LottieImageSourceConverter}}"
-                RepeatCount="1"                
+                RepeatCount="{Binding Path=LottieRepeatCount}"                
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
                 AnimationCompleted="SKLottieView_AnimationCompleted">
