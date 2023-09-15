@@ -6,7 +6,7 @@
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   IgnorableNamespaces="uap rescap">
 
-  <Identity Name="jbq-complete-it" Publisher="CN=User Name" Version="0.2.0.0" />
+  <Identity Name="jbq-complete-it" Publisher="CN=User Name" Version="0.2.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="9D7DEF60-B201-47F7-A050-50F13FB99DA5" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
