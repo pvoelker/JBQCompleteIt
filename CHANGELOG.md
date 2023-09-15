@@ -19,3 +19,4 @@ Track changes made to the game application.
 - Fix for splash screen (.NET logo is showing)
 - Set min width for answer segments so they are not so hard to click on
 - Fix minor issues with questions
+- Improve quiz screen. Adjust questions font size for small screens
