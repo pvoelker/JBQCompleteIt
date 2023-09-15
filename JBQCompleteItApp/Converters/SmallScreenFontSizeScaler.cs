@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace JBQCompleteIt.Converters
 {
@@ -8,11 +9,15 @@ namespace JBQCompleteIt.Converters
         {
             if(parameter == null)
             {
-                throw new ArgumentNullException(nameof(parameter));
+                Debug.WriteLine($"'{nameof(parameter)}' is null going into {nameof(SmallScreenFontSizeScaler)}");
             }
 
-            var parameterStr = parameter as string;
-            var origSize = decimal.Parse(parameterStr);
+            var parameterStr = parameter as string ?? string.Empty;
+            if(!decimal.TryParse(parameterStr, out decimal origSize))
+            {
+                Debug.WriteLine($"'Original size defaulted for {nameof(SmallScreenFontSizeScaler)}");
+                origSize = 10m;
+            }
 
             var text = (string)value;
             var textLen = text == null ? 0 : text.Length;
