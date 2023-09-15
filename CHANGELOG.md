@@ -20,3 +20,8 @@ Track changes made to the game application.
 - Set min width for answer segments so they are not so hard to click on
 - Fix minor issues with questions
 - Improve quiz screen. Adjust questions font size for small screens
+
+## Version 0.2.2 (app ver 4)
+- Third beta version of the game
+- Add missing encryption flag for iOS
+- Fix issue with iOS crashing

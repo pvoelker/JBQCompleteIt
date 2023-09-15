@@ -34,7 +34,7 @@
             <Setter Property="HorizontalTextAlignment" Value="Center" />
             <Setter Property="LineBreakMode" Value="WordWrap" />
             <Setter Property="Shadow">
-                <Shadow Brush="Yellow"
+                <Shadow Brush="{AppThemeBinding Light=Yellow, Dark=White}"
                     Offset="5,5"
                     Radius="10"
                     Opacity="0.8" />
