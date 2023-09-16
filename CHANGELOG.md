@@ -25,3 +25,7 @@ Track changes made to the game application.
 - Third beta version of the game
 - Add missing encryption flag for iOS
 - Fix issue with iOS crashing
+
+## Version 1.0.0 (app ver 5)
+- Fix question iteration mode
+- Fix question range setting

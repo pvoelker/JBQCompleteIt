@@ -26,7 +26,7 @@
             <Setter Property="LineBreakMode" Value="WordWrap" />
         </Style>
 
-        <Style x:Key="currentQuestion" TargetType="Label">
+        <Style x:Key="currentQuestion" TargetType="Label" x:DataType="vm:QuizPage">
             <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=Yellow}" />
             <Setter Property="FontFamily" Value="OpenSansRegular" />
             <Setter Property="FontSize" Value="{OnPlatform Default='32', MacCatalyst='41.6'}" />

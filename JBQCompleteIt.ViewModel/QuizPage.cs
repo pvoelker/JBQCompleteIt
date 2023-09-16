@@ -85,7 +85,7 @@ namespace JBQCompleteIt.ViewModel
         public async Task InitializeAsync()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
-            _questionProvider = new QuestionProvider(new QuestionsRepository(), null, null);
+            _questionProvider = new QuestionProvider(new QuestionsRepository(), StartQuestionNumber, EndQuestionNumber);
 
             CurrentQuestion = _questionProvider.GetNextQuestion(Difficulty);
 

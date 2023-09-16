@@ -3,7 +3,6 @@ using JBQCompleteIt.Repository;
 using JBQCompleteIt.ViewModel.Extensions;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
 
 namespace JBQCompleteIt.ViewModel.Providers
 {
@@ -42,7 +41,7 @@ namespace JBQCompleteIt.ViewModel.Providers
             _startQuestionNumber = startQuestionNumber;
             _endQuestionNumber = endQuestionNumber;
 
-            _iterQuestionNum = _repository.GetMinNumber();
+            _iterQuestionNum = _repository.GetMinNumber() - 1;
 
             if (_startQuestionNumber.HasValue && _endQuestionNumber.HasValue && !InIterateQuestionsMode())
             {
@@ -57,7 +56,7 @@ namespace JBQCompleteIt.ViewModel.Providers
                 int maxQuestionNumber = _repository.GetMaxNumber();
                 int count = maxQuestionNumber - minQuestionNumber;
 
-                for (int i = 1; i <= count; i++)
+                for (int i = 0; i < count; i++)
                 {
                     _timesAsked.Add(i + minQuestionNumber, 0);
                 }
@@ -66,7 +65,7 @@ namespace JBQCompleteIt.ViewModel.Providers
 
         public bool InIterateQuestionsMode()
         {
-            return _startQuestionNumber == _repository.GetMaxNumber() &&
+            return _startQuestionNumber == _repository.GetMinNumber() &&
                 _endQuestionNumber == _repository.GetMaxNumber();
         }
 
